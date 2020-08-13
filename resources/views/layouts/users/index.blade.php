@@ -131,6 +131,8 @@
                                                 </div>
                                             </div>
 
+
+
                                             <div class="form-group">
                                                 <button class="btn btn-primary" type="submit" name="save" value="save">Save</button>
                                             </div>
@@ -156,10 +158,10 @@
                             <table class="table table-striped table-bordered datatable">
                                 <thead>
                                 <tr>
-                                    <th>username</th>
-                                    <th>Full Name</th>
+                                    <th>Name</th>
                                     <th>Email</th>
-                                    <th>Role</th>
+                                    <th>Apps</th>
+                                    <th>Groups</th>
 
                                     <th>Actions</th>
                                 </tr>
@@ -168,12 +170,15 @@
                                       @if($users->count() > 0)
                   @foreach($users as $user)
                                 <tr>
-                                    <td>{{$user->username}}</td>
+                                    {{-- {{$user->username}} --}}
                                     <td>
                                         {{$user->first_name . " " .$user->last_name }}
                                     </td>
                                     <td>
                                         {{$user->email}}
+                                    </td>
+                                    <td>
+                                        ugyfut
                                     </td>
                                     <td>
                                         {{($user->roles->first())?$user->roles->first()->display_name:"N.A"}}
@@ -208,7 +213,7 @@
                 @endif
                                 </tbody>
                             </table>
-\
+
                         </div>
                     </div>
                 </div>

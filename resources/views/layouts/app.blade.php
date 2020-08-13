@@ -23,6 +23,12 @@
   <link href="{{asset('css/dataTables.bootstrap4.css')}}" rel="stylesheet" />
     <!-- Plugins and scripts required by this view-->
 
+
+<style>
+
+</style>
+
+
     <link href="{{ asset('css/select2.min.css')}}" rel="stylesheet" />
 
     <link href="{{ asset('css/free.min.css') }}" rel="stylesheet">
@@ -40,7 +46,7 @@
 </head>
 <body class="c-app c-default-layout">
 
-        @include('layouts.sidebar')
+        @include('layouts.newsidebar')
         @include('layouts.aside')
         <div class="c-wrapper">
 
@@ -55,16 +61,18 @@
         @include('layouts.footer')
         </div>
 
+        <script src="{{ asset('vendors/@coreui/chartjs/dist/js/coreui-chartjs.bundle.js') }}"></script>
+<script src="{{ asset('vendors/@coreui/utils/dist/coreui-utils.js') }}"></script>
  <script src="https://unpkg.com/@popperjs/core@2"></script>
 <script src="https://unpkg.com/@coreui/coreui/dist/js/coreui.min.js"></script>
-<script src="node_modules/@coreui/coreui-pro/dist/js/coreui.bundle.min.js"></script>
+<script src="{{ asset('vendors/@coreui/coreui-pro/dist/js/coreui.bundle.min.js') }}"></script>
 <!--[if IE]><!-->
-<script src="node_modules/@coreui/icons/js/svgxuse.min.js"></script>
+<script src="{{ asset('vendors/@coreui/icons/js/svgxuse.min.js') }}"></script>
 <!--<![endif]-->
 <!-- Plugins and scripts required by this view-->
-<script src="node_modules/@coreui/chartjs/dist/js/coreui-chartjs.bundle.js"></script>
-<script src="node_modules/@coreui/utils/dist/coreui-utils.js"></script>
+
 <script src="js/main.js"></script>
+
 
 {{-- rbtny --}}
 

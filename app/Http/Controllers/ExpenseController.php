@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ReportController extends Controller
+use Illuminate\Http\Request;
+
+class ExpenseController extends Controller
 {
     //
 
@@ -17,13 +17,16 @@ class ReportController extends Controller
         $id = Auth::user();
 
 		 $Invoices;
-  return view('layouts.reports.index');
+  return view('layouts.expense.index');
     }
 
     public function view() {
         $id = Auth::user();
 
 		 $Invoices;
-  return view('layouts.reports.view');
+  return view('layouts.expense.view');
     }
+
+
+
 }

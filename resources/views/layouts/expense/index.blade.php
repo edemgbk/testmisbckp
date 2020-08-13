@@ -10,10 +10,11 @@
 
         <div class="row">
           <!-- /.col-->
-          <div class=" col-sm-12 col-md-12 accordion" id="accordion">
+          <div class=" col-sm-12 col-md-9 accordion" id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
                 <i class="icon-note"></i>Add Expense
+              <a href="{{route('applications')}}">view</a>
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
@@ -80,7 +81,7 @@
                         @endif
                       </div>
 
-                      <div class="form-group">
+                      {{-- <div class="form-group">
                         <label class="col-form-label" for="Date">Amount</label>
                         <input class="form-control {{ $errors->has('Description') ? ' is-invalid' : '' }}" id="Description" type="text" name="Description" value="{{ old('Description')}}" placeholder="Enter Description" />
                         @if ($errors->has('Description'))
@@ -88,7 +89,23 @@
                             <small class="warning text-muted">{{ $errors->first('Description') }}</small>
                           </p>
                         @endif
-                      </div>
+                      </div> --}}
+
+                      <div class="form-group">
+                        <label class="col-form-label" for="appendedPrependedInput">Amount</label>
+                        <div class="controls">
+                        <div class="input-prepend input-group">
+                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                        <input class="form-control" id="appendedPrependedInput" size="16" type="text">
+                        @if ($errors->has('Description'))
+                        <p class="text-right mb-0">
+                          <small class="warning text-muted">{{ $errors->first('Description') }}</small>
+                        </p>
+                      @endif
+                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
+                        </div>
+                         </div>
+                        </div>
 
                       {{--<script src="{{asset('js/advanced-forms.js')}}" defer>--}}
                           {{--$('#select2-1, #select2-2, #select2-4').select2({--}}
@@ -182,44 +199,66 @@
                   <th>Actions</th>
                 </tr>
                 </thead>
-                <tbody>
-                {{-- @if($roles->count() > 0)
-                  @foreach($roles as $role)
+            <tbody>
+
+                {{-- @if($roles->count() > 0) --}}
+                  {{-- @foreach($roles as $role) --}}
                 <tr>
-                  <td>{{$role->name}}</td>
-                  <td>{{$role->display_name}}</td>
-                  <td>{{$role->description}}</td>
+                    <td>
+                        {{-- {{$role->name}} --}}
+                      </td>
+                    <td>
+                        {{-- {{$role->display_name}} --}}
+                      </td>
+                    <td>
+                        {{-- {{$role->description}} --}}
+                      </td>
+                  <td>
+                      {{-- {{$role->name}} --}}
+                    </td>
+                  <td>
+                      {{-- {{$role->display_name}} --}}
+                    </td>
+                  <td>
+                      {{-- {{$role->description}} --}}
+                    </td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
+                    <a class="btn btn-success" href="{{route('expenses.view')}}"
+                    {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
+                    >
                       <i class="fa fa-search-plus"></i>
                     </a>
-                    <a class="btn btn-info" href="{{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
+                    <a class="btn btn-info" href="
+                    {{-- {{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
+                    ">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger" href="" onclick="deleteRole('{{$role->id}}')">
+                    <a class="btn btn-danger" href=""
+                    {{-- onclick="deleteRole('{{$role->id}}')" --}}
+                    >
                       <i class="fa fa-trash-o"></i>
                     </a>
 
-                     <form id="delete-form{{$role->id}}"
+                     {{-- <form id="delete-form{{$role->id}}"
                             action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 
                         <input type="hidden" name="id"
                                value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
-                      </form>
+                      </form> --}}
 
                   </td>
                 </tr>
-                  @endforeach
+                  {{-- @endforeach
                 @else
                   <tr>
                     <td colspan="4" class="text-center">No role  Set</td>
                   </tr>
                 @endif --}}
                 </tbody>
-              </table>
+            </table>
             </div>
           </div>
         </div>

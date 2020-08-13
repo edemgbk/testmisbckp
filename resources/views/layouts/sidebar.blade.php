@@ -14,33 +14,45 @@
           </svg> Dashboard</a>
         </li>
 
-
-          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('invoice')}}">
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('customer')}}">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-            </svg> Invoices</a></li>
+            </svg> Customers</a>
+          </li>
 
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
-                <svg class="c-sidebar-nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-                </svg> Customers</a>
-              </li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('item')}}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+            </svg> Items</a>
+          </li>
+
+
 
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
             </svg> Estimates</a></li>
 
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
-                <svg class="c-sidebar-nav-icon">
-                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-                </svg> Payments Received</a></li>
+
 
 
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
                     <svg class="c-sidebar-nav-icon">
                       <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
                     </svg> Expenses</a></li>
+
+                    <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('invoice')}}">
+                        <svg class="c-sidebar-nav-icon">
+                          <use xlink:href="vendors/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                        </svg> Invoices</a></li>
+
+
+
+                        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
+                            <svg class="c-sidebar-nav-icon">
+                              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                            </svg> Payments Received</a></li>
+
 
                     <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
                         <svg class="c-sidebar-nav-icon">
@@ -51,11 +63,11 @@
                             <svg class="c-sidebar-nav-icon">
                               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
                             </svg> Reports</a></li>
-
-                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="#">
+                            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('newsidebar')}}">
                                 <svg class="c-sidebar-nav-icon">
                                   <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
-                                </svg> Payments Received</a></li>
+                                </svg> newsidebar</a></li>
+
       <li class="c-sidebar-nav-dropdown">
           <a class="c-sidebar-nav-dropdown-toggle" href="#">
           <svg class="c-sidebar-nav-icon">
@@ -69,6 +81,22 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="notifications/toastr.html"> etc<span class="badge badge-danger">PRO</span></a></li>
         </ul>
       </li>
+
+{{--
+      <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.users')}}">
+        <svg class="c-sidebar-nav-icon">
+          <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+        </svg> Users</a></li>
+
+        <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.roles')}}">
+            <svg class="c-sidebar-nav-icon">
+              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+            </svg> Roles</a></li>
+
+            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.permissions')}}">
+                <svg class="c-sidebar-nav-icon">
+                  <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
+                </svg> Permissions</a></li> --}}
 
 
 

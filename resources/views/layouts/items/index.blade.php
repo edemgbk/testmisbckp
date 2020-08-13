@@ -13,7 +13,7 @@
           <div class=" col-sm-12 col-md-12 accordion" id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
-                <i class="icon-note"></i>Add Expense
+                <i class="icon-note"></i>Add Item
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
@@ -22,66 +22,52 @@
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-12">
-                    <h6>Expense </h6>
+                    <h6>Simple Form</h6>
                     <form id="roleForm"   method="POST" action="">
                       @csrf
 
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Customer Type</label>
+                        <div class="col-md-3 col-form-label">
+                        <div class="form-check form-check-inline mr-1">
+                        <input class="form-check-input" id="inline-radio1" type="radio" value="option1" name="inline-radios">
+                        <label class="form-check-label" for="inline-radio1">Business</label>
+                        </div>
+                        <div class="form-check form-check-inline mr-1">
+                        <input class="form-check-input" id="inline-radio2" type="radio" value="option2" name="inline-radios">
+                        <label class="form-check-label" for="inline-radio2">Indivivual</label>
+                        </div>
+
+                        </div>
+                 </div>
                       <div class="form-group">
-                        <label class="col-form-label" for="Date"> Expense Date</label>
-                        <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="Date" value="{{ old('Date')}}" placeholder=" Enter Date" />
-                        @if ($errors->has('Date'))
+                        <label class="col-form-label" for="Address">Name</label>
+                        <input class="form-control {{ $errors->has('Address') ? ' is-invalid' : '' }}" id="Address" type="text" name="Address" value="{{ old('Address')}}" placeholder="Enter Address" />
+                        @if ($errors->has('Address'))
                           <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('Date') }}</small>
+                            <small class="warning text-muted">{{ $errors->first('Address') }}</small>
                           </p>
                         @endif
                       </div>
 
-                      <div class="form-group">
-                        <label class="col-form-label" for="name"> Category</label>
-                        {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                        @if ($errors->has('name'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('name') }}</small>
-                          </p>
-                        @endif --}}
-                        <select class="form-control form-control" id="select3" name="select3">
-                            <option value="0"></option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="hf-email">Unit</label>
+
+
+                        <div class="col-md-3">
+                            <select class="form-control form-control" id="select3" name="select3">
+                            <option value="0">salutation</option>
+                            <option value="1">mr</option>
+                            <option value="2">mrs</option>
+                            <option value="3">ms</option>
                             </select>
+                            </div>
 
-                      </div>
 
+
+                        </div>
                       <div class="form-group">
-                        <label class="col-form-label" for="name"> Merchant</label>
-                        {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                        @if ($errors->has('name'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('name') }}</small>
-                          </p>
-                        @endif --}}
-                        <select class="form-control form-control" id="select3" name="select3">
-                            <option value="0"></option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
-                            </select>
-
-                      </div>
-
-                      <div class="form-group">
-                        <label class="col-form-label" for="username">Reference</label>
-                        <input class="form-control {{ $errors->has('AccountNo') ? ' is-invalid' : '' }}" id="AccountNo" type="text" name="AccountNo" value="{{ old('AccountNo')}}" placeholder="Enter Report" />
-                        @if ($errors->has('AccountNo'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('AccountNo') }}</small>
-                          </p>
-                        @endif
-                      </div>
-
-                      <div class="form-group">
-                        <label class="col-form-label" for="Date">Amount</label>
+                        <label class="col-form-label" for="Date"> Selling Price</label>
                         <input class="form-control {{ $errors->has('Description') ? ' is-invalid' : '' }}" id="Description" type="text" name="Description" value="{{ old('Description')}}" placeholder="Enter Description" />
                         @if ($errors->has('Description'))
                           <p class="text-right mb-0">
@@ -90,6 +76,33 @@
                         @endif
                       </div>
 
+                      <div class="form-group">
+                        <label class="col-form-label" for="Date">Description</label>
+                        <input class="form-control {{ $errors->has('Description') ? ' is-invalid' : '' }}" id="Description" type="text" name="Description" value="{{ old('Description')}}" placeholder="Enter Description" />
+                        @if ($errors->has('Description'))
+                          <p class="text-right mb-0">
+                            <small class="warning text-muted">{{ $errors->first('Description') }}</small>
+                          </p>
+                        @endif
+                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="hf-email">Tax</label>
+
+
+                        <div class="col-md-3">
+                            <select class="form-control form-control" id="select3" name="select3">
+                            <option value="0">salutation</option>
+                            <option value="1">mr</option>
+                            <option value="2">mrs</option>
+                            <option value="3">ms</option>
+                            </select>
+                            </div>
+
+                       
+
+                        </div>
+
                       {{--<script src="{{asset('js/advanced-forms.js')}}" defer>--}}
                           {{--$('#select2-1, #select2-2, #select2-4').select2({--}}
                               {{--theme: 'bootstrap'--}}
@@ -97,8 +110,8 @@
                       {{--</script>--}}
 
                       {{-- @if($permissions->count() > 0) --}}
-                      {{-- <fieldset class="form-group"> --}}
-                        {{-- <label  class="col-form-label" for="permission" >N/B</label> --}}
+                      <fieldset class="form-group">
+                        <label  class="col-form-label" for="permission" >N/B</label>
                         {{-- <select class="form-control select2-multiple" name="permissions[]" id="select2-2" multiple="multiple" required > --}}
 
                           {{-- @foreach($permissions as $permission)
@@ -106,44 +119,19 @@
                           @endforeach --}}
 
                         {{-- </select> --}}
-                        {{-- @if ($errors->has('permissions'))
+                        @if ($errors->has('permissions'))
                         <p class="text-right">
                         <small class="warning text-muted">{{ $errors->first('permissions') }}</small>
                         </p>
                         @endif
-                      </fieldset> --}}
-
-                      <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="text-input"> Reference</label>
-                        <div class="col-md-9">
-                            <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Content.."></textarea>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="col-form-label" for="name"> Add to A report</label>
-                            {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                            @if ($errors->has('name'))
-                              <p class="text-right mb-0">
-                                <small class="warning text-muted">{{ $errors->first('name') }}</small>
-                              </p>
-                            @endif --}}
-                            <select class="form-control form-control" id="select3" name="select3">
-                                <option value="0"></option>
-                                <option value="1"></option>
-                                <option value="2"></option>
-                                <option value="3"></option>
-                                </select>
-
-                          </div>
+                      </fieldset>
 
                       {{-- @else --}}
-                      {{-- <div class="form-group">
+                      <div class="form-group">
                       <label for="message">{{__('notice')}}</label>
-                      </div> --}}
+                      </div>
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save as draft</button>
                         <button class="btn btn-primary" type="submit" name="save" value="save">Save & Send </button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
@@ -163,7 +151,7 @@
         <div class="animated fadeIn">
           <div class="card">
             <div class="card-header">
-              <i class="fa fa-edit"></i> List Expenses
+              <i class="fa fa-edit"></i> List Invoices
               <div class="card-header-actions">
 
               </div>
@@ -172,11 +160,11 @@
               <table class="table table-striped table-bordered datatable">
                 <thead>
                 <tr>
+                  <th>Name</th>
+                  <th>Address</th>
+                  <th>AccountNo.</th>
                   <th>Date</th>
-                  <th>Category</th>
-                  <th>Merchant.</th>
-                  <th>Report</th>
-                  <th>Status</th>
+                  <th>Description</th>
                   <th>Amount</th>
 
                   <th>Actions</th>

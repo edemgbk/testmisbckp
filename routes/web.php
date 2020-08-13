@@ -10,87 +10,8 @@ Route::get('/', function () {
 Auth::routes();
 
 
-Route::get('/redirect', function (Request $request) {
-    $request->session()->put('state', $state = Str::random(40));
 
-    $query = http_build_query([
-        'client_id' => 'client-id',
-        'redirect_uri' => 'http://example.com/callback',
-        'response_type' => 'code',
-        'scope' => '',
-        'state' => $state,
-    ]);
-
-    return redirect('https://accounts.zoho.com/oauth/v2/auth?'.$query);
-});
-
-
-Route::get('/callback', function (Request $request) {
-    $state = $request->session()->pull('state');
-
-    throw_unless(
-        strlen($state) > 0 && $state === $request->state,
-        InvalidArgumentException::class
-    );
-
-    $http = new GuzzleHttp\Client;
-
-    $response = $http->post('http://your-app.com/oauth/token', [
-        'form_params' => [
-            'grant_type' => 'authorization_code',
-            'client_id' => 'client-id',
-            'client_secret' => 'client-secret',
-            'redirect_uri' => 'http://example.com/callback',
-            'code' => $request->code,
-        ],
-    ]);
-
-    return json_decode((string) $response->getBody(), true);
-});
-
-Route::get('/callback', function (Request $request) {
-    $state = $request->session()->pull('state');
-
-    $codeVerifier = $request->session()->pull('code_verifier');
-
-    throw_unless(
-        strlen($state) > 0 && $state === $request->state,
-        InvalidArgumentException::class
-    );
-
-    $response = (new GuzzleHttp\Client)->post('http://your-app.com/oauth/token', [
-        'form_params' => [
-            'grant_type' => 'authorization_code',
-            'client_id' => 'client-id',
-            'redirect_uri' => 'http://example.com/callback',
-            'code_verifier' => $codeVerifier,
-            'code' => $request->code,
-        ],
-    ]);
-
-    return json_decode((string) $response->getBody(), true);
-});
-
-
-Route::get('', function (Request $request) {
-$http = new GuzzleHttp\Client;
-
-$response = $http->post('http://your-app.com/oauth/token', [
-    'form_params' => [
-        'grant_type' => 'refresh_token',
-        'refresh_token' => 'the-refresh-token',
-        'client_id' => 'client-id',
-        'client_secret' => 'client-secret',
-        'scope' => '',
-    ],
-]);
-
-return json_decode((string) $response->getBody(), true);
-
-});
-
-
-// Route::get('/admin','AdminController@index')->name('Admin');
+Route::get('/newsidebar','AdminController@index')->name('newsidebar');
 
 Route::get('/test', function () {
     return 'Hello World';
@@ -98,20 +19,91 @@ Route::get('/test', function () {
 
 
 
-
-
 Auth::routes(['verify' => true]);
 
-// Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 
 Route::middleware(['verified', 'auth'])->group(function () {
 
     Route::get('invoices', 'InvoiceController@index')->name('invoice');
     Route::get('reports', 'ReportController@index')->name('reports');
-    Route::get('/home', 'HomeController@index')->name('home');
+    // Route::get('/Dashboard', 'HomeController@index')->name('home');
+    Route::get('customers', 'CustomerController@index')->name('customer');
+    Route::get('items', 'ItemController@index')->name('item');
+
+    Route::get('applications', 'applicationsController@index')->name('applications');
+
+    Route::get('Search', 'Controller@index')->name('');
+    Route::get('Dashboard', 'HomeController@index')->name('home');
+    Route::get('AdminPanel', 'AdminPanelController@index')->name('AdminPanel');
+
 
     });
+
+         //Invoices Routes
+
+    Route::prefix('invoice')->name('invoice.')->group(function () {
+
+        Route::middleware(['verified', 'auth'])->group(function () {
+
+         Route::get('invoices', 'InvoiceController@index')->name('invoice');
+        Route::get('reports', 'InvoiceController@index')->name('reports');
+        Route::get('customers', 'InvoiceCustomerController@index')->name('customer');
+        Route::get('items', 'InvoiceController@index')->name('item');
+
+
+        });
+        });
+
+
+        Route::prefix('docsign')->name('docsign.')->group(function () {
+
+            Route::middleware(['verified', 'auth'])->group(function () {
+
+             Route::get('sign', 'DocsignController@sign')->name('sign');
+            Route::get('documents', 'DocsignController@index')->name('document');
+            Route::get('templates', 'DocsignController@index')->name('template');
+            Route::get('signForms', 'DocsignController@signForm')->name('signinform');
+            Route::get('reports', 'DocsignController@index')->name('report');
+
+
+            });
+            });
+
+
+
+
+
+    Route::prefix('expenses')->name('expenses.')->group(function () {
+
+        Route::middleware(['verified', 'auth'])->group(function () {
+        Route::get('view', 'ExpenseController@view')->name('view');
+
+         Route::get('expenses', 'ExpenseController@index')->name('expenses');
+        // Route::get('reports', 'InvoiceController@index')->name('reports');
+        // Route::get('customers', 'InvoiceCustomerController@index')->name('customer');
+        // Route::get('items', 'InvoiceController@index')->name('item');
+        });
+        });
+
+
+        Route::prefix('reports')->name('reports.')->group(function () {
+
+            Route::middleware(['verified', 'auth'])->group(function () {
+                Route::get('view', 'ReportController@view')->name('view');
+             Route::get('reports', 'ReportController@index')->name('reports');
+            // Route::get('documents', 'DocsignController@index')->name('document');
+            // Route::get('templates', 'DocsignController@index')->name('template');
+            // Route::get('signForms', 'DocsignController@signForm')->name('signinform');
+            // Route::get('reports', 'DocsignController@index')->name('report');
+            });
+            });
+
+
+
+
+
 
 
     Route::prefix('user-management')->name('user-management.')->group(function () {
@@ -147,7 +139,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
         Route::put('roles/{id}/update', 'RolesController@update')->name('roles.update');
 
         //Invoices Routes
-
 
         });
         });

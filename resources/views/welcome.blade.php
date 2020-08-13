@@ -81,9 +81,18 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                
-                </div>
 
+                </div>
+                <div class="links">
+                    <a href="#">Demo Credentials
+                        Admin: edemgbk@gmail.com.com
+                        Password: edemgbk123</a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+
+                </div>
 
             </div>
         </div>
