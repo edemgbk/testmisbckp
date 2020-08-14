@@ -163,7 +163,7 @@
                         </td>
 
                       <td>
-                        <a class="btn btn-success" href="{{route('reports.view')}}"
+                        <a class="btn btn-success" href="{{route('reportsgi.view')}}"
                         {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
                         >
                           <i class="fa fa-search-plus"></i>
