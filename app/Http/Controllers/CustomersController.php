@@ -16,7 +16,7 @@ class CustomersController extends Controller
 
 	public function index() {
         $id = Auth::user();
- 
+
 		 $Invoices;
   return view('layouts.customers.index');
 	}
