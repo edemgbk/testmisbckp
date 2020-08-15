@@ -14,7 +14,7 @@
             <div class="card">
               <div class="card-header" id="headingOne">
                 <i class="icon-note"></i>Add Expense
-              <a href="{{route('applications')}}">view</a>
+              {{-- <a href="{{route('applications')}}">view</a> --}}
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
@@ -24,12 +24,11 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h6>Expense </h6>
-                    <form id="roleForm"   method="POST" action="">
+                    <form id="roleForm"   method="POST" action="{{ route('expenses.create')}}">
                       @csrf
-
                       <div class="form-group">
-                        <label class="col-form-label" for="Date"> Expense Date</label>
-                        <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="Date" value="{{ old('Date')}}" placeholder=" Enter Date" />
+                        <label class="col-form-label" for="Date"> Expense Date*</label>
+                        <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="date" value="{{ old('Date')}}" placeholder=" Enter Expense Date" />
                         @if ($errors->has('Date'))
                           <p class="text-right mb-0">
                             <small class="warning text-muted">{{ $errors->first('Date') }}</small>
@@ -38,45 +37,47 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="col-form-label" for="name"> Category</label>
-                        {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
+                        <label class="col-form-label" for="name"> Category*</label>
+                        {{-- <input class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
                         @if ($errors->has('name'))
                           <p class="text-right mb-0">
                             <small class="warning text-muted">{{ $errors->first('name') }}</small>
                           </p>
                         @endif --}}
-                        <select class="form-control form-control" id="select3" name="select3">
-                            <option value="0"></option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
+                        <select class="form-control form-control" id="select3" name="category">
+                            <option value="Automobile Expense">Automobile Expense</option>
+                            <option value="T and Internet Expenses">IT and Internet Expenses</option>
+                            <option value="Lodging">Lodging</option>
+                            <option value="Meals and Entertainment">Meals and Entertainment</option>
+                            <option value="Office Supplies">Office Supplies</option>
+
+                            </select>
                             </select>
 
                       </div>
 
                       <div class="form-group">
                         <label class="col-form-label" for="name"> Merchant</label>
-                        {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                        @if ($errors->has('name'))
+                        {{-- <input class="form-control {{ $errors->has('merchant') ? ' is-invalid' : '' }}" id="name" type="text" name="merchant" value="{{ old('merchant')}}" placeholder=" Enter merchant" />
+                        @if ($errors->has('merchant'))
                           <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('name') }}</small>
+                            <small class="warning text-muted">{{ $errors->first('merchant') }}</small>
                           </p>
                         @endif --}}
-                        <select class="form-control form-control" id="select3" name="select3">
-                            <option value="0"></option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
+                        <select class="form-control form-control" id="select3" name="merchant">
+                            <option value="Merchant1">Merchant1</option>
+                            <option value="Merchant2">Merchant2</option>
+                            <option value="Merchant3">Merchant3</option>
                             </select>
 
                       </div>
 
                       <div class="form-group">
-                        <label class="col-form-label" for="username">Reference</label>
-                        <input class="form-control {{ $errors->has('AccountNo') ? ' is-invalid' : '' }}" id="AccountNo" type="text" name="AccountNo" value="{{ old('AccountNo')}}" placeholder="Enter Report" />
-                        @if ($errors->has('AccountNo'))
+                        <label class="col-form-label" for="reference">Reference</label>
+                        <input class="form-control {{ $errors->has('reference') ? ' is-invalid' : '' }}" id="reference" type="text" name="reference" value="{{ old('reference')}}" placeholder="Enter reference" />
+                        @if ($errors->has('reference'))
                           <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('AccountNo') }}</small>
+                            <small class="warning text-muted">{{ $errors->first('reference') }}</small>
                           </p>
                         @endif
                       </div>
@@ -92,11 +93,11 @@
                       </div> --}}
 
                       <div class="form-group">
-                        <label class="col-form-label" for="appendedPrependedInput">Amount</label>
+                        <label class="col-form-label" for="appendedPrependedInput">Amount*</label>
                         <div class="controls">
                         <div class="input-prepend input-group">
                         <div class="input-group-prepend"><span class="input-group-text">$</span></div>
-                        <input class="form-control" id="appendedPrependedInput" size="16" type="text">
+                        <input class="form-control" id="appendedPrependedInput" name="amount" size="16" type="text">
                         @if ($errors->has('Description'))
                         <p class="text-right mb-0">
                           <small class="warning text-muted">{{ $errors->first('Description') }}</small>
@@ -131,9 +132,9 @@
                       </fieldset> --}}
 
                       <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="text-input"> Reference</label>
+                        <label class="col-md-3 col-form-label" for="text-input"> Description</label>
                         <div class="col-md-9">
-                            <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Content.."></textarea>
+                            <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.."></textarea>
                             </div>
                         </div>
 
@@ -145,9 +146,9 @@
                                 <small class="warning text-muted">{{ $errors->first('name') }}</small>
                               </p>
                             @endif --}}
-                            <select class="form-control form-control" id="select3" name="select3">
-                                <option value="0"></option>
-                                <option value="1"></option>
+                            <select class="form-control form-control" id="select3" name="report">
+                                <option value="report1">report1</option>
+                                <option value="report2">report2</option>
                                 <option value="2"></option>
                                 <option value="3"></option>
                                 </select>
@@ -160,8 +161,8 @@
                       </div> --}}
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save as draft</button>
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save & Send </button>
+                        <button class="btn btn-success" type="submit" name="save" value="save">Save </button>
+                        <button class="btn btn-default" type="submit" name="save" value="save">cancel </button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
 
@@ -194,7 +195,6 @@
                   <th>Merchant.</th>
                   <th>Report</th>
                   <th>Status</th>
-                  <th>Amount</th>
 
                   <th>Actions</th>
                 </tr>
@@ -219,9 +219,9 @@
                   <td>
                       {{-- {{$role->display_name}} --}}
                     </td>
-                  <td>
+                  {{-- <td>
                       {{-- {{$role->description}} --}}
-                    </td>
+                    {{-- </td> --}}
 
                   <td>
                     <a class="btn btn-success" href="{{route('expenses.view')}}"

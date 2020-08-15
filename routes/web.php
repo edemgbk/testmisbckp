@@ -79,6 +79,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
 
         Route::middleware(['verified', 'auth'])->group(function () {
         Route::get('view', 'ExpenseController@view')->name('view');
+        Route::post('create', 'ExpenseController@create')->name('create');
 
          Route::get('expenses', 'ExpenseController@index')->name('expenses');
         // Route::get('reports', 'InvoiceController@index')->name('reports');
@@ -138,7 +139,40 @@ Route::middleware(['verified', 'auth'])->group(function () {
         Route::get('roles/newFormView', 'RolesController@emptyForm')->name('roles.emptyForm');
         Route::put('roles/{id}/update', 'RolesController@update')->name('roles.update');
 
-        //Invoices Routes
+      //categories Routes
+      Route::get('categories', 'categoriesController@index')->name('categories');
+      Route::post('categories/create', 'CategoriesController@create')->name('categories.create');
+
+      Route::get('categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
+      Route::put('categories/{id}/update', 'CategoriesController@update')->name('categories.update');
+      Route::delete('categories/delete', 'CategoriesController@delete')->name('categories.delete');
+
+
+      //merchants
+      Route::get('merchants', 'MerchantsController@index')->name('merchants');
+      Route::post('merchants/create', 'MerchantsController@create')->name('merchants.create');
+
+      Route::get('merchants/{id}/edit', 'MerchantsController@edit')->name('merchants.edit');
+      Route::put('merchants/{id}/update', 'MerchantsController@update')->name('merchants.update');
+      Route::delete('merchants/delete', 'MerchantsController@delete')->name('merchants.delete');
+
+      //customers
+      Route::get('customers', 'CustomersController@index')->name('customers');
+      Route::post('customers/create', 'CustomersController@create')->name('customers.create');
+
+      Route::get('customers/{id}/edit', 'CustomersController@edit')->name('customers.edit');
+      Route::put('customers/{id}/update', 'CustomersController@update')->name('customers.update');
+      Route::delete('customers/delete', 'CustomersController@delete')->name('customers.delete');
+
+
+//currencies
+
+Route::get('currencies', 'currenciesController@index')->name('currencies');
+Route::post('currencies/create', 'currenciesController@create')->name('currencies.create');
+
+Route::get('currencies/{id}/edit', 'currenciesController@edit')->name('currencies.edit');
+Route::put('currencies/{id}/update', 'currenciesController@update')->name('currencies.update');
+Route::delete('currencies/delete', 'currenciesController@delete')->name('currencies.delete');
 
         });
         });

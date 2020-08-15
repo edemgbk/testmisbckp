@@ -82,7 +82,7 @@
 
                       <div class="form-group">
                         <label class="col-form-label" for="Date">Amount</label>
-                        <input class="form-control {{ $errors->has('Description') ? ' is-invalid' : '' }}" id="Description" type="text" name="Description" value="{{ old('Description')}}" placeholder="Enter Description" />
+                        <input class="form-control {{ $errors->has('Description') ? ' is-invalid' : '' }}" id="Description" type="text" name="description" value="{{ old('Description')}}" placeholder="Enter Description" />
                         @if ($errors->has('Description'))
                           <p class="text-right mb-0">
                             <small class="warning text-muted">{{ $errors->first('Description') }}</small>

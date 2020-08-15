@@ -17,12 +17,13 @@
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
+
                 </div>
               </div>
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-9">
-                    <h6>Expense </h6>
+                    <h6> </h6>
                     <form id="roleForm"   method="POST" action="">
                       @csrf
                       <div class="form-group">
@@ -98,8 +99,9 @@
                       </div> --}}
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save</button>
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save & Send </button>
+                        <button class="btn btn-default" type="submit" name="save" value="save">Save</button>
+                        <button class="btn btn-success" type="submit" name="save" value="save">Save & Send </button>
+                        <button class="btn btn-default" type="submit" name="save" value="save">cancel</button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
 
@@ -128,13 +130,14 @@
 
                  <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>Category</th>
-                      <th>Merchant.</th>
-                      <th>Report</th>
-                      <th>Status</th>
-                      <th>Amount</th>
+                      <th>Report Number</th>
+                      <th>Report Title</th>
+                      <th>Start Date.</th>
+                      <th>End Date</th>
+                      <th>Amount(GHS)</th>
+                      <th>Submitted On</th>
 
+                      <th>Status</th>
                       <th>Actions</th>
                     </tr>
                     </thead>
@@ -147,37 +150,41 @@
                             {{-- {{$role->name}} --}}
                           </td>
                         <td>
+                            {{-- {{$role->name}} --}}
+                          </td>
+                        <td>
                             {{-- {{$role->display_name}} --}}
                           </td>
                         <td>
                             {{-- {{$role->description}} --}}
-                          </td>
+
+                           </td>
                       <td>
                           {{-- {{$role->name}} --}}
-                        </td>
+                         </td>
                       <td>
                           {{-- {{$role->display_name}} --}}
                         </td>
                       <td>
                           {{-- {{$role->description}} --}}
-                        </td>
+                         </td>
 
                       <td>
-                        <a class="btn btn-success" href="{{route('reportsgi.view')}}"
+                        <a class="btn btn-success" href="{{route('reports.view')}}">
                         {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                        >
+                        {{-- >
                           <i class="fa fa-search-plus"></i>
                         </a>
-                        <a class="btn btn-info" href="
+                        <a class="btn btn-info" href=" --}}
                         {{-- {{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                        ">
+                        {{-- ">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger" href=""
+                        <a class="btn btn-danger" href="" --}}
                         {{-- onclick="deleteRole('{{$role->id}}')" --}}
-                        >
+                        {{-- >
                           <i class="fa fa-trash-o"></i>
-                        </a>
+                        </a> --}}
 
                          {{-- <form id="delete-form{{$role->id}}"
                                 action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
@@ -188,7 +195,7 @@
                                    value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
                           </form> --}}
 
-                      </td>
+                       </td>
                     </tr>
                       {{-- @endforeach
                     @else

@@ -9,30 +9,30 @@
             <li class="breadcrumb-item">
                 <a href="#">Admin</a>
             </li>
-            <li class="breadcrumb-item active">view</li>
+            {{-- <li class="breadcrumb-item active">view</li> --}}
         </ol>
         <div class="container-fluid">
             <div class="ui-view">
                 <div class="row">
-
                     <div class="card col-md-9">
-                        <img class="card-img-top" src="..." alt="Card image cap">
                         <div class="card-body">
-                            <h5 class="card-title">Card  view title</h5>
+                            <h5> Expense Details</h5>
+
+                            <h6 class="card-title">AMOUNT</h5>
 
                             <p class="card-text">
-                                Name :
+                                Merchant
                                 {{-- {{$role->name}} --}}
                             </p>
                             <p class="card-text">
-                                Display name :
-                                 {{-- {{$role->display_name}} --}}
+                                description
+                                {{-- {{$role->display_name}} --}}
                             </p>
                             <p class="card-text">
-                                Description :
+                                reference :
                                 {{-- {{$role->description}} --}}
                             </p>
-                            <p class="card-text"><b>List of details</b></p>
+                            {{-- <p class="card-text"><b>List of details</b></p> --}}
                         </div>
                         <ul class="list-group list-group-flush">
                             {{-- @foreach($role->permissions as $permission) --}}
@@ -43,9 +43,9 @@
                         </ul>
                         <div class="card-body">
                             <div class="form-group">
-                                <button class="btn btn-primary" type="submit" name="save" value="save">Save as draft</button>
-                                <button class="btn btn-primary" type="submit" name="save" value="save">Save &amp; Send </button>
+                                <button class="btn btn-primary" type="submit" name="save" value="save">edit</button>
 
+                                <button class="btn btn-danger" type="submit" name="save" value="save">delete</button>
 
 
                               </div>

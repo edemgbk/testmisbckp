@@ -1,14 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class MerchantsController extends Controller
 {
     //
-
 
     public function __construct() {
 		$this->middleware('auth');
@@ -18,6 +17,6 @@ class CustomerController extends Controller
         $id = Auth::user();
 
 		 $Invoices;
-  return view('layouts.customers.index');
+  return view('layouts.merchants.index');
 	}
 }

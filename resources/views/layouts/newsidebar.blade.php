@@ -21,6 +21,7 @@
                 <svg class="c-sidebar-nav-icon">
                   <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
                 </svg> Reports</a></li>
+
 {{--
         <li class="c-sidebar-nav-dropdown c-show">
             <a class="c-sidebar-nav-dropdown-toggle" href="{{route('invoice')}}">
@@ -66,6 +67,11 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.users')}}"> Users</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.roles')}}"> Roles</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.permissions')}}"> Permissions</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.categories')}}"> Categories</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.customers')}}"> Customers</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.currencies')}}"> Currencies</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.merchants')}}"> Merchants</a></li>
+
         </ul>
       </li>
 
