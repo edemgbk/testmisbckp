@@ -36,41 +36,33 @@
                         @endif
                       </div>
 
-                      <div class="form-group">
-                        <label class="col-form-label" for="name"> Category*</label>
-                        {{-- <input class="form-control {{ $errors->has('category') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                        @if ($errors->has('name'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('name') }}</small>
-                          </p>
-                        @endif --}}
-                        <select class="form-control form-control" id="select3" name="category">
-                            <option value="Automobile Expense">Automobile Expense</option>
-                            <option value="T and Internet Expenses">IT and Internet Expenses</option>
-                            <option value="Lodging">Lodging</option>
-                            <option value="Meals and Entertainment">Meals and Entertainment</option>
-                            <option value="Office Supplies">Office Supplies</option>
+                      <div class="form-group{{ $errors->has('category') ? ' form-control-warning' : '' }}">
+                        <label for="category">Category <span class="required">*</span></label>
+                        <select name="category_id" id="category" class="form-control"  style="width: 100%">
+                            @foreach($Categories as $category)
+                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('category'))
+                            <p class="text-right">
+                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                            </p>
+                        @endif
+                    </div>
 
-                            </select>
-                            </select>
-
-                      </div>
-
-                      <div class="form-group">
-                        <label class="col-form-label" for="name"> Merchant</label>
-                        {{-- <input class="form-control {{ $errors->has('merchant') ? ' is-invalid' : '' }}" id="name" type="text" name="merchant" value="{{ old('merchant')}}" placeholder=" Enter merchant" />
-                        @if ($errors->has('merchant'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('merchant') }}</small>
-                          </p>
-                        @endif --}}
-                        <select class="form-control form-control" id="select3" name="merchant">
-                            <option value="Merchant1">Merchant1</option>
-                            <option value="Merchant2">Merchant2</option>
-                            <option value="Merchant3">Merchant3</option>
-                            </select>
-
-                      </div>
+                    <div class="form-group{{ $errors->has('merchants') ? ' form-control-warning' : '' }}">
+                        <label for="merchants">Merchant <span class="required">*</span></label>
+                        <select name="merchant_id" id="merchants" class="form-control"  style="width: 100%">
+                            @foreach($Merchants as $merchant)
+                                <option value="{{$merchant->id}}">{{$merchant->name}}</option>
+                            @endforeach
+                        </select>
+                        @if ($errors->has('merchants'))
+                            <p class="text-right">
+                                <small class="warning text-muted">{{ $errors->first('merchants') }}</small>
+                            </p>
+                        @endif
+                    </div>
 
                       <div class="form-group">
                         <label class="col-form-label" for="reference">Reference</label>
@@ -146,7 +138,7 @@
                                 <small class="warning text-muted">{{ $errors->first('name') }}</small>
                               </p>
                             @endif --}}
-                            <select class="form-control form-control" id="select3" name="report">
+                            <select class="form-control form-control" id="select3" name="reports">
                                 <option value="report1">report1</option>
                                 <option value="report2">report2</option>
                                 <option value="2"></option>
@@ -161,8 +153,8 @@
                       </div> --}}
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-success" type="submit" name="save" value="save">Save </button>
-                        <button class="btn btn-default" type="submit" name="save" value="save">cancel </button>
+                        <button class="btn btn-success" type="submit">Save </button>
+                        <button class="btn btn-default" type="submit">>cancel </button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
 

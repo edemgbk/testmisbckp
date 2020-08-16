@@ -28,9 +28,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h6>Simple Form</h6>
-                    <form id="roleForm"   method="POST" action="
-                    {{-- {{ route('user-management.categories.create')}} --}}
-                    ">
+                    <form id="roleForm"   method="POST" action="{{ route('user-management.categories.create')}}">
                       @csrf
 
                       <div class="form-group">
@@ -96,30 +94,34 @@
                 </tr>
                 </thead>
                 <tbody>
-                {{-- @if($roles->count() > 0)
-                  @foreach($roles as $role)
+                @if($Categories->count() > 0)
+                  @foreach($Categories as $category)
                 <tr>
-                  <td>{{$role->name}}</td>
-                  <td>{{$role->description}}</td>
+                  <td>{{$category->name}}</td>
+                  <td>{{$category->description}}</td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
+                    <a class="btn btn-success" href="
+                    {{route('user-management.categories.view',[\Illuminate\Support\Facades\Crypt::encrypt($category->id)])}}
+                    ">
                       <i class="fa fa-search-plus"></i>
                     </a>
-                    <a class="btn btn-info" href="{{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
+                    <a class="btn btn-info" href="
+                    {{route('user-management.categories.edit',[\Illuminate\Support\Facades\Crypt::encrypt($category->id)])}}
+                    ">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger" href="" onclick="deleteRole('{{$role->id}}')">
+                    <a class="btn btn-danger" href="" onclick="deleteCategory('{{$category->id}}')">
                       <i class="fa fa-trash-o"></i>
                     </a>
 
-                     <form id="delete-form{{$role->id}}"
-                            action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
+                     <form id="delete-form{{$category->id}}" action="
+                        {{-- {{ route('user-management.categories.delete') }} --}}
+                        " method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 
-                        <input type="hidden" name="id"
-                               value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
+                        <input type="hidden" name="id" value="{{\Illuminate\Support\Facades\Crypt::encrypt($category->id)}}">
                       </form>
 
                   </td>
@@ -130,7 +132,7 @@
                     <td colspan="4" class="text-center">No category  Set</td>
                   </tr>
                 @endif
-                </tbody> --}}
+                </tbody>
               </table>
             </div>
           </div>
@@ -144,7 +146,7 @@
 
 @endsection
 <script>
-    function deleteRole(key) {
+    function deleteCategory(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {

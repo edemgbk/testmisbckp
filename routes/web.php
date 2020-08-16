@@ -142,7 +142,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
       //categories Routes
       Route::get('categories', 'categoriesController@index')->name('categories');
       Route::post('categories/create', 'CategoriesController@create')->name('categories.create');
-
+    Route::get('categories/view', 'CategoriesController@view')->name('categories.view');
       Route::get('categories/{id}/edit', 'CategoriesController@edit')->name('categories.edit');
       Route::put('categories/{id}/update', 'CategoriesController@update')->name('categories.update');
       Route::delete('categories/delete', 'CategoriesController@delete')->name('categories.delete');
@@ -169,6 +169,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
 
 Route::get('currencies', 'currenciesController@index')->name('currencies');
 Route::post('currencies/create', 'currenciesController@create')->name('currencies.create');
+Route::post('currencies/view', 'currenciesController@view')->name('currencies.view');
 
 Route::get('currencies/{id}/edit', 'currenciesController@edit')->name('currencies.edit');
 Route::put('currencies/{id}/update', 'currenciesController@update')->name('currencies.update');

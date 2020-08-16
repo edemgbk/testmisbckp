@@ -15,13 +15,16 @@ class Category extends Model
     use LaratrustUserTrait;
     use Notifiable;
 
+
+    protected $table = 'categories';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'Name', 'Description','Phone'
+        'name', 'description',
     ];
 
 

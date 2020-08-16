@@ -4,11 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Merchant extends Model
+class Currency extends Model
 {
-    //
 
-    protected $table = 'merchants';
+    protected $table = 'currencies';
 
       /**
      * The attributes that are mass assignable.
@@ -16,7 +15,7 @@ class Merchant extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'code',
+        'name', 'symbol',
     ];
 
 }

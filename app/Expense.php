@@ -11,6 +11,7 @@ class Expense extends Model
 {
     //
 
+    protected $table = 'expenses';
 
     use LaratrustUserTrait;
     use Notifiable;
