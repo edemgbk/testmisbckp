@@ -18,21 +18,34 @@
                         <div class="card-body">
                             <h5> Expense Details</h5>
 
-                            <h6 class="card-title">AMOUNT</h5>
+                            <h6 class="card-title">AMOUNT  <span>  {{$expense->amount}} </span></h5>
+                                <p class="card-text">
+                                    Date
+                                    {{$expense->date}}
+                                </p>
+                                <p class="card-text">
+                                    status :<span class="badge badge-pill badge-info"> {{$expense->status}}</span>
+
+                                </p>
 
                             <p class="card-text">
                                 Merchant
-                                {{-- {{$role->name}} --}}
+                                {{$expense->merchant_id}}
+                            </p>
+                            <p class="card-text">
+                                categroy
+                                {{$expense->category_id}}
                             </p>
                             <p class="card-text">
                                 description
-                                {{-- {{$role->display_name}} --}}
+                                {{$expense->description}}
                             </p>
                             <p class="card-text">
                                 reference :
-                                {{-- {{$role->description}} --}}
+                                {{$expense->reference}}
                             </p>
-                            {{-- <p class="card-text"><b>List of details</b></p> --}}
+                            <p class="card-text">paidthrough:{{$expense->paidthrough_id}}
+                            </p>
                         </div>
                         <ul class="list-group list-group-flush">
                             {{-- @foreach($role->permissions as $permission) --}}

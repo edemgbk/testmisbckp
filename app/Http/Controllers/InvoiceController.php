@@ -1,4 +1,5 @@
 <?php
+use Brian2694\Toastr\Facades\Toastr;
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;

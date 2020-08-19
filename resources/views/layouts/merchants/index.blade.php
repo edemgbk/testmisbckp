@@ -115,16 +115,19 @@
                   @foreach($Merchants as $Merchant)
                 <tr>
                   <td>{{$Merchant->name}}</td>
-                  <td>{{$Merchant->description}}</td>
+                  <td>
+                    <p> svsvr</p>
+                      {{-- {{$Merchant->code}} --}}
+                    </td>
 
                   <td>
                     <a class="btn btn-success" href="
-                    {{-- {{route('user-management.Merchant.view',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}} --}}
+                    {{route('user-management.merchants.view',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
                     ">
                       <i class="fa fa-search-plus"></i>
                     </a>
                     <a class="btn btn-info" href="
-                    {{-- {{route('user-management.Merchant.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}} --}}
+                    {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
                     ">
                       <i class="fa fa-edit"></i>
                     </a>
@@ -136,7 +139,7 @@
 
                      <form id="delete-form{{$Merchant->id}}"
                             action="
-                            {{-- {{ route('user-management.Merchant.delete') }} --}}
+                            {{-- {{ route('user-management.merchants.delete') }} --}}
                             " method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')

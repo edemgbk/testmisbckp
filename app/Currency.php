@@ -18,4 +18,11 @@ class Currency extends Model
         'name', 'symbol',
     ];
 
+
+
+    public function expenses()
+    {
+        return $this->belongsToMany(Expense::Class);
+    }
+
 }

@@ -154,7 +154,9 @@
 
                   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
                   @if (Route::has('register'))
-                  <button class="btn btn-lg btn-outline-light mt-3" type="button">Register Now!</button>
+                  <button class="btn btn-lg btn-outline-light mt-3" type="button" href="{{ route('register') }}">Register Now!</button>
+                  <a href="{{ route('register') }}">Register</a>
+
                   @endif
 
                 </div>

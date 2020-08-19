@@ -12,11 +12,11 @@
         <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-menu"></use>
       </svg>
     </button>
-    <ul class="c-header-nav d-md-down-none">
+    {{-- <ul class="c-header-nav d-md-down-none">
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Dashboard</a></li>
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Users</a></li>
       <li class="c-header-nav-item px-3"><a class="c-header-nav-link" href="#">Settings</a></li>
-    </ul>
+    </ul> --}}
     <ul class="c-header-nav mfs-auto">
       <li class="c-header-nav-item px-3 c-d-legacy-none">
         <button class="c-class-toggler c-header-nav-btn" type="button" id="header-tooltip" data-target="body" data-class="c-dark-theme" data-toggle="c-tooltip" data-placement="bottom" title="Toggle Light/Dark Mode">
@@ -30,7 +30,7 @@
       </li>
     </ul>
     <ul class="c-header-nav">
-      <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      {{-- <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
           </svg><span class="badge badge-pill badge-danger">5</span></a>
@@ -65,8 +65,8 @@
             </span><small class="text-muted">243GB/256GB</small>
           </a>
         </div>
-      </li>
-      <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      </li> --}}
+      {{-- <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-list-rich"></use>
           </svg><span class="badge badge-pill badge-warning">15</span></a>
@@ -93,8 +93,8 @@
             </span>
           </a><a class="dropdown-item text-center border-top" href="#"><strong>View all tasks</strong></a>
         </div>
-      </li>
-      <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+      </li> --}}
+      {{-- <li class="c-header-nav-item dropdown d-md-down-none mx-2"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open"></use>
           </svg><span class="badge badge-pill badge-info">7</span></a>
@@ -137,13 +137,13 @@
             </div>
           </a><a class="dropdown-item text-center border-top" href="#"><strong>View all messages</strong></a>
         </div>
-      </li>
+      </li> --}}
       <li class="c-header-nav-item dropdown"><a class="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <div class="c-avatar"><img class="c-avatar-img" src="img/avatars/6.jpg" alt="user@email.com"></div>
         </a>
         <div class="dropdown-menu dropdown-menu-right pt-0">
           <div class="dropdown-header bg-light py-2"><strong>Account</strong></div><a class="dropdown-item" href="#">
-            <svg class="c-icon mfe-2">
+            {{-- <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-bell"></use>
             </svg> Updates<span class="badge badge-info mfs-auto">42</span></a><a class="dropdown-item" href="#">
             <svg class="c-icon mfe-2">
@@ -154,27 +154,44 @@
             </svg> Tasks<span class="badge badge-danger mfs-auto">42</span></a><a class="dropdown-item" href="#">
             <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-comment-square"></use>
-            </svg> Comments<span class="badge badge-warning mfs-auto">42</span></a>
-          <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div><a class="dropdown-item" href="#">
+            </svg> Comments<span class="badge badge-warning mfs-auto">42</span></a> --}}
+          {{-- <div class="dropdown-header bg-light py-2"><strong>Settings</strong></div> --}}
+          <a class="dropdown-item" href="#">
             <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
             </svg> Profile</a><a class="dropdown-item" href="#">
-            <svg class="c-icon mfe-2">
+            {{-- <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-settings"></use>
             </svg> Settings</a><a class="dropdown-item" href="#">
             <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-credit-card"></use>
-            </svg> Payments<span class="badge badge-secondary mfs-auto">42</span></a><a class="dropdown-item" href="#">
-            <svg class="c-icon mfe-2">
+            </svg> Payments<span class="badge badge-secondary mfs-auto">42</span></a><a class="dropdown-item" href="#"> --}}
+            {{-- <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-file"></use>
-            </svg> Projects<span class="badge badge-primary mfs-auto">42</span></a>
-          <div class="dropdown-divider"></div><a class="dropdown-item" href="#">
+            </svg> Projects<span class="badge badge-primary mfs-auto">42</span></a> --}}
+          {{-- <div class="dropdown-divider"></div> --}}
+          <a class="dropdown-item" href="#">
+
             <svg class="c-icon mfe-2">
+
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-lock-locked"></use>
-            </svg> Lock Account</a><a class="dropdown-item" href="#">
+            </svg> Lock Account</a><a class="dropdown-item" href="{{ route('logout') }}"  onclick="event.preventDefault();
+            document.getElementById('logout-form').submit()";>
             <svg class="c-icon mfe-2">
-              <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-account-logout"></use>
+              <use xlink:href="vendors/@coreui/icons/sprites/free.svg#cil-account-logout"></use>
             </svg> Logout</a>
+
+            {{-- <a class="dropdown-item" href="{{ route('logout') }}"
+            onclick="event.preventDefault();
+                          document.getElementById('logout-form').submit();">
+             {{ __('Logout') }}
+         </a> --}}
+
+         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+             @csrf
+         </form>
+
+
         </div>
       </li>
       <button class="c-header-toggler c-class-toggler mfe-md-3" type="button" data-target="#aside" data-class="c-sidebar-show">
@@ -194,12 +211,15 @@
       <div class="c-subheader-nav d-md-down-none mfe-2"><a class="c-subheader-nav-link" href="#">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speech"></use>
-          </svg></a><a class="c-subheader-nav-link" href="#">
+          </svg></a>
+          {{-- <a class="c-subheader-nav-link" href="#">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-graph"></use>
-          </svg>  Dashboard</a><a class="c-subheader-nav-link" href="#">
+          </svg>  Dashboard</a> --}}
+          {{-- <a class="c-subheader-nav-link" href="#">
           <svg class="c-icon">
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-settings"></use>
-          </svg>  Settings</a></div>
+          </svg>  Settings</a> --}}
+        </div>
     </div>
   </header>

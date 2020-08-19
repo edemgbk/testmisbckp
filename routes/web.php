@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+// namespace App;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
-
 
 
 Route::get('/newsidebar','AdminController@index')->name('newsidebar');
@@ -27,7 +26,20 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 Route::middleware(['verified', 'auth'])->group(function () {
 
     Route::get('invoices', 'InvoiceController@index')->name('invoice');
+//reports
     Route::get('reports', 'ReportController@index')->name('reports');
+    Route::get('report/{id}/edit', 'ReportController@edit')->name('reports.edit');
+    Route::delete('report/delete', 'ReportController@delete')->name('reports.delete');
+    Route::put('report/{id}/update', 'ReportController@update')->name('reports.update');
+    Route::post('report/create', 'ReportController@create')->name('reports.create');
+
+    Route::get('/downloadPDF/{id}','ReportController@downloadPDF');
+    Route::get('export', 'ReportController@export');
+
+    Route::get('/send-email', 'MailController@sendEmail')->name('mail');
+    Route::get('sendnotif', 'MailController@sendNotification');
+
+
     // Route::get('/Dashboard', 'HomeController@index')->name('home');
     Route::get('customers', 'CustomerController@index')->name('customer');
     Route::get('items', 'ItemController@index')->name('item');
@@ -48,7 +60,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
         Route::middleware(['verified', 'auth'])->group(function () {
 
          Route::get('invoices', 'InvoiceController@index')->name('invoice');
-        Route::get('reports', 'InvoiceController@index')->name('reports');
+        // Route::get('reports', 'InvoiceController@index')->name('reports');
         Route::get('customers', 'InvoiceCustomerController@index')->name('customer');
         Route::get('items', 'InvoiceController@index')->name('item');
 
@@ -72,14 +84,15 @@ Route::middleware(['verified', 'auth'])->group(function () {
             });
 
 
-
-
-
     Route::prefix('expenses')->name('expenses.')->group(function () {
 
         Route::middleware(['verified', 'auth'])->group(function () {
-        Route::get('view', 'ExpenseController@view')->name('view');
-        Route::post('create', 'ExpenseController@create')->name('create');
+        Route::get('expense/view', 'ExpenseController@view')->name('view');
+        Route::post('expense/create', 'ExpenseController@create')->name('create');
+        Route::get('expense/{id}/edit', 'ExpenseController@edit')->name('edit');
+        Route::get('expense/{id}/view', 'ExpenseController@view')->name('view');
+        Route::delete('expense/delete', 'ExpenseController@delete')->name('delete');
+        Route::put('expense/{id}/update', 'ExpenseController@update')->name('update');
 
          Route::get('expenses', 'ExpenseController@index')->name('expenses');
         // Route::get('reports', 'InvoiceController@index')->name('reports');
@@ -89,10 +102,13 @@ Route::middleware(['verified', 'auth'])->group(function () {
         });
 
 
+
+
+
         Route::prefix('reports')->name('reports.')->group(function () {
 
             Route::middleware(['verified', 'auth'])->group(function () {
-                Route::get('view', 'ReportController@view')->name('view');
+            Route::get('reports/{id}/view', 'ReportController@view')->name('view');
              Route::get('reports', 'ReportController@index')->name('reports');
             // Route::get('documents', 'DocsignController@index')->name('document');
             // Route::get('templates', 'DocsignController@index')->name('template');
@@ -100,8 +116,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
             // Route::get('reports', 'DocsignController@index')->name('report');
             });
             });
-
-
 
 
 
@@ -151,7 +165,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
       //merchants
       Route::get('merchants', 'MerchantsController@index')->name('merchants');
       Route::post('merchants/create', 'MerchantsController@create')->name('merchants.create');
-
+      Route::get('merchants/{id}/view', 'MerchantsController@view')->name('merchants.view');
       Route::get('merchants/{id}/edit', 'MerchantsController@edit')->name('merchants.edit');
       Route::put('merchants/{id}/update', 'MerchantsController@update')->name('merchants.update');
       Route::delete('merchants/delete', 'MerchantsController@delete')->name('merchants.delete');
@@ -159,6 +173,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
       //customers
       Route::get('customers', 'CustomersController@index')->name('customers');
       Route::post('customers/create', 'CustomersController@create')->name('customers.create');
+      Route::get('customers/{id}/view', 'CustomersController@view')->name('customers.view');
 
       Route::get('customers/{id}/edit', 'CustomersController@edit')->name('customers.edit');
       Route::put('customers/{id}/update', 'CustomersController@update')->name('customers.update');
@@ -175,7 +190,34 @@ Route::get('currencies/{id}/edit', 'currenciesController@edit')->name('currencie
 Route::put('currencies/{id}/update', 'currenciesController@update')->name('currencies.update');
 Route::delete('currencies/delete', 'currenciesController@delete')->name('currencies.delete');
 
+
+
+Route::get('paidthrough', 'PaidthroughController@index')->name('paidthrough');
+Route::post('paidthrough/create', 'PaidthroughController@create')->name('paidthrough.create');
+Route::post('paidthrough/view', 'PaidthroughController@view')->name('paidthrough.view');
+
+Route::get('paidthrough/{id}/edit', 'PaidthroughController@edit')->name('paidthrough.edit');
+Route::put('paidthrough/{id}/update', 'PaidthroughController@update')->name('paidthrough.update');
+Route::delete('paidthrough/delete', 'PaidthroughController@delete')->name('paidthrough.delete');
+
+
+Route::get('accounttype', 'AccounttypeController@index')->name('accounttype');
+Route::post('accounttype/create', 'AccounttypeController@create')->name('accounttype.create');
+Route::post('accounttype/view', 'AccounttypeController@view')->name('accounttype.view');
+
+Route::get('accounttype/{id}/edit', 'AccounttypeController@edit')->name('accounttype.edit');
+Route::put('accounttype/{id}/update', 'AccounttypeController@update')->name('accounttype.update');
+Route::delete('accounttype/delete', 'AccounttypeController@delete')->name('accounttype.delete');
+
         });
         });
+
+Route::get('test',function(){
+
+$expenses=\App\Expense::with('reports')->get();
+$reports=\App\Report::with('expenses')->get();
+
+return view('test.index',compact('expenses','reports'));
+});
 
 

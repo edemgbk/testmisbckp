@@ -5,6 +5,7 @@ use App\Permission;
 use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
+use Brian2694\Toastr\Facades\Toastr;
 
 class RolesController extends Controller {
 	//

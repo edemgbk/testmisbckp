@@ -129,7 +129,7 @@
                     <th>Name</th>
                     <th>Display Name</th>
                     <th>Description</th>
-
+                    {{-- <th>Permissions</th> --}}
                     <th>Actions</th>
                   </tr>
                   </thead>

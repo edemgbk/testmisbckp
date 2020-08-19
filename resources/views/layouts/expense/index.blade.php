@@ -51,7 +51,7 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('merchants') ? ' form-control-warning' : '' }}">
-                        <label for="merchants">Merchant <span class="required">*</span></label>
+                        <label for="merchants">Merchant <span class="required"></span></label>
                         <select name="merchant_id" id="merchants" class="form-control"  style="width: 100%">
                             @foreach($Merchants as $merchant)
                                 <option value="{{$merchant->id}}">{{$merchant->name}}</option>
@@ -88,17 +88,55 @@
                         <label class="col-form-label" for="appendedPrependedInput">Amount*</label>
                         <div class="controls">
                         <div class="input-prepend input-group">
-                        <div class="input-group-prepend"><span class="input-group-text">$</span></div>
+                        <div class="input-group-prepend">
+
+
+                            <div class="form-group{{ $errors->has('currency_id') ? ' form-control-warning' : '' }}">
+                                <select name="currency_id" id="currency_id" class="form-control"  style="width: 100%">
+                                    @foreach($Currencys as $Currency)
+                                        <option value="{{$Currency->id}}">{{$Currency->name}}</option>
+                                    @endforeach
+                                </select>
+                                @if ($errors->has('currency_id'))
+                                    <p class="text-right">
+                                        <small class="warning text-muted">{{ $errors->first('currency_id') }}</small>
+                                    </p>
+                                @endif
+                            </div>
+
+                        </div>
                         <input class="form-control" id="appendedPrependedInput" name="amount" size="16" type="text">
                         @if ($errors->has('Description'))
                         <p class="text-right mb-0">
                           <small class="warning text-muted">{{ $errors->first('Description') }}</small>
                         </p>
                       @endif
-                        <div class="input-group-append"><span class="input-group-text">.00</span></div>
                         </div>
                          </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('paidthrough') ? ' form-control-warning' : '' }}">
+                            <label for="paidthrough">PaidTThrough <span class="required">*</span></label>
+                            <select name="paidthrough_id" id="paidthrough" class="form-control"  style="width: 100%">
+                                @foreach($Paid_Through as $paidthru)
+                                    <option value="{{$paidthru->id}}">{{$paidthru->accountname}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('paidthrough'))
+                                <p class="text-right">
+                                    <small class="warning text-muted">{{ $errors->first('paidthrough') }}</small>
+                                </p>
+                            @endif
+                        </div>
+
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label"></label>
+                            <div class="col-md-3 col-form-label">
+
+
+
+                            </div>
+                     </div>
 
                       {{--<script src="{{asset('js/advanced-forms.js')}}" defer>--}}
                           {{--$('#select2-1, #select2-2, #select2-4').select2({--}}
@@ -130,7 +168,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label class="col-form-label" for="name"> Add to A report</label>
                             {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
                             @if ($errors->has('name'))
@@ -138,14 +176,44 @@
                                 <small class="warning text-muted">{{ $errors->first('name') }}</small>
                               </p>
                             @endif --}}
-                            <select class="form-control form-control" id="select3" name="reports">
+                            {{-- <select class="form-control form-control" id="select3" name="reports">
                                 <option value="report1">report1</option>
                                 <option value="report2">report2</option>
                                 <option value="2"></option>
                                 <option value="3"></option>
                                 </select>
 
-                          </div>
+                          </div>  --}}
+
+
+                          <div class="form-group{{ $errors->has('reports') ? ' form-control-warning' : '' }}">
+                            <label for="reports">Add to a report <span class="required">*</span></label>
+                            <select name="reports" id="reports" class="form-control"  style="width: 100%">
+                                @foreach($Reports as $Report)
+                                    <option value="{{$Report->id}}">{{$Report->title}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('reports'))
+                                <p class="text-right">
+                                    <small class="warning text-muted">{{ $errors->first('reports') }}</small>
+                                </p>
+                            @endif
+                        </div>
+
+
+                          {{-- <div class="form-group{{ $errors->has('reports') ? ' form-control-warning' : '' }}">
+                            <label for="reports">Merchant <span class="required">*</span></label>
+                            <select name="reports" id="reports" class="form-control"  style="width: 100%">
+                                @foreach($Merchants as $merchant)
+                                    <option value="{{$merchant->id}}">{{$merchant->name}}</option>
+                                @endforeach
+                            </select>
+                            @if ($errors->has('reports'))
+                                <p class="text-right">
+                                    <small class="warning text-muted">{{ $errors->first('reports') }}</small>
+                                </p>
+                            @endif
+                        </div> --}}
 
                       {{-- @else --}}
                       {{-- <div class="form-group">
@@ -153,8 +221,8 @@
                       </div> --}}
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-success" type="submit">Save </button>
-                        <button class="btn btn-default" type="submit">>cancel </button>
+                        <button class="btn btn-primary" type="submit">Save </button>
+                        <button class="btn btn-default" type="submit">cancel </button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
 
@@ -187,68 +255,77 @@
                   <th>Merchant.</th>
                   <th>Report</th>
                   <th>Status</th>
-
+                  {{-- <th>paidthrough</th> --}}
+                  <th>Amount</th>
                   <th>Actions</th>
                 </tr>
                 </thead>
             <tbody>
 
-                {{-- @if($roles->count() > 0) --}}
-                  {{-- @foreach($roles as $role) --}}
+                @if($Expenses->count() > 0)
+                 @foreach($Expenses as $Expense)
                 <tr>
                     <td>
-                        {{-- {{$role->name}} --}}
+                        {{$Expense->date}}
                       </td>
                     <td>
-                        {{-- {{$role->display_name}} --}}
+                        {{$Expense->category_id}}
                       </td>
                     <td>
-                        {{-- {{$role->description}} --}}
-                      </td>
-                  <td>
-                      {{-- {{$role->name}} --}}
+
+                        @foreach($Expense->merchants as $merchant)
+
+                        {{$merchant->name}}
+                        @endforeach
                     </td>
                   <td>
-                      {{-- {{$role->display_name}} --}}
+                    @foreach($Expense->reports as $report)
+
+                      {{$report->title}}
+                      @endforeach
                     </td>
-                  {{-- <td>
-                      {{-- {{$role->description}} --}}
-                    {{-- </td> --}}
+
+                    <td>
+                        {{$Expense->status}}
+
+                    </td>
+
+                 <td>
+                    {{$Expense->currency_id}}
+                    {{$Expense->amount}}
+
+                </td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('expenses.view')}}"
-                    {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                    >
+                    <a class="btn btn-success" href="{{route('expenses.view',[\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)])}}">
                       <i class="fa fa-search-plus"></i>
                     </a>
-                    <a class="btn btn-info" href="
-                    {{-- {{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                    ">
+                    <a class="btn btn-info" href="{{route('expenses.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)])}}">
                       <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href=""
-                    {{-- onclick="deleteRole('{{$role->id}}')" --}}
+                    {{-- onclick="deleteRole('{{$Expense->id}}')" --}}
                     >
                       <i class="fa fa-trash-o"></i>
                     </a>
 
                      {{-- <form id="delete-form{{$role->id}}"
-                            action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
+                            action="{{ route('expenses.delete') }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 
                         <input type="hidden" name="id"
-                               value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
+                               value="{{\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)}}">
                       </form> --}}
 
                   </td>
                 </tr>
-                  {{-- @endforeach
+                   @endforeach
                 @else
                   <tr>
                     <td colspan="4" class="text-center">No role  Set</td>
                   </tr>
-                @endif --}}
+                @endif
                 </tbody>
             </table>
             </div>

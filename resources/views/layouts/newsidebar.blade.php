@@ -56,6 +56,8 @@
           </ul>
         </li> --}}
 
+        @permission('users-create')
+
 
       <li class="c-sidebar-nav-dropdown c-show">
           <a class="c-sidebar-nav-dropdown-toggle" href="#">
@@ -68,12 +70,18 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.roles')}}"> Roles</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.permissions')}}"> Permissions</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.categories')}}"> Categories</a></li>
-          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.customers')}}"> Customers</a></li>
+          {{-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.customers')}}"> Customers</a></li> --}}
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.currencies')}}"> Currencies</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.merchants')}}"> Merchants</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.paidthrough')}}"> Paid Through</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href=
+            {{-- "{{route('user-management.accounttype')}}" --}}
+            > AccountType</a></li>
+
 
         </ul>
       </li>
+      @endpermission
 
 {{--
       <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.users')}}">

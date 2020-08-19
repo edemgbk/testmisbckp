@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Expense;
 use App\Category;
+use App\Currency;
 use App\Merchant;
+use App\Report;
+use App\Paid_Through;
+use Brian2694\Toastr\Facades\Toastr;
 
+use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -22,30 +27,64 @@ class ExpenseController extends Controller
 
          $Categories=Category::all();
          $Merchants=Merchant::all();
+         $Expenses=Expense::all();
+        $Reports=Report::all();
+        $Currencys=Currency::all();
+        $Paid_Through=Paid_Through::all();
+        // $Expense->paidthrough->accountname;
+        // $expenseall=Expense::find(8);
+        // dd($expenseall->reports);
+        // foreach($expenseall->reports as $report){
+        //     echo $report->title . "<br>";
+        // }
 
-  return view('layouts.expense.index',compact('Categories','Merchants'));
+
+        // dd($expenseone);
+  return view('layouts.expense.index',compact('Categories','Merchants','Expenses','Reports','Paid_Through','Currencys'));
+    }
+
+
+
+    public function view($id) {
+        $e_id = Crypt::decrypt($id);
+
+        $expense = Expense::find($e_id);
+    // return 0;
+
+        return view('layouts.expense.view',compact('expense'));
     }
 
 
     public function create(Request $request) {
 
-        $this->validate($request, [
-            'date' => 'required|date',
-            // 'category_id' => 'required|string|min:5',
-            // 'merchant_id' => 'required|int|min:5',
-            'reference' => 'required|string|min:1',
-            'amount' => 'required|string|min:1',
-            'description' => 'required|string|min:5',
-            'reports' => 'required|string|min:5',
-        ]);
 
-dd($request->all());
+        $this->validate($request, [
+        'date' => 'required|date',
+        'reference' => 'required|string|min:1',
+        'amount' => 'required|numeric|min:1',
+        'description' => 'required|string|min:5',
+
+        // 'currency_id' => 'required|string|min:1',
+        // 'reports' => 'required|string|min:5',
+        // 'category_id' => 'required|string|min:3',
+        // 'merchant_id' => 'required|string|min:3',
+
+        ]);
+// dd($request->all());
 
     // try {
-        $createCategories = new Category();
-        $createCategories->name = str_slug(strtolower($request->name));
-        $createCategories->description = $request->description;
-        $createCategories->save();
+        $createExpense = new Expense();
+        $createExpense->date = $request->date;
+        $createExpense->reference = $request->reference;
+        $createExpense->description = $request->description;
+        $createExpense->amount = $request->amount;
+        $createExpense->reports = $request->reports;
+        $createExpense->category_id = $request->category_id;
+        $createExpense->merchant_id = $request->merchant_id;
+        $createExpense->currency_id = $request->currency_id;
+        $createExpense->paidthrough_id=$request->paidthrough_id;
+        $createExpense->status = "Unsubmitted";
+        $createExpense->save();
 // dd("hello");
 
         // $request->session()->flash('status', [
@@ -63,6 +102,71 @@ dd($request->all());
     return back();
 }
 
+
+
+
+
+public function edit($id) {
+
+    $e_id = Crypt::decrypt($id);
+
+    $expense = Expense::find($e_id);
+    $Paid_Through=Paid_Through::all();
+    $category=category::all();
+    $merchant=merchant::all();
+// $Expense->paidthrough->accountname
+
+    return view('layouts.expense.edit',compact('expense','Paid_Through','category','merchant'));
+
+}
+
+public function update(Request $request,$id) {
+    		// dd($id);
+            $e_id = Crypt::decrypt($id);
+
+            //creates a slug name
+            $this->validate($request, [
+                'date' => 'required|date',
+                'reference' => 'required|string|min:3|unique:expenses,name'. $e_id,
+                'amount' => 'required|numeric|min:1',
+                'description' => 'required|string|min:5',
+                'paidthrough_id' => 'required|string|min:5',
+                // 'reports' => 'required|string|min:5',
+                // 'category_id' => 'required|string|min:3',
+                // 'merchant_id' => 'required|string|min:3',
+                //   'currency_id' => 'required|string|min:3,'
+                    'status' => 'required|string|min:5',
+
+            ]);
+
+            try {
+                $owner = Merchant::find($m_id);
+                $owner->name = str_slug(strtolower($request->name));
+                $owner->code = $request->code;
+                $owner->save();
+
+                // $owner->syncPermissions($request->permissions);
+
+                $request->session()->flash('status', [
+                    'error' => false,
+                    'title' => 'Great!',
+                    'message' => 'merchant Updated!',
+                ]);
+
+                return redirect()->route('user-management.merchants');
+
+
+            } catch (QueryException $exception) {
+
+                $request->session()->flash('status', [
+                    'error' => true,
+                    'title' => 'Sorry!',
+                    'message' => 'Issue updating merchant.',
+                ]);
+
+                return back();
+            }
+        }
 
 
 }

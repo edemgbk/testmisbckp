@@ -1,0 +1,13 @@
+
+                     <form id="delete-form{{$Merchant->id}}"
+                        action="
+                        {{-- {{ route('user-management.merchants.delete') }} --}}
+                        " method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+
+                    <input type="hidden" name="id"
+                           value="
+                           {{-- {{\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)}} --}}
+                           ">
+                  </form>

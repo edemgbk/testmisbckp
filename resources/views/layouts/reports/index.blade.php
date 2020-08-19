@@ -24,24 +24,21 @@
                 <div class="row">
                   <div class="col-md-9">
                     <h6> </h6>
-                    <form id="roleForm"   method="POST" action="">
+                    <form id="reportsForm"   method="POST" action="{{ route('reports.create') }}">
                       @csrf
-                      <div class="form-group">
-                        <label class="col-form-label" for="name"> Report Title</label>
-                        {{-- <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" Enter Name" />
-                        @if ($errors->has('name'))
-                          <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('name') }}</small>
-                          </p>
-                        @endif --}}
-                        <select class="form-control form-control" id="select3" name="select3">
-                            <option value="0"></option>
-                            <option value="1"></option>
-                            <option value="2"></option>
-                            <option value="3"></option>
-                            </select>
 
-                      </div>
+
+                      <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="title"> Report Title</label>
+                        <div class="col-md-6">
+                            <input class="form-control {{ $errors->has('title') ? ' is-invalid' : '' }}" id="title" type="text" name="title" value="{{ old('title')}}" placeholder=" Enter title" />
+
+                            @if ($errors->has('title'))
+                            <p class="text-right mb-0">
+                              <small class="warning text-muted">{{ $errors->first('title') }}</small>
+                            </p>
+                          @endif                            </div>
+                        </div>
 
                       {{--<script src="{{asset('js/advanced-forms.js')}}" defer>--}}
                           {{--$('#select2-1, #select2-2, #select2-4').select2({--}}
@@ -69,13 +66,13 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="text-input"> Business Purpose</label>
                         <div class="col-md-9">
-                            <textarea class="form-control" id="textarea-input" name="textarea-input" rows="9" placeholder="Content.."></textarea>
+                            <textarea class="form-control" id="textarea-input" name="purpose" rows="9" placeholder="Content.."></textarea>
                             </div>
                         </div>
 <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="Date"> Date: from</label>
-                            <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="Date" value="{{ old('Date')}}" placeholder=" Enter Date" />
+                            <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="from" type="Date" name="fromd" value="{{ old('Date')}}" placeholder=" Enter Date" />
                             @if ($errors->has('Date'))
                               <p class="text-right mb-0">
                                 <small class="warning text-muted">{{ $errors->first('Date') }}</small>
@@ -85,7 +82,7 @@
 
                           <div class="form-group col-md-6">
                             <label class="col-form-label" for="Date"> Date:to</label>
-                            <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="Date" value="{{ old('Date')}}" placeholder=" Enter Date" />
+                            <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="tod" value="{{ old('Date')}}" placeholder=" Enter Date" />
                             @if ($errors->has('Date'))
                               <p class="text-right mb-0">
                                 <small class="warning text-muted">{{ $errors->first('Date') }}</small>
@@ -99,9 +96,9 @@
                       </div> --}}
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-default" type="submit" name="save" value="save">Save</button>
-                        <button class="btn btn-success" type="submit" name="save" value="save">Save & Send </button>
-                        <button class="btn btn-default" type="submit" name="save" value="save">cancel</button>
+                        <button class="btn btn-success" type="submit" >Save</button>
+                        {{-- <button class="btn btn-success" type="submit" >Save & Send </button> --}}
+                        <button class="btn btn-default" type="submit" >cancel</button>
 
                         {{-- <button class="btn btn-primary" type="submit" name="save" value="save">Save &</button> --}}
 
@@ -130,79 +127,90 @@
 
                  <thead>
                     <tr>
-                      <th>Report Number</th>
+                        {{-- <th>Report NUmber</th> --}}
                       <th>Report Title</th>
+                      <th>Report Purpose</th>
                       <th>Start Date.</th>
                       <th>End Date</th>
-                      <th>Amount(GHS)</th>
-                      <th>Submitted On</th>
-
                       <th>Status</th>
+                      <th>Submitted On</th>
+                      <th>Amount</th>
+
                       <th>Actions</th>
                     </tr>
                     </thead>
                  <tbody>
 
-                    {{-- @if($roles->count() > 0) --}}
-                      {{-- @foreach($roles as $role) --}}
+                    @if($Reports->count() > 0)
+                      @foreach($Reports as $Report)
                     <tr>
-                        <td>
-                            {{-- {{$role->name}} --}}
-                          </td>
-                        <td>
-                            {{-- {{$role->name}} --}}
-                          </td>
-                        <td>
-                            {{-- {{$role->display_name}} --}}
-                          </td>
-                        <td>
-                            {{-- {{$role->description}} --}}
 
-                           </td>
-                      <td>
-                          {{-- {{$role->name}} --}}
-                         </td>
-                      <td>
-                          {{-- {{$role->display_name}} --}}
+                        <td>
+                            {{$Report->title}}
+                          </td>
+
+                          <td>  {{$Report->purpose}}
                         </td>
-                      <td>
-                          {{-- {{$role->description}} --}}
-                         </td>
+
+
+<td>                           {{$Report->fromd}}
+</td>
+                      <td>                            {{$Report->tod}}
+
+                        </td>
+
 
                       <td>
-                        <a class="btn btn-success" href="{{route('reports.view')}}">
-                        {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                        {{-- >
+                        {{$Report->status}}
+
+                         </td>
+
+                         <td>
+                           </td>
+
+                           <td>
+
+                            @foreach($Report->expenses as $expense)
+                                    {{$expense->amount}}
+                            @endforeach
+                           </td>
+
+
+                      <td>
+                        <a class="btn btn-success" href="{{route('reports.view',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
+
+
                           <i class="fa fa-search-plus"></i>
                         </a>
-                        <a class="btn btn-info" href=" --}}
-                        {{-- {{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                        {{-- ">
+                        <a class="btn btn-info" href="
+                        {{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}
+                        ">
                           <i class="fa fa-edit"></i>
                         </a>
-                        <a class="btn btn-danger" href="" --}}
-                        {{-- onclick="deleteRole('{{$role->id}}')" --}}
-                        {{-- >
+                        {{-- <a class="btn btn-danger" href=""
+                        onclick="deletereport('{{$Report->id}}')"
+                         >
                           <i class="fa fa-trash-o"></i>
                         </a> --}}
 
-                         {{-- <form id="delete-form{{$role->id}}"
-                                action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
+                          <form id="delete-form{{$Report->id}}"
+                                action="{{ route('reports.delete') }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
 
                             <input type="hidden" name="id"
-                                   value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
-                          </form> --}}
+                                   {{-- value="{{\Illuminate\Support\Facades\Crypt::encrypt($Reports->id)}}" --}}
+                                   >
+                          </form>
 
                        </td>
                     </tr>
-                      {{-- @endforeach
+                      @endforeach
                     @else
                       <tr>
-                        <td colspan="4" class="text-center">No role  Set</td>
+                        <td colspan="4" class="text-center">No report  Set</td>
                       </tr>
-                    @endif --}}
+                    @endif
                     </tbody>
                 </table>
             </div>
@@ -217,7 +225,7 @@
 
 @endsection
 <script>
-    function deleteRole(key) {
+    function deletereport(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {

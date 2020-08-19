@@ -84,9 +84,9 @@
 
                 </div>
                 <div class="links">
-                    <a href="#">Demo Credentials
+                    {{-- <a href="#">Demo Credentials
                         Admin: edemgbk@gmail.com.com
-                        Password: edemgbk123</a>
+                        Password: edemgbk123</a> --}}
                     <a href="#"></a>
                     <a href="#"></a>
                     <a href="#"></a>

@@ -20,6 +20,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="vendors/toastr/css/toastr.min.css" rel="stylesheet">
+
 </head>
 <body class="c-app flex-row align-items-center">
     <div class="c-wrapper">
@@ -69,6 +71,9 @@
 <script src="{{ asset('js/perfect-scrollbar.min.js') }}" defer></script>
 <script src="{{ asset('js/coreui.min.js') }}" defer></script>
 <script src="{{ asset('js/toastr.js') }}" defer>
+    <script src="vendors/jquery/js/jquery.min.js"></script>
+    <script src="vendors/toastr/js/toastr.js"></script>
+    <script src="js/toastr.js"></script>
 
 </script>
 

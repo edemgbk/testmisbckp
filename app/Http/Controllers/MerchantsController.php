@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Merchant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
+use Brian2694\Toastr\Facades\Toastr;
 
 class MerchantsController extends Controller
 {
@@ -48,7 +50,7 @@ class MerchantsController extends Controller
 
     // try {
         $createMerchant = new Merchant();
-        $createMerchant->name = str_slug(strtolower($request->name));
+        $createMerchant->name = $request->name;
         $createMerchant->code = $request->code;
         $createMerchant->save();
 // dd("hello");
@@ -67,4 +69,58 @@ class MerchantsController extends Controller
 
     return back();
 }
+
+
+
+public function edit($id) {
+
+    $r_id = Crypt::decrypt($id);
+
+    $merchants = Merchant::find($r_id);
+
+    return view('layouts.merchants.edit',compact('merchants'));
+
+}
+
+public function update(Request $request,$id) {
+    		// dd($id);
+            $m_id = Crypt::decrypt($id);
+
+            //creates a slug name
+
+            $this->validate($request, [
+                'name' => 'required|string|min:3|unique:merchants,name,' . $m_id,
+                'code' => 'nullable|string|min:3',
+            ]);
+
+            try {
+                $owner = Merchant::find($m_id);
+                $owner->name = $request->name;
+                $owner->code = $request->code;
+                $owner->save();
+
+                // $owner->syncPermissions($request->permissions);
+
+                $request->session()->flash('status', [
+                    'error' => false,
+                    'title' => 'Great!',
+                    'message' => 'merchant Updated!',
+                ]);
+
+                return redirect()->route('user-management.merchants');
+
+
+            } catch (QueryException $exception) {
+
+                $request->session()->flash('status', [
+                    'error' => true,
+                    'title' => 'Sorry!',
+                    'message' => 'Issue updating merchant.',
+                ]);
+
+                return back();
+            }
+        }
+
+
 }

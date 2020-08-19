@@ -102,8 +102,11 @@
                                              @if($roles->count() > 0)
                       <fieldset class="form-group">
                         <label  class="col-form-label" for="role" >Role</label>
-                        <select class="form-control select2-multiple" name="roles[]" id="select2-2" multiple="multiple" required >
-
+                        <select class="form-control" name="roles" required >
+                            {{-- select2-multiple --}}
+                            {{-- multiple="multiple" --}}
+                            {{-- id="select2-2"  --}}
+                            {{-- name="roles[]" --}}
                           @foreach($roles as $role)
                           <option value="{{$role->id}}">{{$role->name}}</option>
                           @endforeach
@@ -134,7 +137,7 @@
 
 
                                             <div class="form-group">
-                                                <button class="btn btn-primary" type="submit" name="save" value="save">Save</button>
+                                                <button class="btn btn-primary" type="submit"value="save">Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -160,8 +163,7 @@
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
-                                    <th>Apps</th>
-                                    <th>Groups</th>
+                                    <th>Role</th>
 
                                     <th>Actions</th>
                                 </tr>
@@ -177,9 +179,7 @@
                                     <td>
                                         {{$user->email}}
                                     </td>
-                                    <td>
-                                        ugyfut
-                                    </td>
+                                  
                                     <td>
                                         {{($user->roles->first())?$user->roles->first()->display_name:"N.A"}}
                                     </td>

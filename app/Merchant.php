@@ -19,4 +19,11 @@ class Merchant extends Model
         'name', 'code',
     ];
 
+
+
+    public function expenses()
+    {
+        return $this->belongsToMany(Expense::Class);
+    }
+
 }

@@ -103,13 +103,13 @@
                   @foreach($Currencys as $Currency)
                 <tr>
                   <td>{{$Currency->name}}</td>
-                  <td>{{$Currency->description}}</td>
+                  <td>{{$Currency->symbol}}</td>
 
                   <td>
-                    <a class="btn btn-success" href="{{route('user-management.Currency.view',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
+                    <a class="btn btn-success" href="{{route('user-management.currencies.view',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
                       <i class="fa fa-search-plus"></i>
                     </a>
-                    <a class="btn btn-info" href="{{route('user-management.Currency.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
+                    <a class="btn btn-info" href="{{route('user-management.currencies.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
                       <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="" onclick="deleteRole('{{$Currency->id}}')">
@@ -117,7 +117,7 @@
                     </a>
 
                      <form id="delete-form{{$Currency->id}}"
-                            action="{{ route('user-management.Currency.delete') }}" method="POST" style="display: none;">
+                            action="{{ route('user-management.currencies.delete') }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 

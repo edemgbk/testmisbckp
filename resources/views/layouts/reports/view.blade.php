@@ -17,14 +17,22 @@
 
                     <div class="card col-md-9">
                         <div class="card-body">
-                            <h5 class="card-title">Report title</h5><span class="badge badge-pill badge-info">draft</span>
+                            <h5 class="card-title">
+                            </h5> status :<span class="badge badge-pill badge-info"> {{$report->status}}</span>
+
+
 
                             <p class="card-text">
-                                Report Number:er3423
-                                {{-- {{$role->name}} --}}
+                                {{$report->title}}
+
+                            </p>
+
+
+                            <p class="card-text">
+                                report number:er3423
                             </p>
                             <p class="card-text">
-                                Duration:14 Aug 2020 - 15 Aug 2020
+                                Duration: {{$report->fromd}}-{{$report->tod}}
                                  {{-- {{$role->display_name}} --}}
                             </p>
                             <p class="card-text">
@@ -32,10 +40,15 @@
                                 {{-- {{$role->description}} --}}
                             </p>
                             <p class="card-text">
-                                Business Purpose : vrbtberwg
+                                Business Purpose : {{$report->purpose}}
                                 {{-- {{$role->description}} --}}
                             </p>
-                            <p class="card-text">Amount to be reimbursed<b>GHS567.00
+                            <p class="card-text">
+                                Amount to be reimbursed:
+                                @foreach($report->expenses as $expense)
+                                             {{$expense->amount }}
+                                 @endforeach
+                                <b>
                             </b>
 
                             </p>
@@ -50,15 +63,20 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <button class="btn btn-default" type="submit" name="save" value="save">Edit</button>
-                                <button class="btn btn-success" type="submit" name="save" value="save">Send </button>
+                                <button class="btn btn-success" type="submit" name="save" value="save">Submit </button>
 
-                                <button class="btn btn-default" type="submit" name="save" value="save">share</button>
 
-                                <button class="btn btn-default" type="submit" name="save" value="save">export</button>
+                                {{-- <a href="{{action('ReportController@downloadPDF', $report->id)}}">Download PDF</a> --}}
+
+                                <a href="{{action('ReportController@export')}}">Export</a>
+
+
+                                {{-- <a class="btn btn-success" href="{{route('expenses.view',[\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)])}}">
+                                    <i class="fa fa-search-plus"></i>
+                                  </a> --}}
                                 <button class="cursor-pointer btn btn-default" type="submit" name="save" value="save">attach file   </button>
 
 
-                                <button class="btn btn-default" type="submit" name="save" value="save">print  </button>
 
 
 
@@ -98,28 +116,36 @@
 
                           {{-- @if($roles->count() > 0) --}}
                             {{-- @foreach($roles as $role) --}}
+                            @foreach($report->expenses as $expense)
                           <tr>
                               <td>
                                   {{-- {{$role->name}} --}}
-                                </td>
-                              <td>
-                                  {{-- {{$role->display_name}} --}}
-                                  <button class="btn btn-block btn-outline-primary" type="button">unreported expense(1)</button>
+                                  {{$expense->merchant}}
 
                                 </td>
                               <td>
+                                  {{-- {{$role->display_name}} --}}
+
+</td>
+                              <td>
                                   {{-- {{$role->description}} --}}
+
                                 </td>
                             <td>
                                 {{-- {{$role->name}} --}}
+                                {{$expense->amount}}
+
                               </td>
                             <td>
                                 {{-- {{$role->display_name}} --}}
-                                <button class="btn btn-block btn-outline-primary" type="button">create new exepnse</button>
+                                {{$expense->amount}}
+
 
                               </td>
                             <td>
                                 {{-- {{$role->description}} --}}
+                                {{$expense->status}}
+
                               </td>
 
                             <td>
@@ -148,6 +174,8 @@
 
                             </td>
                           </tr>
+                          @endforeach
+
                             {{-- @endforeach
                           @else
                             <tr>

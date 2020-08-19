@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Classes\ToastNotification;
 use Illuminate\Support\Facades\DB;
+use Brian2694\Toastr\Facades\Toastr;
 
 use App\Role;
 use App\User;
@@ -37,14 +38,14 @@ class UserController extends Controller {
 
 
     public function create(Request $request) {
-//        dd($request->all());
+    //    dd($request->all());
 
 
             $this->validate($request, [
-                'username' => 'required|string|max:255',
+                'username' => 'required|string|max:20',
                 'role' => 'required|string|min:3',
-                'first_name' => 'required|integer|max:20:min:1',
-                'last_name' => 'required|digits_between:10,13|unique:users',
+                'first_name' => 'required|string|max:20:min:1',
+                'last_name' => 'required|string|unique:users',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
             ]);
@@ -59,7 +60,7 @@ class UserController extends Controller {
             $user->password = Hash::make($request->password);
             $user->save();
 
-
+dd("hello");
 
 //        //We assign a then assign a role and permissions to a user
 			$role = Role::where('name', $request->input('role'))->first();
