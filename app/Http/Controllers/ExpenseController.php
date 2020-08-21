@@ -55,6 +55,7 @@ class ExpenseController extends Controller
     }
 
 
+
     public function create(Request $request) {
 
 
@@ -78,13 +79,17 @@ class ExpenseController extends Controller
         $createExpense->reference = $request->reference;
         $createExpense->description = $request->description;
         $createExpense->amount = $request->amount;
-        $createExpense->reports = $request->reports;
-        $createExpense->category_id = $request->category_id;
-        $createExpense->merchant_id = $request->merchant_id;
+
         $createExpense->currency_id = $request->currency_id;
         $createExpense->paidthrough_id=$request->paidthrough_id;
         $createExpense->status = "Unsubmitted";
         $createExpense->save();
+
+
+        // $report_id = $request->report_id;
+        // $category_id = $request->category_id;
+        // $merchant_id = $request->merchant_id;
+        // $createExpense->expenses()->attach(category_id);
 // dd("hello");
 
         // $request->session()->flash('status', [
@@ -125,35 +130,43 @@ public function update(Request $request,$id) {
             $e_id = Crypt::decrypt($id);
 
             //creates a slug name
-            $this->validate($request, [
-                'date' => 'required|date',
-                'reference' => 'required|string|min:3|unique:expenses,name'. $e_id,
-                'amount' => 'required|numeric|min:1',
-                'description' => 'required|string|min:5',
-                'paidthrough_id' => 'required|string|min:5',
-                // 'reports' => 'required|string|min:5',
-                // 'category_id' => 'required|string|min:3',
-                // 'merchant_id' => 'required|string|min:3',
-                //   'currency_id' => 'required|string|min:3,'
-                    'status' => 'required|string|min:5',
+            // $this->validate($request, [
+            //     'date' => 'required|date',
+            //     // 'reference' => 'required|string|min:3|unique:expenses,name'. $e_id,
+            //     'amount' => 'required|numeric|min:1',
+            //     'description' => 'required|string|min:5',
+            //     'paidthrough_id' => 'required|string|min:5',
+            //     'reports' => 'required|string|min:5',
+            //      'category_id' => 'required|string|min:3',
+            //      'merchant_id' => 'required|string|min:3',
+            //      'currency_id' => 'required|string|min:3',
+            //      'status' => 'required|string|min:5',
 
-            ]);
-
+            // ]);
+// dd($request->all());
             try {
-                $owner = Merchant::find($m_id);
-                $owner->name = str_slug(strtolower($request->name));
-                $owner->code = $request->code;
-                $owner->save();
+                $Expense = Expense::find($e_id);
+                $Expense->reference =$request->reference;
+                $Expense->amount = $request->amount;
+                $Expense->description = $request->description;
+                $Expense->paidthrough_id = $request->paidthrough_id;
+                $Expense->report_id = $request->report_id;
+                $Expense->category_id = $request->category_id;
+                $Expense->merchant_id = $request->merchant_id;
+                $Expense->currency_id = $request->currency_id;
+                $Expense->status = $request->status;
+
+                $Expense->save();
 
                 // $owner->syncPermissions($request->permissions);
 
                 $request->session()->flash('status', [
                     'error' => false,
                     'title' => 'Great!',
-                    'message' => 'merchant Updated!',
+                    'message' => 'expenses Updated!',
                 ]);
 
-                return redirect()->route('user-management.merchants');
+                return redirect()->route('expenses.expenses');
 
 
             } catch (QueryException $exception) {
@@ -166,6 +179,32 @@ public function update(Request $request,$id) {
 
                 return back();
             }
+        }
+
+
+
+        public function delete(Request $request) {
+            $id = Crypt::decrypt($request->input('id'));
+            // dd($id);
+            $user = Expense::where('id', $id)->first();
+
+            if (empty($user)) {
+                $request->session()->flash('status', [
+                    'error' => true,
+                    'title' => 'Sorry!',
+                    'message' => 'Issue deleting expense, please retry.',
+                ]);
+            }
+
+            if ($user->delete()) {
+                $request->session()->flash('status', [
+                    'error' => false,
+                    'title' => 'Deleted!',
+                    'message' => 'expense deleted successfully.',
+                ]);
+            }
+
+            return redirect()->route('expenses.expenses');
         }
 
 

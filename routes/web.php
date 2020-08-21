@@ -8,15 +8,22 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+//file upload
+// Route::get('file-upload', 'FileUploadController@fileUpload')->name('file.upload');
+// Route::post('file-upload', 'FileUploadController@fileUploadPost')->name('file.upload.post');
+Route::get('file','FileController@index');
+
+//insert files/images into mysql database table laravel
+Route::post('file-upload','FileController@fileSave');
 
 
 Route::get('/newsidebar','AdminController@index')->name('newsidebar');
 
-Route::get('/test', function () {
-    return 'Hello World';
-});
+// Route::get('/test', function () {
+//     return 'Hello World';
+// });
 
-
+Route::post('file-upload', 'SubmitReportController@Upload')->name('reportupload');
 
 Auth::routes(['verify' => true]);
 
@@ -32,6 +39,8 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::delete('report/delete', 'ReportController@delete')->name('reports.delete');
     Route::put('report/{id}/update', 'ReportController@update')->name('reports.update');
     Route::post('report/create', 'ReportController@create')->name('reports.create');
+
+    Route::get('reports/{id}/view', 'ReportController@index')->name('reports.view');
 
     Route::get('/downloadPDF/{id}','ReportController@downloadPDF');
     Route::get('export', 'ReportController@export');
@@ -49,7 +58,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('Search', 'Controller@index')->name('');
     Route::get('Dashboard', 'HomeController@index')->name('home');
     Route::get('AdminPanel', 'AdminPanelController@index')->name('AdminPanel');
-
 
     });
 
@@ -82,8 +90,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
 
             });
             });
-
-
     Route::prefix('expenses')->name('expenses.')->group(function () {
 
         Route::middleware(['verified', 'auth'])->group(function () {
@@ -116,7 +122,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
             // Route::get('reports', 'DocsignController@index')->name('report');
             });
             });
-
 
 
 
@@ -203,7 +208,7 @@ Route::delete('paidthrough/delete', 'PaidthroughController@delete')->name('paidt
 
 Route::get('accounttype', 'AccounttypeController@index')->name('accounttype');
 Route::post('accounttype/create', 'AccounttypeController@create')->name('accounttype.create');
-Route::post('accounttype/view', 'AccounttypeController@view')->name('accounttype.view');
+Route::get('accounttype/{id}/view', 'AccounttypeController@view')->name('accounttype.view');
 
 Route::get('accounttype/{id}/edit', 'AccounttypeController@edit')->name('accounttype.edit');
 Route::put('accounttype/{id}/update', 'AccounttypeController@update')->name('accounttype.update');
@@ -214,8 +219,20 @@ Route::delete('accounttype/delete', 'AccounttypeController@delete')->name('accou
 
 Route::get('test',function(){
 
-$expenses=\App\Expense::with('reports')->get();
-$reports=\App\Report::with('expenses')->get();
+// $expenses=\App\Expense::with('reports')->get();
+// $reports=\App\Report::with('expenses')->get();
+
+// $expense=\App\Expense::create([
+//      =>
+// ]);
+// categories
+$expense=\App\Expense::find(1);
+// dd($expense->reports);
+
+$reports=\App\Report::all();
+// dd($report->expenses);
+
+
 
 return view('test.index',compact('expenses','reports'));
 });

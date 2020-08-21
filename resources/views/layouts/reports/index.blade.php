@@ -182,27 +182,28 @@
 
                           <i class="fa fa-search-plus"></i>
                         </a>
-                        <a class="btn btn-info" href="
-                        {{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}
-                        ">
+
+                        <a class="btn btn-info" href="{{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
                           <i class="fa fa-edit"></i>
                         </a>
-                        {{-- <a class="btn btn-danger" href=""
-                        onclick="deletereport('{{$Report->id}}')"
-                         >
-                          <i class="fa fa-trash-o"></i>
-                        </a> --}}
 
-                          <form id="delete-form{{$Report->id}}"
-                                action="{{ route('reports.delete') }}" method="POST" style="display: none;">
+
+                        <a class="btn btn-danger" href=""
+                        onclick="deleteExpense('{{$Report->id}}')"
+                        >
+                          <i class="fa fa-trash-o"></i>
+                        </a>
+
+                         <form id="delete-form{{$Report->id}}"
+                                action="
+                                {{ route('expenses.delete') }}
+                                " method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
 
                             <input type="hidden" name="id"
-                                   {{-- value="{{\Illuminate\Support\Facades\Crypt::encrypt($Reports->id)}}" --}}
-                                   >
+                                   value="{{\Illuminate\Support\Facades\Crypt::encrypt($Report->id)}}">
                           </form>
-
                        </td>
                     </tr>
                       @endforeach
@@ -225,7 +226,7 @@
 
 @endsection
 <script>
-    function deletereport(key) {
+    function deleteReport(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {
@@ -241,4 +242,4 @@
 
     }
 
-                                </script>
+</script>

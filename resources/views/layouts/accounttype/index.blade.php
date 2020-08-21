@@ -9,7 +9,7 @@
       <li class="breadcrumb-item">
         <a href="#">Admin</a>
       </li>
-      <li class="breadcrumb-item active">Merchant</li>
+      <li class="breadcrumb-item active">Accountype</li>
     </ol>
     <div class="container-fluid">
       <div class="ui-view">
@@ -18,7 +18,7 @@
           <div class=" col-sm-12 col-md-12 accordion" id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
-                <i class="icon-note"></i>Add Merchant
+                <i class="icon-note"></i>Add Accountype
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
@@ -28,7 +28,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h6>Simple Form</h6>
-                    <form id="roleForm"   method="POST" action="{{ route('user-management.merchants.create')}}">
+                    <form id="roleForm"   method="POST" action="{{ route('user-management.accounttype.create')}}">
                       @csrf
 
                       <div class="form-group">
@@ -43,11 +43,11 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="col-form-label" for="username">Code</label>
-                        <input class="form-control {{ $errors->has('Code') ? ' is-invalid' : '' }}" id="Code" type="text" name="code" value="{{ old('Code')}}" placeholder="Code" />
-                        @if ($errors->has('Code'))
+                        <label class="col-form-label" for="description">Description</label>
+                        <input class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" type="text" name="description" value="{{ old('description')}}" placeholder="description" />
+                        @if ($errors->has('description'))
                           <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('Code') }}</small>
+                            <small class="warning text-muted">{{ $errors->first('description') }}</small>
                           </p>
                         @endif
                       </div>
@@ -95,7 +95,7 @@
         <div class="animated fadeIn">
           <div class="card">
             <div class="card-header">
-              <i class="fa fa-edit"></i> List merchants
+              <i class="fa fa-edit"></i> List Account Types
               <div class="card-header-actions">
 
               </div>
@@ -105,59 +105,52 @@
                 <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Code</th>
+                  <th>Description</th>
 
                   <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if($Merchants->count() > 0)
-                  @foreach($Merchants as $Merchant)
-                <tr>
-                  <td>{{$Merchant->name}}</td>
-                  <td>
-                    <p> svsvr</p>
-                      {{-- {{$Merchant->code}} --}}
-                    </td>
+                    @if($Account_Types->count() > 0)
+                    @foreach($Account_Types as $Account_Type)
+                  <tr>
+                    <td>{{$Account_Type->name}}</td>
+                    <td>
+                      <p> svsvr</p>
+                        {{-- {{$Merchant->code}} --}}
+                      </td>
 
-                  <td>
-                    <a class="btn btn-success" href="
-                    {{route('user-management.merchants.view',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
-                    ">
-                      <i class="fa fa-search-plus"></i>
-                    </a>
-                    <a class="btn btn-info" href="
-                    {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
-                    ">
-                      <i class="fa fa-edit"></i>
-                    </a>
-                    <a class="btn btn-danger" href="" onclick="deleteMerchant('')">
-                     {{-- {{$Merchant->id}} --}}
+                    <td>
+                      {{-- <a class="btn btn-success" href="{{route('user-management.accounttype.view',[\Illuminate\Support\Facades\Crypt::encrypt($Account_Type->id)])}}">
+                        <i class="fa fa-search-plus"></i>
+                      </a> --}}
+                      <a class="btn btn-info" href="{{route('user-management.accounttype.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Account_Type->id)])}}">
+                        <i class="fa fa-edit"></i>
+                      </a>
 
+                        <a class="btn btn-danger" href=""
+                    onclick="deleteAccountType('{{$Account_Type->id}}')"
+                    >
                       <i class="fa fa-trash-o"></i>
                     </a>
 
-                     <form id="delete-form{{$Merchant->id}}"
-                            action="
-                            {{-- {{ route('user-management.merchants.delete') }} --}}
-                            " method="POST" style="display: none;">
+                     <form id="delete-form{{$Account_Type->id}}"
+                            action="{{ route('user-management.accounttype.delete') }}" method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 
                         <input type="hidden" name="id"
-                               value="
-                               {{-- {{\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)}} --}}
-                               ">
+                               value="{{\Illuminate\Support\Facades\Crypt::encrypt($Account_Type->id)}}">
                       </form>
 
-                  </td>
-                </tr>
-                  @endforeach
-                @else
-                  <tr>
-                    <td colspan="4" class="text-center">No role  Set</td>
+                    </td>
                   </tr>
-                @endif
+                    @endforeach
+                  @else
+                    <tr>
+                      <td colspan="4" class="text-center">No role  Set</td>
+                    </tr>
+                  @endif
                 </tbody>
               </table>
             </div>
@@ -172,22 +165,7 @@
 
 @endsection
 <script>
-const axios = require('axios').default;
-axios.post('/user', {
-    name: name,
-    code: code
-  })
-  .then(function (response) {
-    console.log(response);
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-
-
-
-
-    function deleteMerchant(key) {
+    function deleteAccountType(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {
@@ -205,4 +183,4 @@ axios.post('/user', {
 
 
 
-</script>
+                                </script>

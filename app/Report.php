@@ -26,4 +26,14 @@ class Report extends Model
 
 return $this->belongsToMany(Expense::Class);
     }
+
+
+
+
+// public function expenses()
+// {
+//     return $this->morphToMany('App\Expense','expendable');
+// }
+
+
  }

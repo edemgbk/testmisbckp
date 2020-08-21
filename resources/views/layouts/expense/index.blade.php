@@ -269,14 +269,18 @@
                         {{$Expense->date}}
                       </td>
                     <td>
-                        {{$Expense->category_id}}
+                        {{-- {{$Expense->category_id}} --}}
+                        @foreach($Expense->categories as $category)
+
+                      {{$category->name}}
+                      @endforeach
                       </td>
                     <td>
 
-                        @foreach($Expense->merchants as $merchant)
+                        {{-- @foreach($Expense->merchants as $merchant)
 
                         {{$merchant->name}}
-                        @endforeach
+                        @endforeach --}}
                     </td>
                   <td>
                     @foreach($Expense->reports as $report)
@@ -304,19 +308,21 @@
                       <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href=""
-                    {{-- onclick="deleteRole('{{$Expense->id}}')" --}}
+                    onclick="deleteExpense('{{$Expense->id}}')"
                     >
                       <i class="fa fa-trash-o"></i>
                     </a>
 
-                     {{-- <form id="delete-form{{$role->id}}"
-                            action="{{ route('expenses.delete') }}" method="POST" style="display: none;">
+                     <form id="delete-form{{$Expense->id}}"
+                            action="
+                            {{ route('expenses.delete') }}
+                            " method="POST" style="display: none;">
                         @csrf
                         @method('DELETE')
 
                         <input type="hidden" name="id"
                                value="{{\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)}}">
-                      </form> --}}
+                      </form>
 
                   </td>
                 </tr>
@@ -340,7 +346,7 @@
 
 @endsection
 <script>
-    function deleteRole(key) {
+    function deleteExpense(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {

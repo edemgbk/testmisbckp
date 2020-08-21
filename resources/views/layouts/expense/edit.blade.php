@@ -76,7 +76,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="amount">amount</label>
-                                                <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" type="text" amount="status" value="{{ old('amount')?old('amount'):$expense->amount }}" placeholder="amount" />
+                                                <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" type="text" amount="amount" value="{{ old('amount')?old('amount'):$expense->amount }}" placeholder="amount" />
                                                 @if ($errors->has('amount'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('amount') }}</small>
@@ -86,11 +86,11 @@
 
 
                                             <div class="form-group">
-                                                <label class="col-form-label" for="reports">reports</label>
-                                                <input class="form-control {{ $errors->has('reports') ? ' is-invalid' : '' }}" id="reports" type="text" name="reports" value="{{ old('reports')?old('reports'):$expense->reports }}" placeholder="reports" />
-                                                @if ($errors->has('reports'))
+                                                <label class="col-form-label" for="report_id">reports</label>
+                                                <input class="form-control {{ $errors->has('report_id') ? ' is-invalid' : '' }}" id="report_id" type="text" name="report_id" value="{{ old('report_id')?old('report_id'):$expense->title }}" placeholder="reports" />
+                                                @if ($errors->has('report_id'))
                                                     <p class="text-right mb-0">
-                                                        <small class="warning text-muted">{{ $errors->first('reports') }}</small>
+                                                        <small class="warning text-muted">{{ $errors->first('report_id') }}</small>
                                                     </p>
                                                 @endif
                                             </div>
@@ -127,15 +127,36 @@
 
 
 
-                                        <div class="form-group">
-                                            <label class="col-form-label" for="paidthrough_id">paid through</label>
+
+                                            {{-- <label class="col-form-label" for="paidthrough_id">paid through</label>
                                             <input class="form-control {{ $errors->has('paidthrough_id') ? ' is-invalid' : '' }}" id="paidthrough_id" type="text" name="paidthrough_id" value="{{ old('paidthrough_id')?old('paidthrough_id'):$expense->paidthrough_id }}" placeholder="paidthrough" />
                                             @if ($errors->has('paidthrough_id'))
                                                 <p class="text-right mb-0">
                                                     <small class="warning text-muted">{{ $errors->first('paidthrough_id') }}</small>
                                                 </p>
+                                            @endif --}}
+
+
+                                          <div class="form-group{{ $errors->has('paidthrough') ? ' form-control-warning' : '' }}">
+                                            <label for="paidthrough">PaidTThrough <span class="required">*</span></label>
+                                            <select name="paidthrough_id" id="paidthrough" class="form-control"  style="width: 100%">
+                                                @foreach($Paid_Through as $paidthru)
+                                                    <option value="{{$paidthru->id}}">{{$paidthru->accountname}}</option>
+                                                @endforeach
+                                            </select>
+                                            @if ($errors->has('paidthrough'))
+                                                <p class="text-right">
+                                                    <small class="warning text-muted">{{ $errors->first('paidthrough') }}</small>
+                                                </p>
                                             @endif
                                         </div>
+
+                                          @if ($errors->has('permissions'))
+                                          <p class="text-right">
+                                          <small class="warning text-muted">{{ $errors->first('permissions') }}</small>
+                                          </p>
+                                          @endif
+
 
                                         <div class="form-group">
                                             <label class="col-form-label" for="status">status</label>

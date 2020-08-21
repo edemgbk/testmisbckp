@@ -120,10 +120,12 @@
                           <tr>
                               <td>
                                   {{-- {{$role->name}} --}}
-                                  {{$expense->merchant}}
+                                  Date:  {{$expense->date}}
+
 
                                 </td>
                               <td>
+
                                   {{-- {{$role->display_name}} --}}
 
 </td>
@@ -144,33 +146,39 @@
                               </td>
                             <td>
                                 {{-- {{$role->description}} --}}
-                                {{$expense->status}}
+                                status:{{$expense->status}}
 
                               </td>
 
                             <td>
-                              <a class="btn btn-success" href="
+                              {{-- <a class="btn btn-success" href=" --}}
                               {{-- {{route('expense.edit')}} --}}
-                              "
+
                               {{-- {{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}} --}}
-                              >
+                              {{-- >
                                 <i class="fa fa-edit">edit</i>
+                              </a> --}}
+
+                              <a class="btn btn-success" href="{{route('expenses.edit',[\Illuminate\Support\Facades\Crypt::encrypt($expense->id)])}}">
+
+                                <i class="fa fa-edit">
+                                    edit
+                                </i>
                               </a>
 
                               <a class="btn btn-danger" href=""
-                              {{-- onclick="deleteRole('{{$role->id}}')" --}}
-                              >
+                              onclick="deleteexpense('{{$expense->id}}')">
                                 <i class="fa fa-trash-o">delete</i>
                               </a>
 
-                               {{-- <form id="delete-form{{$role->id}}"
-                                      action="{{ route('user-management.roles.delete') }}" method="POST" style="display: none;">
+                               <form id="delete-form{{$expense->id}}"
+                                      action="{{ route('expenses.delete') }}" method="POST" style="display: none;">
                                   @csrf
                                   @method('DELETE')
 
                                   <input type="hidden" name="id"
-                                         value="{{\Illuminate\Support\Facades\Crypt::encrypt($role->id)}}">
-                                </form> --}}
+                                         value="{{\Illuminate\Support\Facades\Crypt::encrypt($expense->id)}}">
+                                </form>
 
                             </td>
                           </tr>
@@ -191,3 +199,21 @@
 
         </div>
 @endsection
+<script>
+    function deleteExpense(key) {
+
+
+        if (confirm('Are you sure, you want to delete this role?')) {
+            event.preventDefault();
+            document.getElementById('delete-form' + key).submit();
+        } else {
+            event.preventDefault();
+            document.getElementById('delete-form' + key).reset();
+        }
+
+
+
+
+    }
+
+</script>

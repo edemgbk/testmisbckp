@@ -9,7 +9,7 @@
       <li class="breadcrumb-item">
         <a href="#">Admin</a>
       </li>
-      <li class="breadcrumb-item active">Merchant</li>
+      <li class="breadcrumb-item active">Paid Through</li>
     </ol>
     <div class="container-fluid">
       <div class="ui-view">
@@ -18,7 +18,7 @@
           <div class=" col-sm-12 col-md-12 accordion" id="accordion">
             <div class="card">
               <div class="card-header" id="headingOne">
-                <i class="icon-note"></i>Add Merchant
+                <i class="icon-note"></i>Add Paid Through
                 <div class="card-header-actions">
                   <a class="card-header-action" href="#" target="_blank"  data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                   </a>
@@ -95,7 +95,7 @@
         <div class="animated fadeIn">
           <div class="card">
             <div class="card-header">
-              <i class="fa fa-edit"></i> List merchants
+              <i class="fa fa-edit"></i> List Paid Through
               <div class="card-header-actions">
 
               </div>
@@ -105,7 +105,7 @@
                 <thead>
                 <tr>
                   <th>Name</th>
-                  <th>expenses</th>
+                  <th>Description</th>
 
                   <th>Actions</th>
                 </tr>
@@ -115,25 +115,28 @@
                   @foreach($paidthroughs as $paidthrough)
                 <tr>
                   <td>{{$paidthrough->accountname}}</td>
-                  
+                  <td>{{$paidthrough->description}}</td>
 
 
-                  {{-- <td>
-                    <a class="btn btn-success" href="
-                    {{route('user-management.merchants.view',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
+
+
+                   <td>
+                    {{-- <a class="btn btn-success" href="
+                    {{route('user-management.merchants.view',[\Illuminate\Support\Facades\Crypt::encrypt($paidthrough->id)])}}
                     ">
                       <i class="fa fa-search-plus"></i>
-                    </a>
+                    </a> --}}
                     <a class="btn btn-info" href="
-                    {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
+                    {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($paidthrough->id)])}}
                     ">
                       <i class="fa fa-edit"></i>
                     </a>
-                    <a class="btn btn-danger" href="" onclick="deleteMerchant('')">
-                     {{-- {{$Merchant->id}} --}}
+                    <a class="btn btn-danger" href="" onclick="deletePaidThrough('{{$paidthrough->id}}')">
 
-                      <i class="fa fa-trash-o"></i>
+
+                       <i class="fa fa-trash-o"></i>
                     </a>
+
 
 
                   </td>
@@ -158,7 +161,7 @@
 
 @endsection
 <script>
-    function deleteMerchant(key) {
+    function deletePaidThrough(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {

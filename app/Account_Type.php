@@ -16,6 +16,6 @@ class Account_Type extends Model
    * @var array
    */
   protected $fillable = [
-      'name', 'display_name','description'
+      'name','description',
   ];
 }

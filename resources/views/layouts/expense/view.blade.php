@@ -28,6 +28,7 @@
 
                                 </p>
 
+
                             <p class="card-text">
                                 Merchant
                                 {{$expense->merchant_id}}
@@ -56,10 +57,31 @@
                         </ul>
                         <div class="card-body">
                             <div class="form-group">
-                                <button class="btn btn-primary" type="submit" name="save" value="save">edit</button>
+                                {{-- <a href="{{route('expenses.edit',[\Illuminate\Support\Facades\Crypt::encrypt($expense->id)])}}" class="card-link"> <i class="fa fa-edit">edit</i></a> --}}
 
-                                <button class="btn btn-danger" type="submit" name="save" value="save">delete</button>
+                                <button class="btn btn-danger" type="submit" onclick="deleteExpense('{{$expense->id}}')"> delete</button>
 
+                                <a href="{{route('expenses.edit',[\Illuminate\Support\Facades\Crypt::encrypt($expense->id)])}}" class="btn btn-default">
+                                    {{ __('edit') }}
+                                </a>
+
+                                {{-- <a class="btn btn-danger" href=""
+                                onclick="deleteExpense('{{$expense->id}}')"
+                                >
+                                  <i class="fa fa-trash-o"></i>
+                                </a> --}}
+
+
+                                 <form id="delete-form{{$expense->id}}"
+                                        action="
+                                        {{ route('expenses.delete') }}
+                                        " method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <input type="hidden" name="id"
+                                           value="{{\Illuminate\Support\Facades\Crypt::encrypt($expense->id)}}">
+                                  </form>
 
                               </div>
                         </div>
@@ -70,3 +92,22 @@
 
         </div>
 @endsection
+
+<script>
+    function deleteExpense(key) {
+
+
+        if (confirm('Are you sure, you want to delete this role?')) {
+            event.preventDefault();
+            document.getElementById('delete-form' + key).submit();
+        } else {
+            event.preventDefault();
+            document.getElementById('delete-form' + key).reset();
+        }
+
+
+
+
+    }
+
+</script>

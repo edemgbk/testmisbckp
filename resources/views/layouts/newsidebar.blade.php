@@ -13,10 +13,14 @@
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
           </svg> Dashboard</a>
         </li>
+        @permission('create-expense-report')
+
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('expenses.expenses')}}">
             <svg class="c-sidebar-nav-icon">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
             </svg> Expenses</a></li>
+            @endpermission
+
             <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('reports.reports')}}">
                 <svg class="c-sidebar-nav-icon">
                   <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
@@ -56,7 +60,7 @@
           </ul>
         </li> --}}
 
-        @permission('users-create')
+        @permission('configure-settings')
 
 
       <li class="c-sidebar-nav-dropdown c-show">
@@ -74,13 +78,13 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.currencies')}}"> Currencies</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.merchants')}}"> Merchants</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.paidthrough')}}"> Paid Through</a></li>
-          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href=
-            {{-- "{{route('user-management.accounttype')}}" --}}
-            > AccountType</a></li>
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.accounttype')}}"> AccountType</a></li>
+
 
 
         </ul>
       </li>
+
       @endpermission
 
 {{--

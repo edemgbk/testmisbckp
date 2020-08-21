@@ -38,17 +38,18 @@ class UserController extends Controller {
 
 
     public function create(Request $request) {
-    //    dd($request->all());
+       dd($request->all());
 
 
             $this->validate($request, [
                 'username' => 'required|string|max:20',
-                'role' => 'required|string|min:3',
+                'roles' => 'required|string|min:3',
                 'first_name' => 'required|string|max:20:min:1',
                 'last_name' => 'required|string|unique:users',
                 'email' => 'required|string|email|max:255|unique:users',
                 'password' => 'required|string|min:6|confirmed',
             ]);
+    //    dd($request->all());
 
 		try {
 
@@ -60,10 +61,10 @@ class UserController extends Controller {
             $user->password = Hash::make($request->password);
             $user->save();
 
-dd("hello");
+// dd("hello");
 
 //        //We assign a then assign a role and permissions to a user
-			$role = Role::where('name', $request->input('role'))->first();
+			$role = Role::where('name', $request->input('roles'))->first();
 			if (!empty($role)) {
 				$user->attachRole($role);
 			}

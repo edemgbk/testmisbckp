@@ -137,7 +137,7 @@
 
 
                                             <div class="form-group">
-                                                <button class="btn btn-primary" type="submit"value="save">Save</button>
+                                                <button class="btn btn-primary" type="submit" >Save</button>
                                             </div>
                                         </form>
                                     </div>
@@ -179,7 +179,7 @@
                                     <td>
                                         {{$user->email}}
                                     </td>
-                                  
+
                                     <td>
                                         {{($user->roles->first())?$user->roles->first()->display_name:"N.A"}}
                                     </td>

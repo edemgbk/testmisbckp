@@ -114,7 +114,7 @@
                     <a class="btn btn-danger" href="" onclick="deleteCategory('{{$category->id}}')">
                       <i class="fa fa-trash-o"></i>
                     </a>
-
+                    
                      <form id="delete-form{{$category->id}}" action="
                         {{-- {{ route('user-management.categories.delete') }} --}}
                         " method="POST" style="display: none;">
