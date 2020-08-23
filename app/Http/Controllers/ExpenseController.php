@@ -28,6 +28,7 @@ class ExpenseController extends Controller
          $Categories=Category::all();
          $Merchants=Merchant::all();
          $Expenses=Expense::all();
+
         $Reports=Report::all();
         $Currencys=Currency::all();
         $Paid_Through=Paid_Through::all();
@@ -50,6 +51,7 @@ class ExpenseController extends Controller
 
         $expense = Expense::find($e_id);
     // return 0;
+    // dd($expense);
 
         return view('layouts.expense.view',compact('expense'));
     }

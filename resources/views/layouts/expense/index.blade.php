@@ -270,10 +270,10 @@
                       </td>
                     <td>
                         {{-- {{$Expense->category_id}} --}}
-                        @foreach($Expense->categories as $category)
+                        {{-- @foreach($Expense->categories as $category)
 
                       {{$category->name}}
-                      @endforeach
+                      @endforeach --}}
                       </td>
                     <td>
 

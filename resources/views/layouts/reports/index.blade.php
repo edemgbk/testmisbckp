@@ -6,6 +6,7 @@
     <!-- Breadcrumb-->
 
     <div class="container-fluid">
+@permission('create-report')
       <div class="ui-view">
 
         <div class="row">
@@ -69,7 +70,7 @@
                             <textarea class="form-control" id="textarea-input" name="purpose" rows="9" placeholder="Content.."></textarea>
                             </div>
                         </div>
-<div class="row">
+                    <div class="row">
                         <div class="form-group col-md-6">
                             <label class="col-form-label" for="Date"> Date: from</label>
                             <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="from" type="Date" name="fromd" value="{{ old('Date')}}" placeholder=" Enter Date" />
@@ -89,7 +90,7 @@
                               </p>
                             @endif
                           </div>
-</div>
+                    </div>
                       {{-- @else --}}
                       {{-- <div class="form-group">
                       <label for="message">{{__('notice')}}</label>
@@ -153,15 +154,25 @@
                         </td>
 
 
-<td>                           {{$Report->fromd}}
-</td>
+                     <td>                           {{$Report->fromd}}
+                </td>
                       <td>                            {{$Report->tod}}
 
                         </td>
 
 
                       <td>
-                        {{$Report->status}}
+                        {{-- {{$Report->status}} --}}
+                            {{-- {{$Report->status}} --}}
+                            @if($Report->status == 0)
+                            <span class="label label-primary">Pending</span>
+                            @elseif($Report->status == 1)
+                            <span class="label label-success">Approved</span>
+                            @elseif($Report->status == 2)
+                            <span class="label label-danger">Rejected</span>
+                            @else
+                            <span class="label label-info">Postponed</span>
+                           @endif
 
                          </td>
 
@@ -217,8 +228,130 @@
             </div>
           </div>
         </div>
+        @endpermission
 
-      </div>
+
+        @permission('approve-report')
+
+            <div class="animated fadeIn">
+              <div class="card">
+                <div class="card-header">
+                  <i class="fa fa-edit"></i> List Reports
+                  <div class="card-header-actions">
+
+                  </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped table-bordered datatable">
+
+                     <thead>
+                        <tr>
+                            {{-- <th>Report NUmber</th> --}}
+                          <th>Report Title</th>
+                          <th>Report Purpose</th>
+                          <th>Start Date.</th>
+                          <th>End Date</th>
+                          <th>Statuslkn</th>
+                          <th>Submitted On</th>
+                          <th>Amount</th>
+
+                          <th>Actions</th>
+                        </tr>
+                        </thead>
+                     <tbody>
+
+                        @if($Reports->count() > 0)
+                          @foreach($Reports as $Report)
+                        <tr>
+
+                            <td>
+                                {{$Report->title}}
+                              </td>
+
+                              <td>  {{$Report->purpose}}
+                            </td>
+
+
+                         <td>                           {{$Report->fromd}}
+                    </td>
+                          <td>                            {{$Report->tod}}
+
+                            </td>
+
+
+                          <td>
+                            {{-- {{$Report->status}} --}}
+
+<span class="badge badge-pill badge-info">
+
+                             @if($Report->status == 0)
+                            <span class="badge badge-primary">Pending</span>
+                            @elseif($Report->status == 1)
+                            <span class="badge badge-success">Approved</span>
+                            @elseif($Report->status == 2)
+                            <span class="badge badge-danger">Rejected</span>
+                            @else
+                            <span class="badge badge-info">Postponed</span>
+                           @endif
+                             </td>
+
+                             <td>
+                               </td>
+
+                               <td>
+
+                                @foreach($Report->expenses as $expense)
+                                        {{$expense->amount}}
+                                @endforeach
+                               </td>
+
+
+                          <td>
+                            <a class="btn btn-success" href="{{route('reports.view',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
+
+
+                              <i class="fa fa-search-plus"></i>
+                            </a>
+
+                            <a class="btn btn-info" href="{{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
+                              <i class="fa fa-edit"></i>
+                            </a>
+
+
+                            <a class="btn btn-danger" href=""
+                            onclick="deleteExpense('{{$Report->id}}')"
+                            >
+                              <i class="fa fa-trash-o"></i>
+                            </a>
+
+                             <form id="delete-form{{$Report->id}}"
+                                    action="
+                                    {{ route('expenses.delete') }}
+                                    " method="POST" style="display: none;">
+                                @csrf
+                                @method('DELETE')
+
+                                <input type="hidden" name="id"
+                                       value="{{\Illuminate\Support\Facades\Crypt::encrypt($Report->id)}}">
+                              </form>
+                           </td>
+                        </tr>
+                          @endforeach
+                        @else
+                          <tr>
+                            <td colspan="4" class="text-center">No report  Set</td>
+                          </tr>
+                        @endif
+                        </tbody>
+                    </table>
+                </div>
+              </div>
+            </div>
+
+        @endpermission
+
+
+
 
     </div>
 

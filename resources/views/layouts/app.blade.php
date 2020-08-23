@@ -11,6 +11,20 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <style type="text/css">
+        .badge {
+           display: inline-block;
+           padding: .25em .4em;
+           font-size: 75%;
+           font-weight: 700;
+           line-height: 1;
+           text-align: center;
+           white-space: nowrap;
+           vertical-align: baseline;
+           border-radius: .25rem;
+           transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+       }
+                                   </style>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -76,7 +90,7 @@
 <script src="{{ asset('vendors/toastr/js/toastr.js') }}"></script>
 <script src="js/toastr.js"></script>
 
-<script>
+{{-- <script>
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type', 'info') }}";
       switch(type){
@@ -97,7 +111,7 @@
               break;
       }
     @endif
-  </script>
+  </script> --}}
 
 {{-- rbtny --}}
 

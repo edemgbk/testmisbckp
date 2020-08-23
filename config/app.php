@@ -167,7 +167,7 @@ return [
          */
         Laratrust\LaratrustServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
-        Maatwebsite\Excel\ExcelServiceProvider::class,
+        // Maatwebsite\Excel\ExcelServiceProvider::class,
         // Brian2694\Toastr\ToastrServiceProvider::class,
         // Yoeunes\Toastr\ToastrServiceProvider::class,
 
@@ -233,8 +233,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Laratrust' => Laratrust\LaratrustFacade::class,
-        'PDF' => Barryvdh\DomPDF\Facade::class,
-        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // 'PDF' => Barryvdh\DomPDF\Facade::class,
+        // 'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // 'Toastr'  => Brian2694\Toastr\Facades\Toastr::class,
 
 

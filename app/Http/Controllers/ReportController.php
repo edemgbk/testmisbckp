@@ -160,5 +160,30 @@ public function update(Request $request,$id) {
 
 
 
+//     public function approve(Request $request, $id)
+// {
+//     switch($request->get('approve'))
+//     {
+//         case 0:
+//             Report::postpone($id);
+//             break;
+//         case 1:
+//             Report::approve($id);
+//             break;
+//         case 2:
+//             Report::reject($id);
+//             break;
+//         case 3:
+//             Report::postpone($id);
+//             break;
+//         default:
+//             break;
+
+//     }
+//     return redirect('reports.view');
+// }
+
+
+
 
 }

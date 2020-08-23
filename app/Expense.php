@@ -41,25 +41,25 @@ class Expense extends Model
 
 
 
-    // public function reports()
-    // {
-    //     return $this->morphedByMany('App\Report','expendable');
-    // }
-
-
-
-    public function paidthrough()
+    public function reports()
     {
-        return $this->belongsTo('App\Paid_Through');
+        return $this->morphedByMany('App\Report','expendable');
     }
 
 
 
-    public function reports()
-    {
+//     public function paidthrough()
+//     {
+//         return $this->belongsTo('App\Paid_Through');
+//     }
 
-  return $this->belongsToMany(Report::Class);
-      }
+
+
+//     public function reports()
+//     {
+
+//   return $this->belongsToMany(Report::Class);
+//       }
 
 
 

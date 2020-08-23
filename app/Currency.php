@@ -20,9 +20,14 @@ class Currency extends Model
 
 
 
-    public function expenses()
+    // public function expenses()
+    // {
+    //     return $this->belongsToMany(Expense::Class);
+    // }
+
+        public function expenses()
     {
-        return $this->belongsToMany(Expense::Class);
+        return $this->morphToMany('App\Expense','expendable');
     }
 
 }

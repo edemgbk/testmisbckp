@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+// use Hootlex\Moderation\Moderatable;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -9,6 +10,7 @@ class Report extends Model
     //
 
     protected $table = 'reports';
+    // use Moderatable;
 
     /**
    * The attributes that are mass assignable.
@@ -21,19 +23,19 @@ class Report extends Model
 
 
 
-  public function expenses()
-  {
+//   public function expenses()
+//   {
 
-return $this->belongsToMany(Expense::Class);
-    }
-
-
+// return $this->belongsToMany(Expense::Class);
+//     }
 
 
-// public function expenses()
-// {
-//     return $this->morphToMany('App\Expense','expendable');
-// }
+
+
+public function expenses()
+{
+    return $this->morphToMany('App\Expense','expendable');
+}
 
 
  }

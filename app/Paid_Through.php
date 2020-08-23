@@ -20,8 +20,8 @@ class Paid_Through extends Model
     ];
 
 
-    public function expenses(){
-        return $this->hasMany('App\Expense');
+    // public function expenses(){
+    //     return $this->hasMany('App\Expense');
 
-    }
+    // }
 }

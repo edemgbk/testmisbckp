@@ -13,7 +13,7 @@
             <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer"></use>
           </svg> Dashboard</a>
         </li>
-        @permission('create-expense-report')
+        @permission('create-report')
 
         <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('expenses.expenses')}}">
             <svg class="c-sidebar-nav-icon">

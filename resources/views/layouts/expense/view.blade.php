@@ -35,7 +35,7 @@
                             </p>
                             <p class="card-text">
                                 categroy
-                                {{$expense->category_id}}
+                                {{$expense->categories}}
                             </p>
                             <p class="card-text">
                                 description

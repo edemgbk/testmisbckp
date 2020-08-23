@@ -39,6 +39,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::delete('report/delete', 'ReportController@delete')->name('reports.delete');
     Route::put('report/{id}/update', 'ReportController@update')->name('reports.update');
     Route::post('report/create', 'ReportController@create')->name('reports.create');
+    // Route::put('report/{id}/approve', 'ReportController@approve')->name('reports.approve');
 
     Route::get('reports/{id}/view', 'ReportController@index')->name('reports.view');
 
@@ -226,15 +227,17 @@ Route::get('test',function(){
 //      =>
 // ]);
 // categories
-$expense=\App\Expense::find(1);
+// $expense=\App\Expense::find(1);
 // dd($expense->reports);
 
-$reports=\App\Report::all();
+// $reports=\App\Report::all();
 // dd($report->expenses);
 
+$report=\App\Report::find(1);
 
-
-return view('test.index',compact('expenses','reports'));
+$u=$report->expenses()->attach([2,3]);
+// dd($u);
+// return view('test.index');
 });
 
 

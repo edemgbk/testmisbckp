@@ -18,8 +18,16 @@
                     <div class="card col-md-9">
                         <div class="card-body">
                             <h5 class="card-title">
-                            </h5> status :<span class="badge badge-pill badge-info"> {{$report->status}}</span>
-
+                            </h5> status :
+                            @if($report->status == 0)
+                            <span class="badge badge-primary">Pending</span>
+                            @elseif($report->status == 1)
+                            <span class="badge badge-success">Approved</span>
+                            @elseif($report->status == 2)
+                            <span class="badge badge-danger">Rejected</span>
+                            @else
+                            <span class="badge badge-info">Postponed</span>
+                           @endif
 
 
                             <p class="card-text">
@@ -62,6 +70,8 @@
                         </ul>
                         <div class="card-body">
                             <div class="form-group">
+                                <div class="form-group col-md-4" style="margin-top: 5px">
+
                                 <button class="btn btn-default" type="submit" name="save" value="save">Edit</button>
                                 <button class="btn btn-success" type="submit" name="save" value="save">Submit </button>
 
@@ -74,15 +84,36 @@
                                 {{-- <a class="btn btn-success" href="{{route('expenses.view',[\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)])}}">
                                     <i class="fa fa-search-plus"></i>
                                   </a> --}}
-                                <button class="cursor-pointer btn btn-default" type="submit" name="save" value="save">attach file   </button>
+                                {{-- <button class="cursor-pointer btn btn-default" type="submit">attach file   </button> --}}
+                                </div>
+
+                                {{-- <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
+                                    @csrf {{method_field('PUT')}}
 
 
+                                        <div class="form-group col-md-4" style="margin-top: 5px">
+
+                                        <select name="approve">
+                                          <option value="0" @if($report->status==0)selected @endif>Pending</option>
+                                          <option value="1" @if($report->status==1)selected @endif>Approve</option>
+                                          <option value="2" @if($report->status==2)selected @endif>Reject</option>
+                                          <option value="3" @if($report->status==3)selected @endif>Postponed</option>
+                                        </select>
+
+                                        <button type="submit" class="btn btn-success" >Approve</button>
+                                     </div>
+
+                                  </form> --}}
 
 
 
                               </div>
                         </div>
+
+
+                        {{--  --}}
                     </div>
+
                 </div>
                 <!-- /.row-->
             </div>
