@@ -70,16 +70,27 @@
                         </ul>
                         <div class="card-body">
                             <div class="form-group">
-                                <div class="form-group col-md-4" style="margin-top: 5px">
+                                <div class="form-group col-md-4" style="margin-top: 5px flex:flex-box ">
+                                    @permission('create-report')
+                                {{-- <button class="btn btn-default" type="submit" name="save" value="save">Edit</button> --}}
+                                {{-- <button class="btn btn-success" type="submit" name="save" value="save">Submit </button> --}}
+                                {{-- <a href="{{action('ReportController@export')}}">Export</a> --}}
 
-                                <button class="btn btn-default" type="submit" name="save" value="save">Edit</button>
-                                <button class="btn btn-success" type="submit" name="save" value="save">Submit </button>
+                                <form method="post" action="{{route('reports.submit',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success" >Submit </button>
 
+                                  </form>
+
+                                  <form method="get" action="{{route('reports.export')}}">
+                                    @csrf
+                                    <button type="submit" class="btn btn-success" >Export </button>
+
+                                  </form>
 
                                 {{-- <a href="{{action('ReportController@downloadPDF', $report->id)}}">Download PDF</a> --}}
 
-                                <a href="{{action('ReportController@export')}}">Export</a>
-
+                                    @endpermission
 
                                 {{-- <a class="btn btn-success" href="{{route('expenses.view',[\Illuminate\Support\Facades\Crypt::encrypt($Expense->id)])}}">
                                     <i class="fa fa-search-plus"></i>
@@ -87,12 +98,12 @@
                                 {{-- <button class="cursor-pointer btn btn-default" type="submit">attach file   </button> --}}
                                 </div>
 
-                                {{-- <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
+                                <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf {{method_field('PUT')}}
 
 
                                         <div class="form-group col-md-4" style="margin-top: 5px">
-
+                                            <button type="submit" class="btn btn-success" >Approve</button>
                                         <select name="approve">
                                           <option value="0" @if($report->status==0)selected @endif>Pending</option>
                                           <option value="1" @if($report->status==1)selected @endif>Approve</option>
@@ -100,10 +111,10 @@
                                           <option value="3" @if($report->status==3)selected @endif>Postponed</option>
                                         </select>
 
-                                        <button type="submit" class="btn btn-success" >Approve</button>
+
                                      </div>
 
-                                  </form> --}}
+                                  </form>
 
 
 
@@ -177,8 +188,17 @@
                               </td>
                             <td>
                                 {{-- {{$role->description}} --}}
-                                status:{{$expense->status}}
-
+                                @foreach($expense->reports as $report)
+                                @if($report->status == 0)
+                        <span class="badge badge-primary">Pending</span>
+                        @elseif($report->status == 1)
+                        <span class="badge badge-success">Approved</span>
+                        @elseif($report->status == 2)
+                        <span class="badge badge-danger">Rejected</span>
+                        @else
+                        <span class="badge badge-info">Postponed</span>
+                       @endif
+                                @endforeach
                               </td>
 
                             <td>

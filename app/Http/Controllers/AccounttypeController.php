@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use App\Account_Type;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 use Illuminate\Http\Request;
 

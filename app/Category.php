@@ -29,17 +29,17 @@ class Category extends Model
 
 
 
-    // public function expenses()
-    // {
-    //     return $this->belongsToMany(Expense::Class);
-    // }
-
-
-
     public function expenses()
     {
-        return $this->morphToMany('App\Expense','expendable');
+        return $this->belongsToMany(Expense::Class);
     }
+
+
+
+    // public function expenses()
+    // {
+    //     return $this->morphToMany('App\Expense','expendable');
+    // }
 
 
 }

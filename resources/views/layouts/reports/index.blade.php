@@ -251,7 +251,7 @@
                           <th>Report Purpose</th>
                           <th>Start Date.</th>
                           <th>End Date</th>
-                          <th>Statuslkn</th>
+                          <th>Status</th>
                           <th>Submitted On</th>
                           <th>Amount</th>
 
@@ -282,7 +282,6 @@
                           <td>
                             {{-- {{$Report->status}} --}}
 
-<span class="badge badge-pill badge-info">
 
                              @if($Report->status == 0)
                             <span class="badge badge-primary">Pending</span>

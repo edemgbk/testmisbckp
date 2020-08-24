@@ -1,16 +1,16 @@
 <?php
 
 namespace App;
-// use Hootlex\Moderation\Moderatable;
+use Hootlex\Moderation\Moderatable;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Report extends Model
 {
     //
+    // use Moderatable;
 
     protected $table = 'reports';
-    // use Moderatable;
 
     /**
    * The attributes that are mass assignable.
@@ -18,24 +18,24 @@ class Report extends Model
    * @var array
    */
   protected $fillable = [
-      'number','title', 'purpose','fromd','tod','submittedon','status',
+      'number','title', 'purpose','fromd','tod','submittedon','status','moderated_at',
   ];
 
 
 
-//   public function expenses()
-//   {
+  public function expenses()
+  {
 
-// return $this->belongsToMany(Expense::Class);
-//     }
-
-
+return $this->belongsToMany(Expense::Class);
+    }
 
 
-public function expenses()
-{
-    return $this->morphToMany('App\Expense','expendable');
-}
+
+
+// public function expenses()
+// {
+//     return $this->morphToMany('App\Expense','expendable');
+// }
 
 
  }

@@ -39,15 +39,17 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::delete('report/delete', 'ReportController@delete')->name('reports.delete');
     Route::put('report/{id}/update', 'ReportController@update')->name('reports.update');
     Route::post('report/create', 'ReportController@create')->name('reports.create');
-    // Route::put('report/{id}/approve', 'ReportController@approve')->name('reports.approve');
+    Route::put('report/{id}/approve', 'ReportController@approve')->name('reports.approve');
 
     Route::get('reports/{id}/view', 'ReportController@index')->name('reports.view');
 
     Route::get('/downloadPDF/{id}','ReportController@downloadPDF');
-    Route::get('export', 'ReportController@export');
+    // Route::get('export', 'ReportController@export');
 
     Route::get('/send-email', 'MailController@sendEmail')->name('mail');
     Route::get('sendnotif', 'MailController@sendNotification');
+    Route::post('report/{id}/submit', 'ReportController@submitreport')->name('reports.submit');;
+    Route::get('/export', 'ReportController@export')->name('reports.export');
 
 
     // Route::get('/Dashboard', 'HomeController@index')->name('home');

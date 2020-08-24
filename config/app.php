@@ -170,6 +170,7 @@ return [
         // Maatwebsite\Excel\ExcelServiceProvider::class,
         // Brian2694\Toastr\ToastrServiceProvider::class,
         // Yoeunes\Toastr\ToastrServiceProvider::class,
+        Hootlex\Moderation\ModerationServiceProvider::class,
 
         /*
          * Application Service Providers...

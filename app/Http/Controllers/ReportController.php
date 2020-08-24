@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Report;
+use App\User;
+
 use App\Expense;
 use Illuminate\Support\Facades\Crypt;
 use App\Exports\ReportExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 use PDF;
 
@@ -68,7 +73,7 @@ class ReportController extends Controller
         $report->purpose = $request->purpose;
         $report->fromd = $request->fromd;
         $report->tod = $request->tod;
-        $report->status = "Draft";
+        $report->status = 0;
 
         $report->save();
 // dd("hello");
@@ -160,28 +165,72 @@ public function update(Request $request,$id) {
 
 
 
-//     public function approve(Request $request, $id)
-// {
-//     switch($request->get('approve'))
-//     {
-//         case 0:
-//             Report::postpone($id);
-//             break;
-//         case 1:
-//             Report::approve($id);
-//             break;
-//         case 2:
-//             Report::reject($id);
-//             break;
-//         case 3:
-//             Report::postpone($id);
-//             break;
-//         default:
-//             break;
+ public function submitreport(Request $request, $id){
 
-//     }
-//     return redirect('reports.view');
-// }
+    $r_id = Crypt::decrypt($id);
+    $reports = Report::find($r_id);
+    $uid = Auth::user();
+    $Users = User::find($uid);
+
+// dd($reports->title);
+
+    foreach($Users as $User){
+            $User->name . "<br>";
+        }
+  //   foreach($Report->expenses as $expense){
+    //         echo $expense->amount . "<br>";
+    //     }
+
+$to_name = 'edem';
+$to_email = 'edemgbk1@gmail.com';
+$data = array('name'=>"edem", "body" => 'Dear '.$to_name .',The expense report titled  '.$reports->title .' has been submitted by'. $User->name.' for your approval.');
+
+Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)
+            ->subject('report submitted ,approval pending');
+    $message->from('jkb@test','dev');
+});
+
+
+
+return back()->with('success','Report submitted successfully .');
+
+
+            }
+
+    public function approve(Request $request, $id)
+{
+    switch($request->get('approve'))
+    {
+        case 0:
+            Report::postpone($id);
+            break;
+        case 1:
+            Report::approve($id);
+            break;
+        case 2:
+            Report::reject($id);
+            break;
+        case 3:
+            Report::postpone($id);
+            break;
+        default:
+            break;
+
+    }
+
+
+$to_name = 'Madam Tawiah';
+$to_email = 'jkofi.bucknor@googlemail.com';
+$data = array('name'=>"Tawiah", "body" => "Test mail");
+
+Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)
+            ->subject('report approved');
+    $message->from('jkb@test','dev');
+});
+    return redirect('reports.view');
+}
 
 
 

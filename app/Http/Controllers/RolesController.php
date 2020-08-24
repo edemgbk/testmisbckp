@@ -6,6 +6,9 @@ use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 class RolesController extends Controller {
 	//

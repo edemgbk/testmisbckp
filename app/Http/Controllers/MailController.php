@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\EmailDemo;
+use Illuminate\Support\Facades\Redirect;
+use App\Mail\MailNotify;
 
 use Illuminate\Http\Request;
 use App\User;

@@ -269,18 +269,17 @@
                         {{$Expense->date}}
                       </td>
                     <td>
-                        {{-- {{$Expense->category_id}} --}}
-                        {{-- @foreach($Expense->categories as $category)
+                        @foreach($Expense->categories as $category)
 
                       {{$category->name}}
-                      @endforeach --}}
+                      @endforeach
                       </td>
                     <td>
 
-                        {{-- @foreach($Expense->merchants as $merchant)
+                        @foreach($Expense->merchants as $merchant)
 
                         {{$merchant->name}}
-                        @endforeach --}}
+                        @endforeach
                     </td>
                   <td>
                     @foreach($Expense->reports as $report)
@@ -290,7 +289,20 @@
                     </td>
 
                     <td>
-                        {{$Expense->status}}
+                        {{-- {{$Expense->status}} --}}
+                        @foreach($Expense->reports as $report)
+
+
+                        @if($Report->status == 0)
+                        <span class="badge badge-primary">Pending</span>
+                        @elseif($Report->status == 1)
+                        <span class="badge badge-success">Approved</span>
+                        @elseif($Report->status == 2)
+                        <span class="badge badge-danger">Rejected</span>
+                        @else
+                        <span class="badge badge-info">Postponed</span>
+                       @endif
+                        @endforeach
 
                     </td>
 

@@ -29,22 +29,24 @@ class Expense extends Model
 
     public function merchants()
     {
-        return $this->morphedByMany('App\merchants','expendable');
+        return $this->belongsToMany(Merchant::Class);
     }
 
 
 
     public function categories()
     {
-        return $this->morphedByMany('App\Category','expendable');
-    }
+        return $this->belongsToMany(Merchant::Class);
+
+        // return $this->morphedByMany('App\Category','expendable');
+     }
 
 
 
-    public function reports()
-    {
-        return $this->morphedByMany('App\Report','expendable');
-    }
+    // public function reports()
+    // {
+    //     return $this->morphedByMany('App\Report','expendable');
+    // }
 
 
 
@@ -55,11 +57,11 @@ class Expense extends Model
 
 
 
-//     public function reports()
-//     {
+    public function reports()
+    {
 
-//   return $this->belongsToMany(Report::Class);
-//       }
+  return $this->belongsToMany(Report::Class);
+      }
 
 
 

@@ -1,6 +1,12 @@
 <?php
 
 use Illuminate\Support\Str;
+$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$host = $url["host"] ?? null;
+$username = $url["user"] ?? null;
+$password = $url["pass"] ?? null;
+$database = substr($url["path"], 1);
+
 
 return [
 
@@ -62,6 +68,23 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+
+
+        // 'mysql' => [
+        //     'driver' => 'mysql',
+        //     'host' => $host,
+        //     'port' => env('DB_PORT', '3306'),
+        //     'database' => $database,
+        //     'username' => $username,
+        //     'password' => $password,
+        //     'unix_socket' => env('DB_SOCKET', ''),
+        //     'charset' => 'utf8mb4',
+        //     'collation' => 'utf8mb4_unicode_ci',
+        //     'prefix' => '',
+        //     'strict' => true,
+        //     'engine' => null,
+        // ],
+
 
         'pgsql' => [
             'driver' => 'pgsql',

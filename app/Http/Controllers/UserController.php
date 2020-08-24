@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Classes\ToastNotification;
 use Illuminate\Support\Facades\DB;
 use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MailNotify;
 
 use App\Role;
 use App\User;

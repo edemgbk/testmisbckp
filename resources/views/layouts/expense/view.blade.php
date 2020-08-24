@@ -31,11 +31,17 @@
 
                             <p class="card-text">
                                 Merchant
-                                {{$expense->merchant_id}}
+                                @foreach($expense->merchants as $merchant)
+                                {{$merchant->name }}
+                                @endforeach
                             </p>
                             <p class="card-text">
                                 categroy
-                                {{$expense->categories}}
+                                {{-- {{$expense->categories}} --}}
+
+                                @foreach($expense->categories as $category)
+                                {{$category->name }}
+                                @endforeach
                             </p>
                             <p class="card-text">
                                 description
