@@ -34,9 +34,14 @@ class ReportController extends Controller
             return $pdf->download('mypdf.pdf');
     }
 
-    public function export()
+    public function export(Request $request,$id)
     {
-            return Excel::download(new ReportExport, 'Report.xlsx');
+            $r_id = Crypt::decrypt($id);
+
+             $report = Report::find($r_id);
+
+            return Excel::download(new ReportExport($request->id), 'Report.xlsx',compact('id'));
+
     }
 
     public function index() {
@@ -181,8 +186,8 @@ public function update(Request $request,$id) {
     //         echo $expense->amount . "<br>";
     //     }
 
-$to_name = 'edem';
-$to_email = 'edemgbk1@gmail.com';
+$to_name = 'Mr Leslie';
+$to_email = 'leslienarh@gmail.com';
 $data = array('name'=>"edem", "body" => 'Dear '.$to_name .',The expense report titled  '.$reports->title .' has been submitted by'. $User->name.' for your approval.');
 
 Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
@@ -219,10 +224,11 @@ return back()->with('success','Report submitted successfully .');
 
     }
 
-
-$to_name = 'Madam Tawiah';
-$to_email = 'jkofi.bucknor@googlemail.com';
-$data = array('name'=>"Tawiah", "body" => "Test mail");
+    // jkofi.bucknor@googlemail.com
+    // Madam Tawiah
+$to_name = 'edem';
+$to_email = 'edemgbk1@gmail.com';
+$data = array('name'=>"gbeku", "body" => "Test mail");
 
 Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
     $message->to($to_email, $to_name)

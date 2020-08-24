@@ -48,10 +48,12 @@
                                 {{$expense->description}}
                             </p>
                             <p class="card-text">
-                                reference :
+                                reference : 
                                 {{$expense->reference}}
                             </p>
-                            <p class="card-text">paidthrough:{{$expense->paidthrough_id}}
+                            <p class="card-text">paidthrough:
+
+                                {{$expense->paidthrough_id}}
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">

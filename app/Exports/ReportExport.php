@@ -10,8 +10,20 @@ class ReportExport implements FromCollection
     /**
     * @return \Illuminate\Support\Collection
     */
+protected $id;
+
+function __construct($id){
+
+    $this->id=$id;
+}
+
+
     public function collection()
     {
-        return Report::all();
+
+        return Report::where('id',$id)->get()([
+            '',''
+        ]);
+        return Report::find($id);
     }
 }

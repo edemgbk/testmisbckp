@@ -13,9 +13,6 @@ use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\MailNotify;
 
 class ExpenseController extends Controller
 {
@@ -30,11 +27,10 @@ class ExpenseController extends Controller
 
          $Categories=Category::all();
          $Merchants=Merchant::all();
-        //  $Expenses=Expense::all();
-
+         $Expenses=Expense::all();
         $Reports=Report::all();
         $Currencys=Currency::all();
-        $Paid_Through=Paid_Through::all();
+        $paid_throughs=Paid_Through::all();
         // $Expense->paidthrough->accountname;
         // $expenseall=Expense::find(8);
         // dd($expenseall->reports);
@@ -42,10 +38,9 @@ class ExpenseController extends Controller
         //     echo $report->title . "<br>";
         // }
 
-        $Expenses = Expense::with('reports')->get();
 
         // dd($expenseone);
-  return view('layouts.expense.index',compact('Categories','Merchants','Expenses','Reports','Paid_Through','Currencys'));
+  return view('layouts.expense.index',compact('Categories','Merchants','Expenses','Reports','paid_throughs','Currencys'));
     }
 
 
@@ -55,7 +50,6 @@ class ExpenseController extends Controller
 
         $expense = Expense::find($e_id);
     // return 0;
-    // dd($expense);
 
         return view('layouts.expense.view',compact('expense'));
     }
@@ -77,7 +71,7 @@ class ExpenseController extends Controller
         // 'merchant_id' => 'required|string|min:3',
 
         ]);
-        // dd($request->all());
+// dd($request->all());
 
     // try {
         $createExpense = new Expense();
@@ -85,15 +79,16 @@ class ExpenseController extends Controller
         $createExpense->reference = $request->reference;
         $createExpense->description = $request->description;
         $createExpense->amount = $request->amount;
+
         $createExpense->currency_id = $request->currency_id;
         $createExpense->paidthrough_id=$request->paidthrough_id;
-        // $createExpense->status = "Unsubmitted";
+        $createExpense->status = "Unsubmitted";
         $createExpense->save();
+
+
         // $report_id = $request->report_id;
         // $category_id = $request->category_id;
         // $merchant_id = $request->merchant_id;
-
-        
         // $createExpense->expenses()->attach(category_id);
 // dd("hello");
 

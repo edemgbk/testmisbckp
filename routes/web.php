@@ -49,7 +49,7 @@ Route::middleware(['verified', 'auth'])->group(function () {
     Route::get('/send-email', 'MailController@sendEmail')->name('mail');
     Route::get('sendnotif', 'MailController@sendNotification');
     Route::post('report/{id}/submit', 'ReportController@submitreport')->name('reports.submit');;
-    Route::get('/export', 'ReportController@export')->name('reports.export');
+    Route::get('/report/{id}/export', 'ReportController@export')->name('reports.export');
 
 
     // Route::get('/Dashboard', 'HomeController@index')->name('home');

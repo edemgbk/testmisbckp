@@ -309,18 +309,18 @@
                             <a class="btn btn-success" href="{{route('reports.view',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
 
 
-                              <i class="fa fa-search-plus"></i>
+                              <i class="fa fa-search-plus"> view</i>
                             </a>
 
                             <a class="btn btn-info" href="{{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
-                              <i class="fa fa-edit"></i>
+                              <i class="fa fa-edit"> edit</i>
                             </a>
 
 
                             <a class="btn btn-danger" href=""
                             onclick="deleteExpense('{{$Report->id}}')"
                             >
-                              <i class="fa fa-trash-o"></i>
+                              <i class="fa fa-trash-o">delete</i>
                             </a>
 
                              <form id="delete-form{{$Report->id}}"

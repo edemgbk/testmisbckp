@@ -118,8 +118,8 @@
                         <div class="form-group{{ $errors->has('paidthrough') ? ' form-control-warning' : '' }}">
                             <label for="paidthrough">PaidTThrough <span class="required">*</span></label>
                             <select name="paidthrough_id" id="paidthrough" class="form-control"  style="width: 100%">
-                                @foreach($Paid_Through as $paidthru)
-                                    <option value="{{$paidthru->id}}">{{$paidthru->accountname}}</option>
+                                @foreach($paid_throughs as $paid_through)
+                                    <option value="{{$paid_through->id}}">{{$paid_through->accountname}}</option>
                                 @endforeach
                             </select>
                             @if ($errors->has('paidthrough'))
@@ -254,7 +254,6 @@
                   <th>Category</th>
                   <th>Merchant.</th>
                   <th>Report</th>
-                  <th>Status</th>
                   {{-- <th>paidthrough</th> --}}
                   <th>Amount</th>
                   <th>Actions</th>
@@ -374,4 +373,4 @@
 
     }
 
-                                </script>
+        </script>

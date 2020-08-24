@@ -41,7 +41,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="date">Date</label>
-                                                <input class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}" id="startdate" type="date" name="date" value="{{ old('date')?old('startdate'):$expense->date }}" placeholder="date" />
+                                                <input class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}" id="startdate" type="date" name="date" value="{{ old('date')?old('date'):$expense->date }}" placeholder="date" />
                                                 @if ($errors->has('date'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('date') }}</small>
@@ -66,7 +66,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="description">description</label>
-                                                <input class="form-control {{ $errors->has('description') ? ' is-invalid' : '' }}" id="description" type="text" name="description" value="{{ old('description')?old('description'):$expense->description }}" placeholder="description" />
+                                                <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.."></textarea>
                                                 @if ($errors->has('description'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('description') }}</small>
@@ -84,47 +84,70 @@
                                                 @endif
                                             </div>
 
-
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="report_id">reports</label>
-                                                <input class="form-control {{ $errors->has('report_id') ? ' is-invalid' : '' }}" id="report_id" type="text" name="report_id" value="{{ old('report_id')?old('report_id'):$expense->title }}" placeholder="reports" />
-                                                @if ($errors->has('report_id'))
-                                                    <p class="text-right mb-0">
-                                                        <small class="warning text-muted">{{ $errors->first('report_id') }}</small>
-                                                    </p>
-                                                @endif
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="category_id">category</label>
-                                                <input class="form-control {{ $errors->has('category_id') ? ' is-invalid' : '' }}" id="category_id" type="text" name="category_id" value="{{ old('category_id')?old('category_id'):$expense->category_id }}" placeholder="category" />
-                                                @if ($errors->has('category_id'))
-                                                    <p class="text-right mb-0">
-                                                        <small class="warning text-muted">{{ $errors->first('category_id') }}</small>
-                                                    </p>
-                                                @endif
-                                            </div>
-
-                                            <div class="form-group">
-                                                <label class="col-form-label" for="merchant_id">merchant</label>
-                                                <input class="form-control {{ $errors->has('merchant_id') ? ' is-invalid' : '' }}" id="merchant_id" type="text" name="merchant_id" value="{{ old('merchant_id')?old('merchant_id'):$expense->merchant_id }}" placeholder="merchant" />
-                                                @if ($errors->has('merchant_id'))
-                                                    <p class="text-right mb-0">
-                                                        <small class="warning text-muted">{{ $errors->first('merchant_id') }}</small>
-                                                    </p>
-                                                @endif
-                                            </div>
-
-                                            <div class="form-group">
-                                            <label class="col-form-label" for="currency_id">currency</label>
-                                            <input class="form-control {{ $errors->has('currency_id') ? ' is-invalid' : '' }}" id="currency_id" type="text" name="currency_id" value="{{ old('currency_id')?old('currency_id'):$expense->currency_id }}" placeholder="currency" />
-                                            @if ($errors->has('currency_id'))
-                                                <p class="text-right mb-0">
-                                                    <small class="warning text-muted">{{ $errors->first('currency_id') }}</small>
+                                            <fieldset class="form-group">
+                                                <label  class="col-form-label" for="report" >report</label>
+                                                <select class="form-control" name="report" required >
+                                                       @foreach($reports as $report)
+                                                                                <option @if($report->id) selected
+                                                                                        @endif value="{{$report->id}}">{{$report->name}}</option>
+                                                                            @endforeach
+                                                    </select>
+                                                @if ($errors->has('report'))
+                                                <p class="text-right">
+                                                <small class="warning text-muted">{{ $errors->first('report') }}</small>
                                                 </p>
-                                            @endif
-                                        </div>
+                                                @endif
+                                              </fieldset>
 
+
+
+                                            <fieldset class="form-group">
+                                                <label  class="col-form-label" for="category" >category</label>
+                                                <select class="form-control" name="category" required >
+                                                       @foreach($categories as $category)
+                                                                                <option @if($category->id) selected
+                                                                                        @endif value="{{$category->id}}">{{$category->name}}</option>
+                                                                            @endforeach
+                                                    </select>
+                                                @if ($errors->has('category'))
+                                                <p class="text-right">
+                                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                                                </p>
+                                                @endif
+                                              </fieldset>
+
+
+
+                                            <fieldset class="form-group">
+                                                <label  class="col-form-label" for="category" >merchant</label>
+                                                <select class="form-control" name="category" required >
+                                                       @foreach($merchants as $merchant)
+                                                                                <option @if($merchant->id) selected
+                                                                                        @endif value="{{$merchant->id}}">{{$merchant->name}}</option>
+                                                                            @endforeach
+                                                    </select>
+                                                @if ($errors->has('category'))
+                                                <p class="text-right">
+                                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                                                </p>
+                                                @endif
+                                              </fieldset>
+
+
+                                              <fieldset class="form-group">
+                                                <label  class="col-form-label" for="category" >currency</label>
+                                                <select class="form-control" name="category" required>
+                                                       @foreach($currencies as $currency)
+                                                                                <option @if($currency->id) selected
+                                                                                        @endif value="{{$currency->id}}">{{$currency->name}}</option>
+                                                                            @endforeach
+                                                    </select>
+                                                @if ($errors->has('category'))
+                                                <p class="text-right">
+                                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                                                </p>
+                                                @endif
+                                              </fieldset>
 
 
 
@@ -137,12 +160,10 @@
                                             @endif --}}
 
 
-                                          <div class="form-group{{ $errors->has('paidthrough') ? ' form-control-warning' : '' }}">
+                                          {{-- <div class="form-group{{ $errors->has('paidthrough') ? ' form-control-warning' : '' }}">
                                             <label for="paidthrough">PaidTThrough <span class="required">*</span></label>
                                             <select name="paidthrough_id" id="paidthrough" class="form-control"  style="width: 100%">
-                                                @foreach($Paid_Through as $paidthru)
-                                                    <option value="{{$paidthru->id}}">{{$paidthru->accountname}}</option>
-                                                @endforeach
+
                                             </select>
                                             @if ($errors->has('paidthrough'))
                                                 <p class="text-right">
@@ -151,14 +172,10 @@
                                             @endif
                                         </div>
 
-                                          @if ($errors->has('permissions'))
-                                          <p class="text-right">
-                                          <small class="warning text-muted">{{ $errors->first('permissions') }}</small>
-                                          </p>
-                                          @endif
+                                         --}}
 
 
-                                        <div class="form-group">
+                                        {{-- <div class="form-group">
                                             <label class="col-form-label" for="status">status</label>
                                             <input class="form-control {{ $errors->has('status') ? ' is-invalid' : '' }}" id="status" type="text" name="status" value="{{ old('status')?old('paidthrough_id'):$expense->status }}" placeholder="status" />
                                             @if ($errors->has('status'))
@@ -166,7 +183,7 @@
                                                     <small class="warning text-muted">{{ $errors->first('status') }}</small>
                                                 </p>
                                             @endif
-                                        </div>
+                                        </div> --}}
 
                                             <div class="form-group">
                                                 <button class="btn btn-primary" type="submit">Save</button>

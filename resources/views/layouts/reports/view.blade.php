@@ -162,7 +162,7 @@
                           <tr>
                               <td>
                                   {{-- {{$role->name}} --}}
-                                  Date:  {{$expense->date}}
+                                   {{$expense->date}}
 
 
                                 </td>
@@ -217,7 +217,7 @@
                                 </i>
                               </a>
 
-                              <a class="btn btn-danger" href=""
+                              {{-- <a class="btn btn-danger" href=""
                               onclick="deleteexpense('{{$expense->id}}')">
                                 <i class="fa fa-trash-o">delete</i>
                               </a>
@@ -229,7 +229,25 @@
 
                                   <input type="hidden" name="id"
                                          value="{{\Illuminate\Support\Facades\Crypt::encrypt($expense->id)}}">
-                                </form>
+                                </form> --}}
+
+
+                                <a class="btn btn-danger" href=""
+                                onclick="deleteexpense('{{$expense->id}}')"
+                                >
+                                  <i class="fa fa-trash-o">delete</i>
+                                </a>
+
+                                 <form id="delete-form{{$expense->id}}"
+                                        action="
+                                        {{ route('expenses.delete') }}
+                                        " method="POST" style="display: none;">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <input type="hidden" name="id"
+                                           value="{{\Illuminate\Support\Facades\Crypt::encrypt($expense->id)}}">
+                                  </form>
 
                             </td>
                           </tr>
@@ -251,7 +269,7 @@
         </div>
 @endsection
 <script>
-    function deleteExpense(key) {
+    function deleteexpense(key) {
 
 
         if (confirm('Are you sure, you want to delete this role?')) {
@@ -267,4 +285,4 @@
 
     }
 
-</script>
+        </script>
