@@ -27,8 +27,8 @@
                     <form id="roleForm"   method="POST" action="{{ route('expenses.create')}}">
                       @csrf
                       <div class="form-group">
-                        <label class="col-form-label" for="Date"> Expense Date*</label>
-                        <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="date" value="{{ old('Date')}}" placeholder=" Enter Expense Date" />
+                        <label class="col-form-label" for="Date"> Expense Date <span class="required">*</span></label>
+                        <input class="form-control {{ $errors->has('Date') ? ' is-invalid' : '' }}" id="Date" type="Date" name="date" value="{{ old('Date')}}" placeholder=" Enter Expense Date" required />
                         @if ($errors->has('Date'))
                           <p class="text-right mb-0">
                             <small class="warning text-muted">{{ $errors->first('Date') }}</small>
@@ -51,8 +51,8 @@
                     </div>
 
                     <div class="form-group{{ $errors->has('merchants') ? ' form-control-warning' : '' }}">
-                        <label for="merchants">Merchant <span class="required"></span></label>
-                        <select name="merchant_id" id="merchants" class="form-control"  style="width: 100%">
+                        <label for="merchants">Merchant <span class="required">*</span></label>
+                        <select name="merchant_id" id="merchants" class="form-control"  style="width: 100%" required>
                             @foreach($Merchants as $merchant)
                                 <option value="{{$merchant->id}}">{{$merchant->name}}</option>
                             @endforeach
@@ -65,7 +65,7 @@
                     </div>
 
                       <div class="form-group">
-                        <label class="col-form-label" for="reference">Reference</label>
+                        <label class="col-form-label" for="reference">Reference<span class="required">*</span></label>
                         <input class="form-control {{ $errors->has('reference') ? ' is-invalid' : '' }}" id="reference" type="text" name="reference" value="{{ old('reference')}}" placeholder="Enter reference" />
                         @if ($errors->has('reference'))
                           <p class="text-right mb-0">
@@ -85,14 +85,14 @@
                       </div> --}}
 
                       <div class="form-group">
-                        <label class="col-form-label" for="appendedPrependedInput">Amount*</label>
+                        <label class="col-form-label" for="appendedPrependedInput">Amount<span class="required">*</span></label>
                         <div class="controls">
                         <div class="input-prepend input-group">
                         <div class="input-group-prepend">
 
 
                             <div class="form-group{{ $errors->has('currency_id') ? ' form-control-warning' : '' }}">
-                                <select name="currency_id" id="currency_id" class="form-control"  style="width: 100%">
+                                <select name="currency_id" id="currency_id" class="form-control"  style="width: 100%" required>
                                     @foreach($Currencys as $Currency)
                                         <option value="{{$Currency->id}}">{{$Currency->name}}</option>
                                     @endforeach
@@ -105,7 +105,7 @@
                             </div>
 
                         </div>
-                        <input class="form-control" id="appendedPrependedInput" name="amount" size="16" type="text">
+                        <input class="form-control" id="appendedPrependedInput" name="amount" size="16" type="text"  required>
                         @if ($errors->has('Description'))
                         <p class="text-right mb-0">
                           <small class="warning text-muted">{{ $errors->first('Description') }}</small>
@@ -164,7 +164,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-label" for="text-input"> Description</label>
                         <div class="col-md-9">
-                            <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.."></textarea>
+                            <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.." required></textarea>
                             </div>
                         </div>
 
@@ -303,7 +303,7 @@
                        @endif
                         @endforeach
 
-                    </td>
+                    </td> 
 
                  <td>
                     {{$Expense->currency_id}}

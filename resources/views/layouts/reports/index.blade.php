@@ -282,7 +282,6 @@
                           <td>
                             {{-- {{$Report->status}} --}}
 
-
                              @if($Report->status == 0)
                             <span class="badge badge-primary">Pending</span>
                             @elseif($Report->status == 1)
@@ -304,10 +303,8 @@
                                 @endforeach
                                </td>
 
-
                           <td>
                             <a class="btn btn-success" href="{{route('reports.view',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
-
 
                               <i class="fa fa-search-plus"> view</i>
                             </a>
@@ -315,7 +312,6 @@
                             <a class="btn btn-info" href="{{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
                               <i class="fa fa-edit"> edit</i>
                             </a>
-
 
                             <a class="btn btn-danger" href=""
                             onclick="deleteReport('{{$Report->id}}')">
@@ -330,7 +326,6 @@
                                 <input type="hidden" name="id"
                                        value="{{\Illuminate\Support\Facades\Crypt::encrypt($Report->id)}}">
                               </form>
-
 
                            </td>
                         </tr>
@@ -348,9 +343,6 @@
 
         @endpermission
 
-
-
-
     </div>
 
   </main>
@@ -367,9 +359,6 @@
             event.preventDefault();
             document.getElementById('delete-form' + key).reset();
         }
-
-
-
 
     }
 

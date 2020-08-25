@@ -51,7 +51,14 @@ class ExpenseController extends Controller
         $expense = Expense::find($e_id);
     // return 0;
 
-        return view('layouts.expense.view',compact('expense'));
+    foreach($expense->merchants as $merchant){
+        $mname=$merchant->name;
+            }
+
+    foreach($expense->reports as $report){
+$Rtitle=$report->title;
+    }
+        return view('layouts.expense.view',compact('expense','Rtitle','$mname'));
     }
 
 

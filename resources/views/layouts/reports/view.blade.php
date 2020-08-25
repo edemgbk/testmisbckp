@@ -84,13 +84,13 @@
 
                                 <form method="post" action="{{route('reports.submit',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-success" >Submit </button>
+                                    <button type="submit" class="btn btn-success"  style="margin:4px;">Submit </button>
 
                                   </form>
 
                                   <form method="get" action="{{route('reports.export',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf
-                                    <button type="submit" class="btn btn-success" >Export </button>
+                                    <button type="submit" class="btn btn-success" style="margin:4px;" >Export </button>
 
                                   </form>
 
@@ -107,7 +107,7 @@
                                     @csrf {{method_field('PUT')}}
 
 
-                                            <button type="submit" class="btn btn-success" >Approve</button>
+                                            <button type="submit" class="btn btn-success" style="margin:4px;" >Approve</button>
                                         <select name="approve">
                                           <option value="0" @if($report->status==0)selected @endif>Pending</option>
                                           <option value="1" @if($report->status==1)selected @endif>Approve</option>

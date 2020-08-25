@@ -31,9 +31,10 @@
 
                             <p class="card-text">
                                 Merchant
-                                @foreach($expense->merchants as $merchant)
+                                {{-- @foreach($expense->merchants as $merchant)
                                 {{$merchant->name }}
-                                @endforeach
+                                @endforeach --}}
+                                {{-- {{$mname}} --}}
                             </p>
                             <p class="card-text">
                                 categroy
@@ -48,12 +49,15 @@
                                 {{$expense->description}}
                             </p>
                             <p class="card-text">
-                                reference : 
+                                reference :
                                 {{$expense->reference}}
                             </p>
                             <p class="card-text">paidthrough:
 
                                 {{$expense->paidthrough_id}}
+                            </p>
+                            <p>
+                                title:{{$Rtitle}}
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">
