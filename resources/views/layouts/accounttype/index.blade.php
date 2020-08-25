@@ -125,13 +125,13 @@
                         <i class="fa fa-search-plus"></i>
                       </a> --}}
                       <a class="btn btn-info" href="{{route('user-management.accounttype.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Account_Type->id)])}}">
-                        <i class="fa fa-edit"></i>
+                     edit   <i class="fa fa-edit"></i>
                       </a>
 
                         <a class="btn btn-danger" href=""
                     onclick="deleteAccountType('{{$Account_Type->id}}')"
                     >
-                      <i class="fa fa-trash-o"></i>
+                     delete <i class="fa fa-trash-o"></i>
                     </a>
 
                      <form id="delete-form{{$Account_Type->id}}"

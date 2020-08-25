@@ -190,18 +190,18 @@
                       <td>
                         <a class="btn btn-success" href="{{route('reports.view',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
 
-
+                                view
                           <i class="fa fa-search-plus"></i>
                         </a>
 
                         <a class="btn btn-info" href="{{route('reports.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Report->id)])}}">
-                          <i class="fa fa-edit"></i>
+                         edit <i class="fa fa-edit"></i>
                         </a>
 
 
                         <a class="btn btn-danger" href=""
                         onclick="deleteExpense('{{$Report->id}}')"
-                        >
+                        >delete
                           <i class="fa fa-trash-o"></i>
                         </a>
 
@@ -318,21 +318,20 @@
 
 
                             <a class="btn btn-danger" href=""
-                            onclick="deleteExpense('{{$Report->id}}')"
-                            >
-                              <i class="fa fa-trash-o">delete</i>
+                            onclick="deleteReport('{{$Report->id}}')">
+                            <i class="fa fa-trash-o"> delete</i>
                             </a>
 
                              <form id="delete-form{{$Report->id}}"
-                                    action="
-                                    {{ route('expenses.delete') }}
-                                    " method="POST" style="display: none;">
+                                    action="{{ route('reports.delete') }}" method="POST" style="display: none;">
                                 @csrf
                                 @method('DELETE')
 
                                 <input type="hidden" name="id"
                                        value="{{\Illuminate\Support\Facades\Crypt::encrypt($Report->id)}}">
                               </form>
+
+
                            </td>
                         </tr>
                           @endforeach

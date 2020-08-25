@@ -104,17 +104,17 @@
                     <a class="btn btn-success" href="
                     {{route('user-management.categories.view',[\Illuminate\Support\Facades\Crypt::encrypt($category->id)])}}
                     ">
-                      <i class="fa fa-search-plus"></i>
+                      view<i class="fa fa-search-plus"></i>
                     </a>
                     <a class="btn btn-info" href="
                     {{route('user-management.categories.edit',[\Illuminate\Support\Facades\Crypt::encrypt($category->id)])}}
                     ">
-                      <i class="fa fa-edit"></i>
+                     edit <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="" onclick="deleteCategory('{{$category->id}}')">
-                      <i class="fa fa-trash-o"></i>
+                     delete <i class="fa fa-trash-o"></i>
                     </a>
-                    
+
                      <form id="delete-form{{$category->id}}" action="
                         {{-- {{ route('user-management.categories.delete') }} --}}
                         " method="POST" style="display: none;">

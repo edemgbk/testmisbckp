@@ -79,18 +79,19 @@
                                                 @endif
                                             </div>
 
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label class="col-form-label" for="status">status</label>
-                                                <input class="form-control {{ $errors->has('status') ? ' is-invalid' : '' }}" id="status" type="text" name="status" value="{{ old('status')?old('status'):$Report->status }}" placeholder="status" />
+                                                <input class="form-control {{ $errors->has('status') ? ' is-invalid' : '' }}" id="status" type="text" name="status" value="{{ old('status')?old('status'):
+                                                $Report->status }}" placeholder="status" />
                                                 @if ($errors->has('status'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('status') }}</small>
                                                     </p>
                                                 @endif
-                                            </div>
+                                            </div> --}}
 
 
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label class="col-form-label" for="submittedon">submittedon</label>
                                                 <input class="form-control {{ $errors->has('submittedon') ? ' is-invalid' : '' }}" id="submittedon" type="text" name="submittedon" value="{{ old('submittedon')?old('submittedon'):$Report->submittedon }}" placeholder="submittedon" />
                                                 @if ($errors->has('submittedon'))
@@ -98,9 +99,9 @@
                                                         <small class="warning text-muted">{{ $errors->first('submittedon') }}</small>
                                                     </p>
                                                 @endif
-                                            </div>
+                                            </div> --}}
 
-                                            <div class="form-group">
+                                            {{-- <div class="form-group">
                                                 <label class="col-form-label" for="amount">amount</label>
                                                 <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" type="text" name="amount" value="{{ old('amount')?old('amount'):$Report->amount }}" placeholder="amount" />
                                                 @if ($errors->has('amount'))
@@ -108,7 +109,7 @@
                                                         <small class="warning text-muted">{{ $errors->first('amount') }}</small>
                                                     </p>
                                                 @endif
-                                            </div>
+                                            </div> --}}
 
 
                                             <div class="form-group">

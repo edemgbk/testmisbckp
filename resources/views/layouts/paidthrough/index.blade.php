@@ -128,11 +128,11 @@
                     </a> --}}
                     <a class="btn btn-info" href="
                     {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($paidthrough->id)])}}
-                    ">
+                    ">edit
                       <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="" onclick="deletePaidThrough('{{$paidthrough->id}}')">
-
+                            delete
 
                        <i class="fa fa-trash-o"></i>
                     </a>

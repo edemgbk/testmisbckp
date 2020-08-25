@@ -107,13 +107,13 @@
 
                   <td>
                     <a class="btn btn-success" href="{{route('user-management.currencies.view',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
-                      <i class="fa fa-search-plus"></i>
+                     view <i class="fa fa-search-plus"></i>
                     </a>
                     <a class="btn btn-info" href="{{route('user-management.currencies.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Currency->id)])}}">
-                      <i class="fa fa-edit"></i>
+                     edit <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="" onclick="deleteRole('{{$Currency->id}}')">
-                      <i class="fa fa-trash-o"></i>
+                     delete <i class="fa fa-trash-o"></i>
                     </a>
 
                      <form id="delete-form{{$Currency->id}}"

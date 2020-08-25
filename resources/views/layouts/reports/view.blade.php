@@ -68,9 +68,15 @@
                                 </li>
                             {{-- @endforeach --}}
                         </ul>
+
+
+
+
+
+
+
                         <div class="card-body">
-                            <div class="form-group">
-                                <div class="form-group col-md-4" style="margin-top: 5px flex:flex-box ">
+                            <div class=" row form-group">
                                     @permission('create-report')
                                 {{-- <button class="btn btn-default" type="submit" name="save" value="save">Edit</button> --}}
                                 {{-- <button class="btn btn-success" type="submit" name="save" value="save">Submit </button> --}}
@@ -82,7 +88,7 @@
 
                                   </form>
 
-                                  <form method="get" action="{{route('reports.export')}}">
+                                  <form method="get" action="{{route('reports.export',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf
                                     <button type="submit" class="btn btn-success" >Export </button>
 
@@ -96,13 +102,11 @@
                                     <i class="fa fa-search-plus"></i>
                                   </a> --}}
                                 {{-- <button class="cursor-pointer btn btn-default" type="submit">attach file   </button> --}}
-                                </div>
 
                                 <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf {{method_field('PUT')}}
 
 
-                                        <div class="form-group col-md-4" style="margin-top: 5px">
                                             <button type="submit" class="btn btn-success" >Approve</button>
                                         <select name="approve">
                                           <option value="0" @if($report->status==0)selected @endif>Pending</option>
@@ -112,7 +116,6 @@
                                         </select>
 
 
-                                     </div>
 
                                   </form>
 

@@ -131,13 +131,15 @@
 
                   <td>
                     <a class="btn btn-success" href="{{route('user-management.roles.view',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
-                      <i class="fa fa-search-plus"></i>
+                    view  <i class="fa fa-search-plus"></i>
                     </a>
                     <a class="btn btn-info" href="{{route('user-management.roles.edit',[\Illuminate\Support\Facades\Crypt::encrypt($role->id)])}}">
-                      <i class="fa fa-edit"></i>
+                    edit  <i class="fa fa-edit"></i>
                     </a>
+
+                    
                     <a class="btn btn-danger" href="" onclick="deleteRole('{{$role->id}}')">
-                      <i class="fa fa-trash-o"></i>
+                     delete <i class="fa fa-trash-o"></i>
                     </a>
 
                      <form id="delete-form{{$role->id}}"

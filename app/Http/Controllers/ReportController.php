@@ -240,5 +240,32 @@ Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
 
 
 
+public function delete(Request $request) {
+    $id = Crypt::decrypt($request->input('id'));
+    // dd($id);
+    $report = Report::where('id', $id)->first();
+
+    if (empty($report)) {
+        $request->session()->flash('status', [
+            'error' => true,
+            'title' => 'Sorry!',
+            'message' => 'Issue deleting report, please retry.',
+        ]);
+    }
+
+    if ($report->delete()) {
+        $request->session()->flash('status', [
+            'error' => false,
+            'title' => 'Deleted!',
+            'message' => 'report deleted successfully.',
+        ]);
+    }
+
+    return redirect()->route('reports');
+}
+
+
+
+
 
 }

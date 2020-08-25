@@ -146,7 +146,7 @@
                         <i class="fa fa-search-plus"></i>
                       </a>
                       <a class="btn btn-info" href="{{route('user-management.permissions.edit',[\Illuminate\Support\Facades\Crypt::encrypt($permission->id)])}}">
-                        <i class="fa fa-edit"></i>
+                       edit <i class="fa fa-edit"></i>
                       </a>
                       {{--<a class="btn btn-danger" href="{{route('user-management.permissions.delete',[\Illuminate\Support\Facades\Crypt::encrypt($permission->id)])}}">--}}
                         {{--<i class="fa fa-trash-o">--}}
@@ -154,7 +154,7 @@
                       {{--</a>--}}
 
                       <a class="btn btn-danger" href="#" onclick="deletePermission('{{$permission->id}}')">
-                        <i class="fa fa-search-plus"></i>
+                       delete <i class="fa fa-search-plus"></i>
                       </a>
 
                       {{--<input style="" class="jsgrid-button jsgrid-delete-button"--}}

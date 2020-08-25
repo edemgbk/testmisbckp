@@ -117,11 +117,12 @@ public function edit($id) {
 
     $expense = Expense::find($e_id);
     $Paid_Through=Paid_Through::all();
-    $category=category::all();
-    $merchant=merchant::all();
+    $categories=Category::all();
+    $merchants=Merchant::all();
 // $Expense->paidthrough->accountname
-
-    return view('layouts.expense.edit',compact('expense','Paid_Through','category','merchant'));
+    $reports=Report::all();
+    $currencies=Currency::all();
+    return view('layouts.expense.edit',compact('expense','paid_throughs','categories','merchants','reports','currencies'));
 
 }
 
@@ -130,31 +131,30 @@ public function update(Request $request,$id) {
             $e_id = Crypt::decrypt($id);
 
             //creates a slug name
-            // $this->validate($request, [
-            //     'date' => 'required|date',
-            //     // 'reference' => 'required|string|min:3|unique:expenses,name'. $e_id,
-            //     'amount' => 'required|numeric|min:1',
-            //     'description' => 'required|string|min:5',
-            //     'paidthrough_id' => 'required|string|min:5',
-            //     'reports' => 'required|string|min:5',
-            //      'category_id' => 'required|string|min:3',
-            //      'merchant_id' => 'required|string|min:3',
-            //      'currency_id' => 'required|string|min:3',
-            //      'status' => 'required|string|min:5',
+            $this->validate($request, [
+                'date' => 'required|date',
+                // 'reference' => 'required|string|min:5'. $e_id,
+                'amount' => 'required|numeric|min:1',
+                'description' => 'required|string|min:5',
+                // 'paidthrough_id' => 'required|string|min:5',
+                //   'report' => 'required|string|min:5',
+                //  'category' => 'required|string|min:3',
+                //  'merchant' => 'required|string|min:3',
+                //  'currency' => 'required|string|min:3',
 
-            // ]);
+            ]);
 // dd($request->all());
             try {
                 $Expense = Expense::find($e_id);
                 $Expense->reference =$request->reference;
                 $Expense->amount = $request->amount;
                 $Expense->description = $request->description;
-                $Expense->paidthrough_id = $request->paidthrough_id;
+                // $Expense->paidthrough_id = $request->paidthrough_id;
                 $Expense->report_id = $request->report_id;
                 $Expense->category_id = $request->category_id;
                 $Expense->merchant_id = $request->merchant_id;
                 $Expense->currency_id = $request->currency_id;
-                $Expense->status = $request->status;
+                // $Expense->status = $request->status;
 
                 $Expense->save();
 
@@ -174,7 +174,7 @@ public function update(Request $request,$id) {
                 $request->session()->flash('status', [
                     'error' => true,
                     'title' => 'Sorry!',
-                    'message' => 'Issue updating merchant.',
+                    'message' => 'Issue updating expenses.',
                 ]);
 
                 return back();

@@ -123,17 +123,17 @@
                   <td>
                     <a class="btn btn-success" href="
                     {{route('user-management.merchants.view',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
-                    ">
+                    ">view
                       <i class="fa fa-search-plus"></i>
                     </a>
                     <a class="btn btn-info" href="
                     {{route('user-management.merchants.edit',[\Illuminate\Support\Facades\Crypt::encrypt($Merchant->id)])}}
-                    ">
+                    ">edit
                       <i class="fa fa-edit"></i>
                     </a>
                     <a class="btn btn-danger" href="" onclick="deleteMerchant('')">
                      {{-- {{$Merchant->id}} --}}
-
+delete
                       <i class="fa fa-trash-o"></i>
                     </a>
 

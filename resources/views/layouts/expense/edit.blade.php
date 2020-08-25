@@ -41,7 +41,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="date">Date</label>
-                                                <input class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}" id="startdate" type="date" name="date" value="{{ old('date')?old('date'):$expense->date }}" placeholder="date" />
+                                                <input class="form-control {{ $errors->has('date') ? ' is-invalid' : '' }}" id="date" type="date" name="date" value="{{ old('date')?old('date'):$expense->date }}" placeholder="date" />
                                                 @if ($errors->has('date'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('date') }}</small>
@@ -76,7 +76,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="amount">amount</label>
-                                                <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" type="text" amount="amount" value="{{ old('amount')?old('amount'):$expense->amount }}" placeholder="amount" />
+                                                <input class="form-control {{ $errors->has('amount') ? ' is-invalid' : '' }}" id="amount" type="text" name="amount" value="{{ old('amount')?old('amount'):$expense->amount }}" placeholder="amount" />
                                                 @if ($errors->has('amount'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('amount') }}</small>
@@ -86,7 +86,7 @@
 
                                             <fieldset class="form-group">
                                                 <label  class="col-form-label" for="report" >report</label>
-                                                <select class="form-control" name="report" required >
+                                                <select class="form-control" name="report_id" required >
                                                        @foreach($reports as $report)
                                                                                 <option @if($report->id) selected
                                                                                         @endif value="{{$report->id}}">{{$report->name}}</option>
@@ -103,7 +103,7 @@
 
                                             <fieldset class="form-group">
                                                 <label  class="col-form-label" for="category" >category</label>
-                                                <select class="form-control" name="category" required >
+                                                <select class="form-control" name="category_id" required >
                                                        @foreach($categories as $category)
                                                                                 <option @if($category->id) selected
                                                                                         @endif value="{{$category->id}}">{{$category->name}}</option>
@@ -119,32 +119,32 @@
 
 
                                             <fieldset class="form-group">
-                                                <label  class="col-form-label" for="category" >merchant</label>
-                                                <select class="form-control" name="category" required >
+                                                <label  class="col-form-label" for="merchant" >merchant</label>
+                                                <select class="form-control" name="merchant_id" required >
                                                        @foreach($merchants as $merchant)
                                                                                 <option @if($merchant->id) selected
                                                                                         @endif value="{{$merchant->id}}">{{$merchant->name}}</option>
                                                                             @endforeach
                                                     </select>
-                                                @if ($errors->has('category'))
+                                                @if ($errors->has('merchant'))
                                                 <p class="text-right">
-                                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                                                <small class="warning text-muted">{{ $errors->first('merchant') }}</small>
                                                 </p>
                                                 @endif
                                               </fieldset>
 
 
                                               <fieldset class="form-group">
-                                                <label  class="col-form-label" for="category" >currency</label>
-                                                <select class="form-control" name="category" required>
+                                                <label  class="col-form-label" for="currency" >currency</label>
+                                                <select class="form-control" name="currency_id" required>
                                                        @foreach($currencies as $currency)
                                                                                 <option @if($currency->id) selected
                                                                                         @endif value="{{$currency->id}}">{{$currency->name}}</option>
                                                                             @endforeach
                                                     </select>
-                                                @if ($errors->has('category'))
+                                                @if ($errors->has('currency'))
                                                 <p class="text-right">
-                                                <small class="warning text-muted">{{ $errors->first('category') }}</small>
+                                                <small class="warning text-muted">{{ $errors->first('currency') }}</small>
                                                 </p>
                                                 @endif
                                               </fieldset>

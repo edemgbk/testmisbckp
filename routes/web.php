@@ -235,9 +235,9 @@ Route::get('test',function(){
 // $reports=\App\Report::all();
 // dd($report->expenses);
 
-$report=\App\Report::find(1);
+// $report=\App\Report::find(1);
 
-$u=$report->expenses()->attach([2,3]);
+// $u=$report->expenses()->attach([2,3]);
 // dd($u);
 // return view('test.index');
 });
