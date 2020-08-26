@@ -28,11 +28,11 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h6>Simple Form</h6>
-                    <form id="roleForm"   method="POST" action="{{ route('user-management.merchants.create')}}">
+                    <form id="InputForm"   method="POST" action="{{ route('user-management.merchants.create')}}">
                       @csrf
 
                       <div class="form-group">
-                        <label class="col-form-label" for="name">Name</label>
+                        <label class="col-form-label" for="name">name</label>
                         <input class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" id="name" type="text" name="name" value="{{ old('name')}}" placeholder=" name" />
                         @if ($errors->has('name'))
                           <p class="text-right mb-0">
@@ -43,15 +43,14 @@
                       </div>
 
                       <div class="form-group">
-                        <label class="col-form-label" for="username">Code</label>
-                        <input class="form-control {{ $errors->has('Code') ? ' is-invalid' : '' }}" id="Code" type="text" name="code" value="{{ old('Code')}}" placeholder="Code" />
-                        @if ($errors->has('Code'))
+                        <label class="col-form-label" for="code">code</label>
+                        <input class="form-control {{ $errors->has('code') ? ' is-invalid' : '' }}" id="code" type="text" name="code" value="{{ old('code')}}" placeholder="code" />
+                        @if ($errors->has('code'))
                           <p class="text-right mb-0">
-                            <small class="warning text-muted">{{ $errors->first('Code') }}</small>
+                            <small class="warning text-muted">{{ $errors->first('code') }}</small>
                           </p>
                         @endif
                       </div>
-
 
 
                       {{--<script src="{{asset('js/advanced-forms.js')}}" defer>--}}
@@ -80,7 +79,7 @@
 
                       {{-- @endif --}}
                       <div class="form-group">
-                        <button class="btn btn-primary" type="submit" name="save" value="save">Save</button>
+                        <button class="btn btn-primary" type="submit">Save</button>
                       </div>
                     </form>
                   </div>
@@ -173,17 +172,33 @@ delete
 @endsection
 <script>
 const axios = require('axios').default;
-axios.post('/user', {
-    name: name,
-    code: code
+
+document.getElementById('InputForm').addEventListener('submit', performPostRequest);
+
+
+function performPostRequest(e) {
+    e.preventDefault();
+
+//   var resultElement = document.getElementById('postResult');
+  var name = document.getElementById('name').value;
+  var code = document.getElementById('code').value;
+
+//   resultElement.innerHTML = '';
+
+  axios.post('http://localhost:8000/merchants/create', {
+    name:name,
+    code:code,
   })
   .then(function (response) {
-    console.log(response);
+      console.log('success');
+    // resultElement.innerHTML = generateSuccessHTMLOutput(response);
   })
   .catch(function (error) {
-    console.log(error);
+      console.log('error');
+    // resultElement.innerHTML = generateErrorHTMLOutput(error);
   });
 
+}
 
 
 
@@ -202,6 +217,10 @@ axios.post('/user', {
 
 
     }
+
+
+
+
 
 
 

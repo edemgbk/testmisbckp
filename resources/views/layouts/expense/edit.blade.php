@@ -54,7 +54,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="reference">reference</label>
-                                                <input class="form-control {{ $errors->has('treferenceitle') ? ' is-invalid' : '' }}" id="reference" type="text" name="reference" value="{{ old('reference')?old('reference'):$expense->reference }}" placeholder="Enter reference" />
+                                                <input class="form-control {{ $errors->has('reference') ? ' is-invalid' : '' }}" id="reference" type="text" name="reference" value="{{ old('reference')?old('reference'):$expense->reference }}" placeholder="Enter reference" />
                                                 @if ($errors->has('reference'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('reference') }}</small>
@@ -66,7 +66,7 @@
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="description">description</label>
-                                                <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.."></textarea>
+                                                <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.." value="{{ old('description')?old('description'):$expense->description }}"></textarea>
                                                 @if ($errors->has('description'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('description') }}</small>

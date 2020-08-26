@@ -303,10 +303,20 @@
                        @endif
                         @endforeach
 
-                    </td> 
+                    </td>
 
                  <td>
-                    {{$Expense->currency_id}}
+
+                    @if($Expense->currency_id == 1)
+                    <span class="badge badge-success">USD</span>
+                    @elseif($Expense->currency_id == 2)
+                    <span class="badge badge-success">GHC</span>
+                    @elseif($Report->status == 3)
+                    <span class="badge badge-danger"></span>
+                    @else
+                    <span class="badge badge-info"></span>
+                   @endif
+
                     {{$Expense->amount}}
 
                 </td>
@@ -340,7 +350,7 @@
                    @endforeach
                 @else
                   <tr>
-                    <td colspan="4" class="text-center">No role  Set</td>
+                    <td colspan="4" class="text-center">No expense  Set</td>
                   </tr>
                 @endif
                 </tbody>

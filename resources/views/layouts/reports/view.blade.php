@@ -102,7 +102,7 @@
                                     <i class="fa fa-search-plus"></i>
                                   </a> --}}
                                 {{-- <button class="cursor-pointer btn btn-default" type="submit">attach file   </button> --}}
-
+{{-- @permission('approve-report') --}}
                                 <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf {{method_field('PUT')}}
 
@@ -119,7 +119,7 @@
 
                                   </form>
 
-
+{{-- @endpermission --}}
 
                               </div>
                         </div>

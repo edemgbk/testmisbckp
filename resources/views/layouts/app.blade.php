@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css">
     <link href="vendors/toastr/css/toastr.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.js"></script>
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
@@ -89,7 +90,13 @@
 <script src="{{ asset('vendors/jquery/js/jquery.min.js') }}"></script>
 <script src="{{ asset('vendors/toastr/js/toastr.js') }}"></script>
 <script src="js/toastr.js"></script>
+<script src="{{ asset('js/validation.js') }}" defer></script>
+<script>
+    $("#profileForm").validate();
 
+ $("#loginForm").validate();
+ $("#registerForm").validate();
+    </script>
 {{-- <script>
     @if(Session::has('message'))
       var type = "{{ Session::get('alert-type', 'info') }}";

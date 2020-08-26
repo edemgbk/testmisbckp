@@ -282,19 +282,21 @@
                           <td>
                             {{-- {{$Report->status}} --}}
 
-                             @if($Report->status == 0)
-                            <span class="badge badge-primary">Pending</span>
-                            @elseif($Report->status == 1)
-                            <span class="badge badge-success">Approved</span>
-                            @elseif($Report->status == 2)
-                            <span class="badge badge-danger">Rejected</span>
-                            @else
-                            <span class="badge badge-info">Postponed</span>
-                           @endif
+                        @if($Report->status == 0)
+                        <span class="badge badge-primary">Pending</span>
+                        @elseif($Report->status == 1)
+                        <span class="badge badge-success">Approved</span>
+                        @elseif($Report->status == 2)
+                        <span class="badge badge-danger">Rejected</span>
+                        @else
+                        <span class="badge badge-info">Postponed</span>
+                       @endif
+
                              </td>
 
                              <td>
                                </td>
+
 
                                <td>
 

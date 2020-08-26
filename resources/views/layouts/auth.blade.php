@@ -70,12 +70,13 @@
 <script src="{{ asset('js/pace.min.js') }}" defer></script>
 <script src="{{ asset('js/perfect-scrollbar.min.js') }}" defer></script>
 <script src="{{ asset('js/coreui.min.js') }}" defer></script>
-<script src="{{ asset('js/toastr.js') }}" defer>
+<script src="{{ asset('js/toastr.js') }}" defer></script>
     <script src="vendors/jquery/js/jquery.min.js"></script>
     <script src="vendors/toastr/js/toastr.js"></script>
     <script src="js/toastr.js"></script>
+    <script src="{{ asset('js/validation.js') }}" defer></script>
 
-</script>
+
 
 {{-- <script src="node_modules/jquery/dist/jquery.min.js"></script>
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>

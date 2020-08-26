@@ -58,7 +58,7 @@ class ExpenseController extends Controller
     foreach($expense->reports as $report){
 $Rtitle=$report->title;
     }
-        return view('layouts.expense.view',compact('expense','Rtitle','$mname'));
+        return view('layouts.expense.view',compact('expense','Rtitle','mname'));
     }
 
 
