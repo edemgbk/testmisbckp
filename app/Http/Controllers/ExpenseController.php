@@ -51,21 +51,35 @@ class ExpenseController extends Controller
         $expense = Expense::find($e_id);
     // return 0;
 
-    foreach($expense->merchants as $merchant){
-        $mname=$merchant->name;
-            }
 
-    foreach($expense->reports as $report){
-$Rtitle=$report->title;
-    }
-        return view('layouts.expense.view',compact('expense','Rtitle','mname'));
+    // foreach($expense->merchants as $merchant){
+        // $mname=$merchant->name;
+            // }
+
+//     foreach($expense->reports as $report){
+// $rtitle=$report->title;
+//     }
+
+
+// foreach($expense->reports as $report){
+
+
+// if($report->status == 0){
+// dd('pending');
+// }
+
+                
+
+
+// }
+        return view('layouts.expense.view',compact('expense'));
     }
 
 
 
     public function create(Request $request) {
 
-
+// dd($request->all());
         $this->validate($request, [
         'date' => 'required|date',
         'reference' => 'required|string|min:1',
@@ -73,7 +87,7 @@ $Rtitle=$report->title;
         'description' => 'required|string|min:5',
 
         // 'currency_id' => 'required|string|min:1',
-        // 'reports' => 'required|string|min:5',
+        // 'report_id' => 'required|string|min:5',
         // 'category_id' => 'required|string|min:3',
         // 'merchant_id' => 'required|string|min:3',
 
@@ -86,12 +100,20 @@ $Rtitle=$report->title;
         $createExpense->reference = $request->reference;
         $createExpense->description = $request->description;
         $createExpense->amount = $request->amount;
-
-        $createExpense->currency_id = $request->currency_id;
-        $createExpense->paidthrough_id=$request->paidthrough_id;
-        $createExpense->status = "Unsubmitted";
         $createExpense->save();
 
+        $expense = Expense::where('reference',$request->reference)->first();
+
+    //   dd($expense);
+
+        // $createExpense->report_id=$request->report_id;
+        // $createExpense->currency_id = $request->currency_id;
+        // $createExpense->paidthrough_id=$request->paidthrough_id;
+        // $createExpense->status = "Unsubmitted";
+
+        $expense->reports()->attach($request->report_id);
+        $expense->merchants()->attach($request->merchant_id);
+        $expense->categories()->attach($request->categories_id);
 
         // $report_id = $request->report_id;
         // $category_id = $request->category_id;

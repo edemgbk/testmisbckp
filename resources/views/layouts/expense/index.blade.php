@@ -187,9 +187,12 @@
 
 
                           <div class="form-group{{ $errors->has('reports') ? ' form-control-warning' : '' }}">
-                            <label for="reports">Add to a report <span class="required">*</span></label>
-                            <select name="reports" id="reports" class="form-control"  style="width: 100%">
+                            <label for="reports">Add to a report <span class="required"></span></label>
+                            <select name="report_id" id="reports" class="form-control"  style="width: 100%">
+                                <option>select</option>
+
                                 @foreach($Reports as $Report)
+
                                     <option value="{{$Report->id}}">{{$Report->title}}</option>
                                 @endforeach
                             </select>
@@ -270,7 +273,8 @@
                     <td>
                         @foreach($Expense->categories as $category)
 
-                      {{$category->name}}
+                      {{-- {{$category->name}} --}}
+                      -
                       @endforeach
                       </td>
                     <td>

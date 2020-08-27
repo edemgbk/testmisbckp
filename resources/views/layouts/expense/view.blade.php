@@ -24,8 +24,32 @@
                                     {{$expense->date}}
                                 </p>
                                 <p class="card-text">
-                                    status :<span class="badge badge-pill badge-info"> {{$expense->status}}</span>
+                                    status :
+                                        {{-- {{$expense->status}} --}}
 
+                                        @foreach($expense->reports as $report)
+
+
+                                        @if($report->status == 0)
+                                        <span class="badge badge-primary">Pending</span>
+                                        @elseif($report->status == 1)
+                                        <span class="badge badge-success">Approved</span>
+                                        @elseif($report->status == 2)
+                                        <span class="badge badge-danger">Rejected</span>
+                                        @else
+                                        <span class="badge badge-info">Postponed</span>
+                                       @endif
+                                            @endforeach
+
+
+
+
+                                </p>
+
+                                <p>
+                                    @foreach($expense->reports as $report)
+                                   Report title {{$report->title }}
+                                    @endforeach
                                 </p>
 
 
@@ -53,11 +77,14 @@
                                 {{$expense->reference}}
                             </p>
                             <p class="card-text">paidthrough:
+                                {{-- @foreach($expense->paidthrough as $paidthro) --}}
+                               {{-- {{$expense->paidthrough->accountname}} --}}
+                               {{-- @endforeach --}}
 
-                                {{$expense->paidthrough_id}}
+                                {{-- {{$expense->paidthrough_id}} --}}
                             </p>
                             <p>
-                                title:{{$Rtitle}}
+                                {{-- title:{{$Rtitle}} --}}
                             </p>
                         </div>
                         <ul class="list-group list-group-flush">

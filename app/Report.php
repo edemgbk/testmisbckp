@@ -31,6 +31,13 @@ return $this->belongsToMany(Expense::Class);
 
 
 
+    public function merchants()
+    {
+        return $this->hasManyThrough('App\Merchant', 'App\Expense');
+    }
+
+
+
 
 // public function expenses()
 // {

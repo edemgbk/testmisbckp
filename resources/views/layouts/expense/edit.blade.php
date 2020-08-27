@@ -67,6 +67,7 @@
                                             <div class="form-group">
                                                 <label class="col-form-label" for="description">description</label>
                                                 <textarea class="form-control" id="textarea-input" name="description" rows="9" placeholder="Content.." value="{{ old('description')?old('description'):$expense->description }}"></textarea>
+
                                                 @if ($errors->has('description'))
                                                     <p class="text-right mb-0">
                                                         <small class="warning text-muted">{{ $errors->first('description') }}</small>
@@ -86,7 +87,8 @@
 
                                             <fieldset class="form-group">
                                                 <label  class="col-form-label" for="report" >report</label>
-                                                <select class="form-control" name="report_id" required >
+                                                <select class="form-control" name="report_id" required  value="{{ old('report_id') }}">
+                                                    <option>select report</option>
                                                        @foreach($reports as $report)
                                                                                 <option @if($report->id) selected
                                                                                         @endif value="{{$report->id}}">{{$report->name}}</option>
@@ -98,6 +100,15 @@
                                                 </p>
                                                 @endif
                                               </fieldset>
+
+                                              {{-- <select id="ace" class="form-control{{ $errors->has('ace') ? ' is-invalid' : '' }}" name="ace" value="{{ old('ace') }}">
+                                                <option value="">Select ACE</option>
+                                                @foreach($aces as $ace)
+                                                    <option {{($user->ace == $ace->id)? 'selected': ''}} value="{{$ace->id}}">
+                                                        {{$ace->name." (".$ace->acronym.")"}}
+                                                    </option>
+                                                @endforeach
+                                            </select> --}}
 
 
 

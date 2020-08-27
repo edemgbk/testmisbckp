@@ -22,8 +22,8 @@ function __construct($id){
     {
 
         return Report::where('id',$id)->get()([
-            '',''
+            'title','purpose'
         ]);
-        return Report::find($id);
+        // return Report::find($id);
     }
 }

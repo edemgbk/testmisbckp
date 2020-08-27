@@ -34,15 +34,38 @@ class ReportController extends Controller
             return $pdf->download('mypdf.pdf');
     }
 
-    public function export(Request $request,$id)
+    public function export(Request $request)
     {
-            $r_id = Crypt::decrypt($id);
+            $r_id = Crypt::decrypt($request->id);
 
-             $report = Report::find($r_id);
+             $reportid = Report::find($r_id);
 
-            return Excel::download(new ReportExport($request->id), 'Report.xlsx',compact('id'));
+            return Excel::download(new ReportExport($reportid), 'Report.xlsx');
 
     }
+
+//     public function export(Request $request,$id)
+//   {
+
+//     Excel::create('Report List', function($excel) use ($id)
+//     {
+//         $excel->sheet('Reports', function($sheet) use ($id)
+//         {
+//             $data = Report::where('id', $id)->get();
+//             $data = json_decode(json_encode($data),true);
+//             $Reports = [];
+//             foreach ($data as $key => $value) {
+//                 $report['title']= $value['vname'];
+//                 $report['reportnumber']= $value['vaddress'];
+//                 $report['fromd']= $value['fromd'];
+//                 $report['tod']= $value['tod'];
+
+//                 $Reports[] = $report;
+//             }
+//             $sheet->fromArray($Reports);
+//         });
+//     })->download('xlsx');
+// }
 
     public function index() {
         $id = Auth::user();
@@ -53,7 +76,7 @@ class ReportController extends Controller
         //     $expense
         //  ]);
         $Expenses=Expense::all();
-
+            
          return view('layouts.reports.index',compact('Reports','Expenses'));
 
     }
@@ -81,6 +104,9 @@ class ReportController extends Controller
         $report->status = 0;
 
         $report->save();
+
+        $report = Report::where('title',$request->title)->first();
+        $report->expenses()->attach($request->amount);
 // dd("hello");
 
         // $request->session()->flash('status', [
@@ -243,9 +269,9 @@ Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
 public function delete(Request $request) {
     $id = Crypt::decrypt($request->input('id'));
     // dd($id);
-    $report = Report::where('id', $id)->first();
+    $user = Report::where('id', $id)->first();
 
-    if (empty($report)) {
+    if (empty($user)) {
         $request->session()->flash('status', [
             'error' => true,
             'title' => 'Sorry!',
@@ -253,7 +279,7 @@ public function delete(Request $request) {
         ]);
     }
 
-    if ($report->delete()) {
+    if ($user->delete()) {
         $request->session()->flash('status', [
             'error' => false,
             'title' => 'Deleted!',

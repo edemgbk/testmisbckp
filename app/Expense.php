@@ -50,10 +50,10 @@ class Expense extends Model
 
 
 
-//     public function paidthrough()
-//     {
-//         return $this->belongsTo('App\Paid_Through');
-//     }
+    public function paidthrough()
+    {
+        return $this->belongsTo('App\Paid_Through');
+    }
 
 
 

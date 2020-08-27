@@ -31,7 +31,7 @@
 
 
                             <p class="card-text">
-                                {{$report->title}}
+                                Report Title:{{$report->title}}
 
                             </p>
 
@@ -176,7 +176,10 @@
 </td>
                               <td>
                                   {{-- {{$role->description}} --}}
-
+                                {{-- {{$expense->merchants->name}} --}}
+                                @foreach($expense->merchants as $merchant)
+                                {{$merchant->name}}
+                                @endforeach
                                 </td>
                             <td>
                                 {{-- {{$role->name}} --}}

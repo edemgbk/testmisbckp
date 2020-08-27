@@ -272,10 +272,10 @@
                             </td>
 
 
-                         <td>                           {{$Report->fromd}}
+                         <td>
+                                                       {{$Report->fromd}}
                     </td>
                           <td>                            {{$Report->tod}}
-
                             </td>
 
 
@@ -365,3 +365,5 @@
     }
 
 </script>
+
+

@@ -143,7 +143,7 @@
 
                     <td>
                       <a class="btn btn-success" href="#">
-                        <i class="fa fa-search-plus"></i>
+                       view <i class="fa fa-search-plus"></i>
                       </a>
                       <a class="btn btn-info" href="{{route('user-management.permissions.edit',[\Illuminate\Support\Facades\Crypt::encrypt($permission->id)])}}">
                        edit <i class="fa fa-edit"></i>
