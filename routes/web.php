@@ -11,10 +11,10 @@ Auth::routes();
 //file upload
 // Route::get('file-upload', 'FileUploadController@fileUpload')->name('file.upload');
 // Route::post('file-upload', 'FileUploadController@fileUploadPost')->name('file.upload.post');
-Route::get('file','FileController@index');
+// Route::get('file','FileController@index');
 
 //insert files/images into mysql database table laravel
-Route::post('file-upload','FileController@fileSave');
+// Route::post('file-upload','FileController@fileSave');
 
 
 Route::get('/newsidebar','AdminController@index')->name('newsidebar');
@@ -23,7 +23,13 @@ Route::get('/newsidebar','AdminController@index')->name('newsidebar');
 //     return 'Hello World';
 // });
 
-Route::post('file-upload', 'SubmitReportController@Upload')->name('reportupload');
+// Route::post('file-upload', 'SubmitReportController@Upload')->name('reportupload');
+
+// Create file upload form
+Route::get('/upload-file', 'FileUpload@createForm');
+
+// Store file
+Route::post('/upload-file', 'FileUpload@fileUpload')->name('fileUpload');
 
 Auth::routes(['verify' => true]);
 

@@ -8,6 +8,7 @@ use App\Currency;
 use App\Merchant;
 use App\Report;
 use App\Paid_Through;
+
 use Brian2694\Toastr\Facades\Toastr;
 
 use Illuminate\Support\Facades\Crypt;
@@ -68,7 +69,7 @@ class ExpenseController extends Controller
 // dd('pending');
 // }
 
-                
+
 
 
 // }
@@ -77,32 +78,50 @@ class ExpenseController extends Controller
 
 
 
-    public function create(Request $request) {
+    public function create(Request $req) {
 
 // dd($request->all());
-        $this->validate($request, [
-        'date' => 'required|date',
-        'reference' => 'required|string|min:1',
-        'amount' => 'required|numeric|min:1',
-        'description' => 'required|string|min:5',
+        // $this->validate($request, [
+        // 'date' => 'required|date',
+        // 'reference' => 'required|string|min:1',
+        // 'amount' => 'required|numeric|min:1',
+        // 'description' => 'required|string|min:5',
+        // 'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
 
         // 'currency_id' => 'required|string|min:1',
         // 'report_id' => 'required|string|min:5',
         // 'category_id' => 'required|string|min:3',
         // 'merchant_id' => 'required|string|min:3',
 
-        ]);
+        // ]);
+
+        $req->validate([
+            'date' => 'required|date',
+            'reference' => 'required|string|min:1',
+            'amount' => 'required|numeric|min:1',
+            'description' => 'required|string|min:5',
+            'file' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+              ]);
+
 // dd($request->all());
 
     // try {
         $createExpense = new Expense();
-        $createExpense->date = $request->date;
-        $createExpense->reference = $request->reference;
-        $createExpense->description = $request->description;
-        $createExpense->amount = $request->amount;
-        $createExpense->save();
+        $createExpense->date = $req->date;
+        $createExpense->reference = $req->reference;
+        $createExpense->description = $req->description;
+        $createExpense->amount = $req->amount;
 
-        $expense = Expense::where('reference',$request->reference)->first();
+        if($req->file()) {
+            $fileName = time().'_'.$req->file->getClientOriginalName();
+            $filePath = $req->file('file')->storeAs('uploads', $fileName, 'public');
+
+            $createExpense->fname = time().'_'.$req->file->getClientOriginalName();
+            $createExpense->filepath = '/storage/' . $filePath;
+            $createExpense->save();
+        }
+
+        $expense = Expense::where('reference',$req->reference)->first();
 
     //   dd($expense);
 
@@ -111,9 +130,12 @@ class ExpenseController extends Controller
         // $createExpense->paidthrough_id=$request->paidthrough_id;
         // $createExpense->status = "Unsubmitted";
 
-        $expense->reports()->attach($request->report_id);
-        $expense->merchants()->attach($request->merchant_id);
-        $expense->categories()->attach($request->categories_id);
+        $expense->reports()->attach($req->report_id);
+        $expense->merchants()->attach($req->merchant_id);
+        $expense->categories()->attach($req->categories_id);
+
+
+
 
         // $report_id = $request->report_id;
         // $category_id = $request->category_id;

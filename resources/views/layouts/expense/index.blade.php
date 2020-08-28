@@ -24,7 +24,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <h6>Expense </h6>
-                    <form id="roleForm"   method="POST" action="{{ route('expenses.create')}}">
+                    <form id="roleForm"   method="POST" action="{{ route('expenses.create')}}" enctype="multipart/form-data">
                       @csrf
                       <div class="form-group">
                         <label class="col-form-label" for="Date"> Expense Date <span class="required">*</span></label>
@@ -203,6 +203,12 @@
                             @endif
                         </div>
 
+                        <div class="form-group">
+                            <label for="reports">upload file/receipt (csv,txt,xlx,xls,pdf)<span class="required"></span></label>
+
+                            <input type="file" name="file" class="form-control" id="chooseFile">
+                        </div>
+
 
                           {{-- <div class="form-group{{ $errors->has('reports') ? ' form-control-warning' : '' }}">
                             <label for="reports">Merchant <span class="required">*</span></label>
@@ -256,6 +262,7 @@
                   <th>Date</th>
                   <th>Category</th>
                   <th>Merchant.</th>
+                  <th>Receipt</th>
                   <th>Report</th>
                   <th>status</th>
                   <th>Amount</th>
@@ -274,7 +281,7 @@
                         @foreach($Expense->categories as $category)
 
                       {{-- {{$category->name}} --}}
-                      -
+                      --
                       @endforeach
                       </td>
                     <td>
@@ -283,6 +290,13 @@
 
                         {{$merchant->name}}
                         @endforeach
+                    </td>
+                    <td>
+
+                        @if($Expense->fname)
+                        {{-- {{$Expense->fname}} --}}
+                        <img src="{{asset('storage/'.$Expense->fname)}}" class="card-img-top" alt="file">
+                        @endif
                     </td>
                   <td>
                     @foreach($Expense->reports as $report)
@@ -312,11 +326,11 @@
                  <td>
 
                     @if($Expense->currency_id == 1)
-                    <span class="badge badge-success">USD</span>
+                    <span class="badge badge-success">EU</span>
                     @elseif($Expense->currency_id == 2)
                     <span class="badge badge-success">GHC</span>
                     @elseif($Report->status == 3)
-                    <span class="badge badge-danger"></span>
+                    <span class="badge badge-danger">USD</span>
                     @else
                     <span class="badge badge-info"></span>
                    @endif

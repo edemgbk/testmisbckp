@@ -22,7 +22,8 @@ class Expense extends Model
      * @var array
      */
     protected $fillable = [
-        'date', 'reference', 'merchant_id','amount','category_id','description','report_id','status','paidthrough_id',
+        'date', 'reference', 'merchant_id','amount','category_id','description','report_id','status','paidthrough_id', 'fname',
+        'filepath',
     ];
 
 
@@ -30,13 +31,15 @@ class Expense extends Model
     public function merchants()
     {
         return $this->belongsToMany(Merchant::Class);
+                // return $this->morphedByMany('App\Merchant','expendable');
+
     }
 
 
 
     public function categories()
     {
-        return $this->belongsToMany(Merchant::Class);
+        return $this->belongsToMany(Category::Class);
 
         // return $this->morphedByMany('App\Category','expendable');
      }

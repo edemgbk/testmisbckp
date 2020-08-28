@@ -94,6 +94,7 @@
                                                                                         @endif value="{{$report->id}}">{{$report->name}}</option>
                                                                             @endforeach
                                                     </select>
+
                                                 @if ($errors->has('report'))
                                                 <p class="text-right">
                                                 <small class="warning text-muted">{{ $errors->first('report') }}</small>
@@ -127,8 +128,6 @@
                                                 @endif
                                               </fieldset>
 
-
-
                                             <fieldset class="form-group">
                                                 <label  class="col-form-label" for="merchant" >merchant</label>
                                                 <select class="form-control" name="merchant_id" required >
@@ -159,7 +158,6 @@
                                                 </p>
                                                 @endif
                                               </fieldset>
-
 
 
                                             {{-- <label class="col-form-label" for="paidthrough_id">paid through</label>

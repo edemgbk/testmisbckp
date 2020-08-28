@@ -170,8 +170,10 @@
 
                                 </td>
                               <td>
-
-                                  {{-- {{$role->display_name}} --}}
+                                @if($expense->fname)
+                                {{-- {{$Expense->fname}} --}}
+                                <img src="{{asset('storage/'.$expense->fname)}}" class="card-img-top" alt="file">
+                                @endif                                  {{-- {{$role->display_name}} --}}
 
 </td>
                               <td>
