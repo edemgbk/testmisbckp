@@ -134,7 +134,6 @@ Route::middleware(['verified', 'auth'])->group(function () {
 
 
 
-
     Route::prefix('user-management')->name('user-management.')->group(function () {
 
         Route::middleware(['verified', 'auth'])->group(function () {

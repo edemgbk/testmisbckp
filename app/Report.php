@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-use Hootlex\Moderation\Moderatable;
+// use Hootlex\Moderation\Moderatable;
 
 use Illuminate\Database\Eloquent\Model;
 

@@ -29,12 +29,10 @@
                             <span class="badge badge-info">Postponed</span>
                            @endif
 
-
                             <p class="card-text">
                                 Report Title:{{$report->title}}
 
                             </p>
-
 
                             <p class="card-text">
                                 report number:er3423
@@ -69,12 +67,6 @@
                             {{-- @endforeach --}}
                         </ul>
 
-
-
-
-
-
-
                         <div class="card-body">
                             <div class=" row form-group">
                                     @permission('create-report')
@@ -88,11 +80,18 @@
 
                                   </form>
 
-                                  <form method="get" action="{{route('reports.export',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
-                                    @csrf
-                                    <button type="submit" class="btn btn-success" style="margin:4px;" >Export </button>
+                                  @foreach($expense->reports as $report)
+                                  @if($report->status == 0 || $report->status == 2)
 
-                                  </form>
+                          @else
+
+                          <form method="get" action="{{route('reports.export',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
+                            @csrf
+                            <button type="submit" class="btn btn-success" style="margin:4px;" >Export </button>
+
+                          </form>
+                          @endif
+                                  @endforeach
 
                                 {{-- <a href="{{action('ReportController@downloadPDF', $report->id)}}">Download PDF</a> --}}
 
@@ -103,6 +102,7 @@
                                   </a> --}}
                                 {{-- <button class="cursor-pointer btn btn-default" type="submit">attach file   </button> --}}
 {{-- @permission('approve-report') --}}
+@permission('approvers-only')
                                 <form method="post" action="{{route('reports.approve',[\Illuminate\Support\Facades\Crypt::encrypt($report->id)])}}">
                                     @csrf {{method_field('PUT')}}
 
@@ -112,12 +112,11 @@
                                           <option value="0" @if($report->status==0)selected @endif>Pending</option>
                                           <option value="1" @if($report->status==1)selected @endif>Approve</option>
                                           <option value="2" @if($report->status==2)selected @endif>Reject</option>
-                                          <option value="3" @if($report->status==3)selected @endif>Postponed</option>
+                                          {{-- <option value="3" @if($report->status==3)selected @endif>Postponed</option> --}}
                                         </select>
 
-
-
                                   </form>
+ @endpermission
 
 {{-- @endpermission --}}
 
@@ -131,8 +130,6 @@
                 </div>
                 <!-- /.row-->
             </div>
-
-
 
             <div class="animated fadeIn">
                 <div class="card">

@@ -33,7 +33,9 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <h6>Simple Form</h6>
-                                        <form id="userForm"   method="POST" action="{{route('user-management.user.update',[\Illuminate\Support\Facades\Crypt::encrypt($user->id)])}}">
+                                        <form id="userForm"   method="POST" action="
+                                        {{-- {{route('user-management.user.update',[\Illuminate\Support\Facades\Crypt::encrypt($user->id)])}} --}}
+                                        ">
                                             @csrf {{method_field('PUT')}}
                                             {{--<input  type="hidden" name="id"  value="{{\Illuminate\Support\Facades\Crypt::encrypt($user->id)}}">--}}
 

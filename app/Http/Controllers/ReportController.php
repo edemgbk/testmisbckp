@@ -76,7 +76,7 @@ class ReportController extends Controller
         //     $expense
         //  ]);
         $Expenses=Expense::all();
-            
+
          return view('layouts.reports.index',compact('Reports','Expenses'));
 
     }
@@ -231,37 +231,150 @@ return back()->with('success','Report submitted successfully .');
 
     public function approve(Request $request, $id)
 {
-    switch($request->get('approve'))
-    {
-        case 0:
-            Report::postpone($id);
-            break;
-        case 1:
-            Report::approve($id);
-            break;
-        case 2:
-            Report::reject($id);
-            break;
-        case 3:
-            Report::postpone($id);
-            break;
-        default:
-            break;
+    // dd($request->approve);
 
-    }
+    // switch($request->get('approve'))
+    // {
+    //     case 0:
+    //         Report::postpone($id);
+    //         break;
+    //     case 1:
+    //         Report::approve($id);
+    //         break;
+    //     case 2:
+    //         Report::reject($id);
+    //         break;
+    //     case 3:
+    //         Report::postpone($id);
+    //         break;
+    //     default:
+    //         break;
 
-    // jkofi.bucknor@googlemail.com
-    // Madam Tawiah
-$to_name = 'edem';
-$to_email = 'edemgbk1@gmail.com';
-$data = array('name'=>"gbeku", "body" => "Test mail");
+    // }
+
+
+    $rid = Crypt::decrypt($request->id);
+    $Report = Report::find($rid);
+    // dd($Report->status);
+    $reportstatus = Report::where('status','=',$request->status )->get();
+
+    if ($request->approve == 0){
+//approved
+
+        Report::where('id', $Report->id) ->update(['status' => 0 ]);
+//
+        $to_name = 'edemgbk';
+        $to_email = 'edemgbk1@gmail.com';
+        $data = array('name'=>"gbeku", "body" => "jkba expenditure  portal");
+
+        Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('report pending');
+            $message->from('jkb@test','dev');
+        });
+//
+        $to_name = 'Madam tawiah';
+        $to_email = 'dtameyibor@jkb-associates.com';
+        $data = array('name'=>"Madam Tawiah", "body" => "jkba expenditure  portal");
+
+        Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('report pending');
+            $message->from('jkb@test','dev');
+        });
+
+
+//
+        $to_name = 'Mr Samson';
+        $to_email = 'esamson@jkb-associates.com';
+        $data = array('name'=>"Mr Samson", "body" => "jkba expenditure  portal");
+
+        Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('report pending');
+            $message->from('jkb@test','dev');
+        });
+    }elseif($request->approve == 1){
+        // $Report->status = 1;
+        // $Report->save();
+        // $indicator->where('parent_id','=',$id)->update(['status'=>1]);
+        Report::where('id', $Report->id) ->update(['status' => 1 ]);
+        $to_name = 'edemgbk';
+        $to_email = 'edemgbk1@gmail.com';
+        $data = array('name'=>"gbeku", "body" => "jkba expenditure  portal");
+
+        Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('report approved');
+            $message->from('jkb@test','dev');
+        });
+
+        ////////////////////
+        $to_name = 'Madam tawiah';
+$to_email = 'dtameyibor@jkb-associates.com';
+$data = array('name'=>" Madam Tawiah", "body" => "jkba expenditure  portal");
 
 Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
     $message->to($to_email, $to_name)
             ->subject('report approved');
     $message->from('jkb@test','dev');
 });
-    return redirect('reports.view');
+//////////////
+$to_name = 'Mr Samson';
+$to_email = 'esamson@jkb-associates.com';
+$data = array('name'=>"Mr Samson", "body" => "jkba expenditure  portal");
+
+Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)
+            ->subject('report approved');
+    $message->from('jkb@test','dev');
+});
+    }else{
+        // $Report->status = 2;
+        // $Report->save();
+        // $Report->status = 2;
+
+
+        Report::where('id', $Report->id) ->update(['status' => 2]);
+        ////////////////////
+        $to_name = 'edem';
+        $to_email = 'edemgbk1@gmail.com';
+        $data = array('name'=>"gbeku", "body" => "jkba expenditure  portal");
+
+        Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+            $message->to($to_email, $to_name)
+                    ->subject('report rejected');
+            $message->from('jkb@test','dev');
+        });
+
+
+        $to_name = 'Madam tawiah';
+$to_email = 'dtameyibor@jkb-associates.com';
+$data = array('name'=>"Madam Tawiah", "body" => "jkba expenditure  portal");
+
+Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)
+            ->subject('report rejected');
+    $message->from('jkb@test','dev');
+});
+//////////////
+$to_name = 'Mr Samson';
+$to_email = 'esamson@jkb-associates.com';
+$data = array('name'=>"Mr Samson", "body" => "jkba expenditure  portal");
+
+Mail::send('Email.mail', $data, function($message) use ($to_name, $to_email) {
+    $message->to($to_email, $to_name)
+            ->subject('report rejected');
+    $message->from('jkb@test','dev');
+});
+    }
+
+    // jkofi.bucknor@googlemail.com
+    // Madam Tawiah
+
+    // return redirect('reports.view');()->with('success','Report approved successfully .')
+    return back();
+
 }
 
 

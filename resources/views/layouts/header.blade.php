@@ -159,7 +159,7 @@
           <a class="dropdown-item" href="#">
             <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-user"></use>
-            </svg> Profile</a><a class="dropdown-item" href="#">
+            </svg> Edit Profile</a><a class="dropdown-item" href="{{route('user-management.user.my_profile')}}">
             {{-- <svg class="c-icon mfe-2">
               <use xlink:href="node_modules/@coreui/icons/sprites/free.svg#cil-settings"></use>
             </svg> Settings</a><a class="dropdown-item" href="#">

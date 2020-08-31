@@ -74,7 +74,7 @@
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.roles')}}"> Roles</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.permissions')}}"> Permissions</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.categories')}}"> Categories</a></li>
-          {{-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.customers')}}"> Customers</a></li> --}}
+          <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.customers')}}"> Customers</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.currencies')}}"> Currencies</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.merchants')}}"> Merchants</a></li>
           <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="{{route('user-management.paidthrough')}}"> Paid Through</a></li>
@@ -111,4 +111,3 @@
   </div>
 
 
-  
